@@ -1,0 +1,16 @@
+{
+ "install_first": "2026-11-02",
+ "install_last": "2026-12-19",
+ "install_workdays": 42,
+ "stillages": 140,
+ "trucks": 47,
+ "first_delivery": "2026-10-31",
+ "peak_stock": 10,
+ "peak_day": "2026-12-12",
+ "stillages_pulled_early": 41,
+ "late": 0,
+ "panels": 810,
+ "laydown_slots": 12,
+ "checks_passed": 12,
+ "checks_total": 12
+}
