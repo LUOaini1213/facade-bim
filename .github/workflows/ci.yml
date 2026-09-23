@@ -1,0 +1,40 @@
+name: ci
+
+# CI 上没有 Rhino。这里验证的是：已提交的 .3dm、IFC、CSV 和 README 互相对得上，
+# 并且都能由仓库里的代码重算出来。Rhino 那一步（rhino/build_model.py）在本机跑，
+# 它的产物 model/facade_bim.3dm 由 rhino3dm 独立读回来核。
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  core-py39:
+    # facade/ 只用标准库，并且必须兼容 Python 3.9——Rhino 8 内置的 CPython 就是 3.9，
+    # Rhino 里的建模脚本 import 的是同一份代码。这一步不装任何依赖，保证核心不偷偷依赖第三方库。
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+      - name: Model checks and schedule invariants (stdlib only)
+        run: python -m unittest tests.test_model tests.test_schedule -v
+      - name: data/ is exactly what the model computes
+        run: python scripts/build_data.py --check
+
+  artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Full test suite (.3dm ↔ CSV ↔ IFC, geometry engine, schema)
+        run: python -m pytest tests -v
+      - name: IFC is byte-identical to a fresh export of the committed .3dm
+        run: python scripts/export_ifc.py --check
+      - name: Every number in README is recomputed from the artifacts
+        run: python scripts/check_readme.py
