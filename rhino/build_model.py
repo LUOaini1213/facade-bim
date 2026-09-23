@@ -12,7 +12,9 @@ FACADE_BIM_ROOT 传入（Rhino 命令行对非 ASCII 路径不可靠，所以脚
 """
 import json
 import os
+import shutil
 import sys
+import tempfile
 import time
 import traceback
 
@@ -481,6 +483,22 @@ def shoot(img_dir):
     only(*TOPS)
 
 
+def scrub_local_paths():
+    """出完图再清掉渲染环境：Rhino 默认的 Studio 环境会把本机 AppData 下的贴图路径写进 .3dm。"""
+    n = 0
+    try:
+        for env in list(DOC.RenderEnvironments):
+            if DOC.RenderEnvironments.Remove(env):
+                n += 1
+    except Exception as ex:
+        step("清理渲染环境失败：%s" % ex)
+    try:
+        DOC.RenderSettings.BackgroundStyle = Rhino.Display.BackgroundStyle.SolidColor
+    except Exception as ex:
+        step("背景改纯色失败：%s" % ex)
+    step("清理渲染环境 %d 个（避免把本机路径写进 .3dm）" % n)
+
+
 def main():
     t0 = time.time()
     DOC.ModelUnitSystem = Rhino.UnitSystem.Millimeters
@@ -495,6 +513,7 @@ def main():
     if not os.path.isdir(img_dir):
         os.makedirs(img_dir)
     shoot(img_dir)
+    scrub_local_paths()
     out = os.path.join(ROOT, "model", "facade_bim.3dm")
     opt = Rhino.FileIO.FileWriteOptions()
     for k, v in (("IncludeRenderMeshes", False), ("IncludeHistory", False), ("IncludePreviewImage", True)):
@@ -502,7 +521,13 @@ def main():
             setattr(opt, k, v)            # 不存渲染网格：打开时 Rhino 会重算，文件小一大截
         except Exception:
             pass
-    ok = DOC.WriteFile(out, opt)
+    # .3dm 会把自己的存盘路径写进文件头：先存到不含用户名的公共目录，再复制进仓库
+    neutral = os.path.join(os.environ.get("PUBLIC") or tempfile.gettempdir(), "Documents", "facade-bim")
+    os.makedirs(neutral, exist_ok=True)
+    tmp_out = os.path.join(neutral, "facade_bim.3dm")
+    ok = DOC.WriteFile(tmp_out, opt)
+    if ok:
+        shutil.copyfile(tmp_out, out)
     step("存盘 facade_bim.3dm：%s" % ok)
     LOG.update({"ok": bool(ok), "seconds": round(time.time() - t0, 1), "objects": DOC.Objects.Count,
                 "rhino": str(Rhino.RhinoApp.Version)})

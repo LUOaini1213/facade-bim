@@ -7,6 +7,7 @@ import csv
 import logging
 import math
 import os
+import re
 import subprocess
 import sys
 import unittest
@@ -88,6 +89,21 @@ class RhinoModelMatchesData(unittest.TestCase):
             rot = int(round(math.degrees(math.atan2(xf.M10, xf.M00)))) % 360
             self.assertEqual(rot, int(row["rot"]), row["pid"])
         self.assertLess(worst, 0.01)
+
+    def test_no_local_paths_in_the_3dm(self):
+        """.3dm 默认会写进本机存盘路径（UTF-16）和渲染环境里贴图的本机路径；公开仓库里不该有这些。
+        允许的只有 Windows 的公共目录（C:/Users/Public）：构建脚本故意先存到那里再复制进仓库。
+        奇偶两种字节对齐都按 UTF-16 解一遍，免得路径恰好从奇数字节开始时漏掉。"""
+        b = open(M3DM, "rb").read()
+        found = []
+        for enc, text in (("utf-8", b.decode("utf-8", "ignore")), ("utf-16-le", b.decode("utf-16-le", "ignore")),
+                          ("utf-16-le 错一字节", b[1:].decode("utf-16-le", "ignore"))):
+            for word in ("AppData", "Desktop"):
+                found += ["%s：%r" % (enc, text[max(0, m.start() - 40):m.start() + 40])
+                          for m in re.finditer(word, text)]
+            found += ["%s：%r" % (enc, text[m.start():m.start() + 80])
+                      for m in re.finditer(r"[A-Za-z]:[\\/]Users[\\/]([^\\/\x00]+)", text) if m.group(1) != "Public"]
+        self.assertEqual(len(found), 0, "%d 处本机路径，前几处：\n%s" % (len(found), "\n".join(found[:6])))
 
 
 class IfcMatchesRhinoModel(unittest.TestCase):

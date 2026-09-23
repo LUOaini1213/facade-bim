@@ -1,6 +1,6 @@
 """调起本机 Rhino 8 跑 rhino/build_model.py，等它退出后打印构建日志。
 
-Rhino 命令行对非 ASCII 路径不可靠（仓库在「求职」目录下），所以先把脚本复制到
+Rhino 命令行对非 ASCII 路径不可靠（仓库路径里可能有中文），所以先把脚本复制到
 纯 ASCII 的临时目录，再通过环境变量 FACADE_BIM_ROOT 告诉它仓库在哪。
 
     python scripts/run_rhino.py
