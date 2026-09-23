@@ -240,7 +240,10 @@ def _normalize_sets(f):
 def export(path=MODEL_IFC):
     inst = read_3dm()
     f = build_ifc(inst)
-    f.write(path)
+    # 自己写文件、固定 LF：ifcopenshell 的 f.write() 在 Windows 上写 CRLF，
+    # 仓库按 .gitattributes 存 LF，不固定的话 Windows 本机重导会和检出的文件差一个换行符。
+    with open(path, "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(f.to_string())
     return f, inst
 
 
