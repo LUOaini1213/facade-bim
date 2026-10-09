@@ -6,6 +6,7 @@
     python scripts/check_readme.py
 """
 import csv
+import hashlib
 import json
 import logging
 import os
@@ -23,7 +24,7 @@ import rhino3dm                # noqa: E402
 from facade import config as C, site          # noqa: E402
 from facade.model import TYPE_NAMES, build_panels  # noqa: E402
 
-EXPECTED = 65
+EXPECTED = 73
 README = open(os.path.join(ROOT, "README.md"), encoding="utf-8").read()
 
 
@@ -116,6 +117,45 @@ def main():
           [OUT_X, OUT_Y, C.N_LONG, C.N_SHORT, C.MODULE, C.JOINT])
     claim("层高", r"L1 层高 ([\d,]+)、L2–L8 层高 ([\d,]+)、屋面女儿墙 ([\d,]+)", [C.LEVELS[0][2], C.LEVELS[1][2], C.LEVELS[-1][2]])
     claim("Rhino 文件对象与图层", r"整个文件 \*\*([\d,]+)\*\* 个对象、\*\*(\d+)\*\* 个图层", [len(M3.Objects), len(M3.Layers)])
+    # Read the actual shared coping and cardinal instance transforms, rather
+    # than trusting the parameter that claims to have changed it.
+    from scripts.check_quality import box_gap, source_box_bounds
+    source_objects = {obj.Attributes.Id: obj for obj in M3.Objects}
+    source_definitions = {definition.Id: definition for definition in M3.InstanceDefinitions}
+    roof = {obj.Attributes.GetUserString("pid"): obj for obj in inst if obj.Attributes.GetUserString("type") == "U5"}
+    roof_panel = next(iter(roof.values()))
+    cap = source_objects[list(source_definitions[roof_panel.Geometry.ParentIdefId].GetObjectIds())[-1]]
+    cap_bounds = source_box_bounds(cap.Geometry)
+    assert cap_bounds is not None, "source coping is not a certified box"
+    length = cap_bounds[1][0] - cap_bounds[0][0]
+    width = cap_bounds[1][1] - cap_bounds[0][1]
+    cap_world = {pid: source_box_bounds(cap.Geometry, panel.Geometry.Xform) for pid, panel in roof.items()}
+    post = next(obj for obj in M3.Objects if isinstance(obj.Geometry, rhino3dm.Brep)
+                and M3.Layers.FindIndex(obj.Attributes.LayerIndex).FullPath == "幕墙::转角立柱"
+                and abs(obj.Geometry.GetBoundingBox().Min.X) < 1e-7 and abs(obj.Geometry.GetBoundingBox().Min.Y) < 1e-7)
+    post_gap = box_gap(cap_world["S-RF-01"], source_box_bounds(post.Geometry))
+    adjacent_gap = box_gap(cap_world["S-RF-01"], cap_world["S-RF-02"])
+    corner_gap = box_gap(cap_world["S-RF-01"], cap_world["W-RF-15"])
+    mass = length * width * C.COPING_MM * C.ALU_DENSITY / 1e9
+    claim("压顶宽度/背边/出挑", r"U5 压顶总宽 (\d+) mm，背边对齐 (\d+) mm 框深，外侧出挑 (\d+) mm",
+          ["%g" % width, "%g" % cap_bounds[1][1], "%g" % -cap_bounds[0][1]])
+    claim("压顶端缝/退让/净长", r"默认 \*\*(\d+) mm\*\*：从分格中心两端各退让 \*\*(\d+) mm\*\*，制造净长 \*\*(\d+) mm\*\*",
+          ["%g" % adjacent_gap, "%g" % post_gap, "%g" % length])
+    claim("压顶真实三类净距", r"相邻压顶净距 \*\*([\d.]+) mm\*\*、压顶到角柱 \*\*([\d.]+) mm\*\*、四角两压顶约 \*\*([\d.]+) mm\*\*",
+          ["%g" % adjacent_gap, "%g" % post_gap, "%.6f" % corner_gap])
+    claim("真实铝板制作尺寸", r"真实铝板用量按 (\d+) × (\d+) × (\d+) mm", ["%g" % length, "%g" % width, "%g" % C.COPING_MM])
+    claim("真实压顶质量", r"\*\*([\d.]+) kg/块、([\d.]+) kg/(\d+)块\*\*", ["%.4f" % mass, "%.3f" % (mass * len(roof)), len(roof)])
+    old_w = float(roof_panel.Attributes.GetUserString("w_mm"))
+    claim("纠正压顶用量差", r"90块压顶铝总量减少 \*\*([\d.]+) kg\*\*", ["%.3f" % ((old_w - length) * width * C.COPING_MM * C.ALU_DENSITY / 1e9 * len(roof))])
+    native = json.load(open(os.path.join(ROOT, "model", "quality", "native_all.json"), encoding="utf-8"))
+    assert native["source_sha256"] == hashlib.sha256(open(os.path.join(ROOT, "model", "facade_bim.3dm"), "rb").read()).hexdigest(), "stale native quality report"
+    q = native["spatial"]
+    assert q["clearance_mm"] == 10 and q["clearance_ok"] is True
+    claim("完整源模型当前净距结果", r"\*\*(\d+) 条体积穿透、(\d+) 条净距不足、(\d+) 条接触、(\d+) 条距离待核、(\d+) 条内核未决\*\*",
+          [len(q["clashes"]), q["clearance_counts"]["below_clearance"], q["clearance_counts"]["contact"], q["clearance_counts"]["threshold_candidate"], len(q["unresolved"])])
+    roof_boundaries = sum("-RF-" in event["a"] or "-RF-" in event["b"] for event in q["clearance_events"])
+    claim("保留阈值边界", r"\*\*(\d+) 条10 mm阈值边界\*\*（L1–L8端框与角柱(\d+)条、屋顶端框与角柱(\d+)条）",
+          [q["clearance_counts"]["at_clearance"], len(q["clearance_events"]) - roof_boundaries, roof_boundaries])
     # ---- 检查表：12 行逐行
     table = [c for c in CHECKS]
     for c in table:

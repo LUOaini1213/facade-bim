@@ -10,7 +10,7 @@ import rhino3dm
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from scripts.check_quality import verify
+from scripts.check_quality import verify, verify_box_event_coverage, verify_clearance_event
 
 
 class QualityReports(unittest.TestCase):
@@ -30,6 +30,13 @@ class QualityReports(unittest.TestCase):
         path.write_text(json.dumps(content, ensure_ascii=False), encoding="utf-8")
         return path
 
+    def pop_clearance_event(self, content):
+        q = content["spatial"]
+        event = q["clearance_events"].pop(0)
+        q["clearance_counts"][event["kind"]] -= 1
+        q["blocking_clearance_events"] -= int(event["kind"] != "at_clearance")
+        return event
+
     def test_documented_relative_path_cli(self):
         result = subprocess.run([sys.executable, "scripts/check_quality.py", "model/quality/native_all.json"],
                                 cwd=ROOT, capture_output=True, text=True, encoding="utf-8")
@@ -40,29 +47,36 @@ class QualityReports(unittest.TestCase):
         self.assertEqual(self.report["spatial"]["solid_parts"], 7477)
         self.assertTrue(self.report["model_fixture"]["ok"])
 
-    def test_native_boundary_correction_retains_unapproved_contact(self):
+    def test_real_end_joint_repair_clears_contacts_without_relaxing_threshold(self):
         q = self.report["spatial"]
-        self.assertEqual(q["clearance_counts"], {"at_clearance": 252, "contact": 98,
+        self.assertEqual(q["clearance_counts"], {"at_clearance": 72, "contact": 0,
                                                 "below_clearance": 0, "threshold_candidate": 0})
-        self.assertEqual(q["blocking_clearance_events"], 98)
-        self.assertFalse(q["clearance_ok"])
+        self.assertEqual(q["blocking_clearance_events"], 0)
+        self.assertTrue(q["clearance_ok"])
+        self.assertEqual(q["clearance_mm"], 10)
         self.assertTrue(self.report["fixtures"]["boundary_checks"]["ok"])
 
     def test_contact_cannot_be_relabelled_as_a_boundary(self):
-        content = copy.deepcopy(self.report)
-        event = next(e for e in content["spatial"]["clearance_events"] if e["kind"] == "contact")
+        event = copy.deepcopy(self.report["fixtures"]["diagnostics"][4]["clearance_events"][0])
+        bounds = [[[0, 0, 0], [10, 10, 10]], [[10, 0, 0], [20, 10, 10]]]
+        self.assertEqual(verify_clearance_event(event, bounds, 2, 0.01), "contact")
         event["kind"] = "at_clearance"
-        content["spatial"]["clearance_counts"]["contact"] -= 1
-        content["spatial"]["clearance_counts"]["at_clearance"] += 1
-        content["spatial"]["blocking_clearance_events"] -= 1
-        with tempfile.TemporaryDirectory() as folder, self.assertRaisesRegex(AssertionError, "kind differs"):
-            verify(self.report_file(folder, content))
+        with self.assertRaisesRegex(AssertionError, "kind differs"):
+            verify_clearance_event(event, bounds, 2, 0.01)
 
     def test_deleting_all_contacts_cannot_make_clearance_pass(self):
+        event = self.report["fixtures"]["diagnostics"][4]["clearance_events"][0]
+        proven = {(event["a"], event["a_part"]): [[0, 0, 0], [10, 10, 10]],
+                  (event["b"], event["b_part"]): [[10, 0, 0], [20, 10, 10]]}
+        verify_box_event_coverage(proven, [event], 2)
+        with self.assertRaisesRegex(AssertionError, "missing or extra"):
+            verify_box_event_coverage(proven, [], 2)
+
+    def test_deleting_current_boundary_records_is_still_rejected(self):
         content = copy.deepcopy(self.report)
         q = content["spatial"]
-        q["clearance_events"] = [e for e in q["clearance_events"] if e["kind"] == "at_clearance"]
-        q["clearance_counts"]["contact"] = 0
+        q["clearance_events"] = []
+        q["clearance_counts"] = {key: 0 for key in q["clearance_counts"]}
         q["blocking_clearance_events"] = 0
         q["clearance_ok"] = True
         with tempfile.TemporaryDirectory() as folder, self.assertRaisesRegex(AssertionError, "missing or extra"):
@@ -71,10 +85,7 @@ class QualityReports(unittest.TestCase):
     def test_failed_report_retains_clash_and_unresolved_locations(self):
         content = copy.deepcopy(self.report)
         q = content["spatial"]
-        contact = next(e for e in q["clearance_events"] if e["kind"] == "contact")
-        q["clearance_events"].remove(contact)
-        q["clearance_counts"]["contact"] -= 1
-        q["blocking_clearance_events"] -= 1
+        contact = self.pop_clearance_event(content)
         event = {key: contact[key] for key in ("a", "b", "a_guid", "b_guid", "a_part", "b_part")}
         content["ok"] = content["spatial"]["ok"] = content["spatial"]["clearance_ok"] = False
         content["spatial"]["clashes"] = [dict(event, point_mm=[190, 0, 0], intersection_volume_mm3=100)]
@@ -92,22 +103,16 @@ class QualityReports(unittest.TestCase):
     def test_unresolved_pair_with_invalid_source_identity_is_rejected(self):
         content = copy.deepcopy(self.report)
         q = content["spatial"]
-        contact = next(e for e in q["clearance_events"] if e["kind"] == "contact")
-        q["clearance_events"].remove(contact)
-        q["clearance_counts"]["contact"] -= 1
-        q["blocking_clearance_events"] -= 1
+        contact = self.pop_clearance_event(content)
         q["unresolved"] = [dict(contact, a_guid="not-a-source-guid", reason="kernel failure")]
         content["ok"] = q["ok"] = q["clearance_ok"] = False
         with tempfile.TemporaryDirectory() as folder, self.assertRaisesRegex(AssertionError, "identity not in source"):
             verify(self.report_file(folder, content))
 
-    def test_missing_contact_can_remain_a_located_unresolved_failure(self):
+    def test_missing_clearance_event_can_remain_a_located_unresolved_failure(self):
         content = copy.deepcopy(self.report)
         q = content["spatial"]
-        contact = next(e for e in q["clearance_events"] if e["kind"] == "contact")
-        q["clearance_events"].remove(contact)
-        q["clearance_counts"]["contact"] -= 1
-        q["blocking_clearance_events"] -= 1
+        contact = self.pop_clearance_event(content)
         q["unresolved"] = [{key: contact[key] for key in ("a", "b", "a_guid", "b_guid", "a_part", "b_part")}]
         q["unresolved"][0]["reason"] = "MeshClash returned null"
         content["ok"] = q["ok"] = q["clearance_ok"] = False

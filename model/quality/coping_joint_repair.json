@@ -1,28 +1,36 @@
 {
   "ok": true,
-  "changed": false,
   "rhino": "8.33.26188.13001",
+  "changed": false,
   "source_before_sha256": "e512cfbd5be3af31451645773286e7d9eb571a94eb7ec0be0638a30047410a99",
   "source_after_sha256": "e512cfbd5be3af31451645773286e7d9eb571a94eb7ec0be0638a30047410a99",
-  "backup": "../output/rhino_backups/facade_bim_before_coping.3dm",
+  "preserved_object_guids": 4244,
+  "preserved_definition_guids": 5,
+  "preserved_layers": 26,
+  "preserved_materials": 86,
   "target_guid": "1d26b544-7ab3-4ca3-9588-11185277c47a",
   "definition_guid": "8aa0c424-7fec-4042-935c-2550d27f0e8f",
   "affected_panels": 90,
-  "panel_identity_sha256": "058ad048c3e440beb8ca83db4b598bf44e488b6c6e55b82d0b53653b4682a42c",
-  "panel_count": 810,
-  "preserved_object_guids": 4244,
-  "unchanged_object_attributes": 4244,
-  "unchanged_other_geometries": 4244,
-  "definitions_preserved": 5,
+  "allowed_attribute_keys": [
+    "coping_alu_kg",
+    "weight_kg"
+  ],
+  "changed_attribute_objects": 0,
+  "attribute_archive_normalization_objects": [],
+  "attribute_audit": "all UserText equal except permitted keys; full public properties/groups/display modes equal; non-string userdata archive identical or proven empty",
+  "old_coping_length_mm": 1576.0,
+  "coping_length_mm": 1576.0,
+  "coping_end_joint_mm": 24.0,
   "coping_width_mm": 250,
-  "back_edge_mm": 180,
-  "outside_projection_mm": 70,
-  "coping_volume_mm3": 19700000.000000004,
-  "before_corners": {
+  "physical_sheet_thickness_mm": 3.0,
+  "visual_envelope_height_mm": 50,
+  "physical_coping_kg_per_panel": 3.1914,
+  "assumption": "fictional demonstration joint; not an engineering recommendation; no sealant or corner cover detail",
+  "before_caps_and_posts": {
     "ok": true,
     "clearance_ok": true,
-    "units": 90,
-    "solid_parts": 90,
+    "units": 94,
+    "solid_parts": 94,
     "candidate_pairs": 0,
     "clashes": [],
     "clearance_events": [],
@@ -41,11 +49,11 @@
     "scope": "between distinct units; internal designed connections within each unit are not checked",
     "clearance_semantics": "proved boxes have exact model gaps; at-threshold records do not block; contacts remain unapproved; non-box mesh witnesses require distance review, not an exact minimum-distance claim"
   },
-  "after_corners": {
+  "after_caps_and_posts": {
     "ok": true,
     "clearance_ok": true,
-    "units": 90,
-    "solid_parts": 90,
+    "units": 94,
+    "solid_parts": 94,
     "candidate_pairs": 0,
     "clashes": [],
     "clearance_events": [],
@@ -63,5 +71,6 @@
     "method": "closed Brep boolean volume; proved-box or certified polygonal-boundary fallback; mesh threshold clearance",
     "scope": "between distinct units; internal designed connections within each unit are not checked",
     "clearance_semantics": "proved boxes have exact model gaps; at-threshold records do not block; contacts remain unapproved; non-box mesh witnesses require distance review, not an exact minimum-distance claim"
-  }
+  },
+  "backup": "../output/rhino_backups/facade_bim_before_joint_e512cfbd5be3.3dm"
 }

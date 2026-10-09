@@ -84,7 +84,8 @@ def roof(model):
     assert len(candidates) == 1, "cannot identify the unique U5 coping"
     target = candidates[0]
     bbox = target.Geometry.GetBoundingBox(True)
-    assert abs(bbox.Min.X + C.JOINT / 2) < 1e-6 and abs(bbox.Max.X - w - C.JOINT / 2) < 1e-6
+    assert abs(bbox.Min.X + bbox.Max.X - w) < 1e-6, "coping must remain centered on the panel"
+    assert 0 < bbox.Max.X - bbox.Min.X <= w + C.JOINT + 1e-6
     assert abs(bbox.Max.Y - bbox.Min.Y - C.COPING_W) < 1e-6
     assert target.Geometry.IsValid and target.Geometry.IsSolid
     return panels, target, definition
@@ -151,7 +152,13 @@ def repair():
     new_volume = spatial._mass(target.Geometry)[0]
     assert abs(new_volume - old_volume) <= old_volume * 1e-10, "coping volume/physical mass changed"
     assert panel_identity(model) == identity
-    verify_unchanged(before, inventory(model), target_id, not corrected)
+    if corrected:
+        # Native mass/mesh queries can populate Brep caches after Read. The
+        # no-op branch never writes this in-memory model; prove the source's
+        # actual file bytes were preserved instead of comparing cache bytes.
+        assert digest(source) == before_sha, "no-op repair changed the source file"
+    else:
+        verify_unchanged(before, inventory(model), target_id, True)
     candidate_quality = corner_check(model)
     assert candidate_quality["ok"] and not candidate_quality["clashes"] and not candidate_quality["unresolved"]
     backup = os.path.join(os.path.dirname(ROOT), "output", "rhino_backups", "facade_bim_before_coping.3dm")

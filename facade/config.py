@@ -50,6 +50,7 @@ DOOR_GLASS_MM = 12.0        # 门扇钢化玻璃
 DOOR_HARDWARE_KG = 25.0     # 门五金【假设】
 COPING_W = 250              # 女儿墙压顶宽（mm）
 COPING_MM = 3.0             # 压顶铝板厚
+COPING_END_JOINT = 24.0     # 压顶相邻端部总缝【示例假设，非工程推荐】；各端自分格中心退让12mm
 
 MULLION_KG_M = 4.2          # 竖框型材线密度 kg/m【假设，常见单元式幕墙量级】
 TRANSOM_KG_M = 2.8          # 横框型材线密度 kg/m【假设】

@@ -100,7 +100,8 @@ def quantities(ptype, w, h, zones):
                       + C.INSULATION_MM * C.MINERAL_WOOL_DENSITY) / 1000.0
     mullion_kg = 2 * h / 1000.0 * C.MULLION_KG_M
     transom_kg = n_transom * net_w / 1000.0 * C.TRANSOM_KG_M
-    coping_kg = (C.COPING_W * w * C.COPING_MM / 1e9 * C.ALU_DENSITY) if ptype == "U5" else 0.0
+    span = coping_span(w) if ptype == "U5" else (0.0, 0.0)
+    coping_kg = C.COPING_W * (span[1] - span[0]) * C.COPING_MM / 1e9 * C.ALU_DENSITY
     q = {
         "vision_igu_m2": area["vision"],
         "spandrel_m2": area["spandrel"],
@@ -119,6 +120,23 @@ def quantities(ptype, w, h, zones):
               + (C.DOOR_HARDWARE_KG if ptype == "U4" else 0.0)
               + mullion_kg + transom_kg + coping_kg)
     return q, weight
+
+
+def coping_span(w):
+    """Actual fabrication span in panel-local X, shared by geometry and take-off.
+
+    End joints are a configurable demonstration assumption. Their adequacy is
+    checked independently in the model; this function does not relax clearance.
+    """
+    values = (w, C.JOINT, C.COPING_END_JOINT, C.COPING_W, C.COPING_MM, C.ALU_DENSITY)
+    if any(isinstance(value, bool) or not isinstance(value, (int, float)) or
+           not math.isfinite(value) or value <= 0 for value in values):
+        raise ValueError("压顶尺寸、端缝和材料参数必须为有限正数")
+    length = w + C.JOINT - C.COPING_END_JOINT
+    if length <= 0:
+        raise ValueError("压顶总端缝必须小于板块模数，制造长度必须为正")
+    start = (C.COPING_END_JOINT - C.JOINT) / 2.0
+    return start, start + length
 
 
 def build_panels():
