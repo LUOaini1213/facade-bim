@@ -531,6 +531,8 @@ def main():
     ok = DOC.WriteFile(tmp_out, opt)
     if ok:
         shutil.copyfile(tmp_out, out)
+        from facade.source_integrity import write_source_record
+        write_source_record(out)
     step("存盘 facade_bim.3dm：%s" % ok)
     LOG.update({"ok": bool(ok), "seconds": round(time.time() - t0, 1), "objects": DOC.Objects.Count,
                 "rhino": str(Rhino.RhinoApp.Version)})

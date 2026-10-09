@@ -184,6 +184,34 @@
                         </xs:restriction>
                     </value>
                 </property>
+                <property cardinality="required">
+                    <propertySet>
+                        <simpleValue>FacadeBIM_Part</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>PartRole</simpleValue>
+                    </baseName>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="ROOF_COPING" />
+                            <xs:enumeration value="RHINO_BLOCK_PART" />
+                        </xs:restriction>
+                    </value>
+                </property>
+                <property cardinality="required">
+                    <propertySet>
+                        <simpleValue>FacadeBIM_Part</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>GeometryRepresentation</simpleValue>
+                    </baseName>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="CONSTRUCTION_ENVELOPE" />
+                            <xs:enumeration value="SOURCE_GEOMETRY" />
+                        </xs:restriction>
+                    </value>
+                </property>
                 <material cardinality="required" />
             </requirements>
         </specification>
@@ -272,6 +300,162 @@
                         </xs:restriction>
                     </value>
                 </attribute>
+            </requirements>
+        </specification>
+        <specification name="Roof coping fabrication and construction envelope semantics" ifcVersion="IFC4" identifier="F-COPING">
+            <applicability minOccurs="1" maxOccurs="unbounded">
+                <entity>
+                    <name>
+                        <simpleValue>IFCBUILDINGELEMENTPART</simpleValue>
+                    </name>
+                </entity>
+                <attribute>
+                    <name>
+                        <simpleValue>Name</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="[SENW]-RF-[0-9]{2}/08 alu" />
+                        </xs:restriction>
+                    </value>
+                </attribute>
+            </applicability>
+            <requirements>
+                <property cardinality="required">
+                    <propertySet>
+                        <simpleValue>FacadeBIM_Part</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>PartRole</simpleValue>
+                    </baseName>
+                    <value>
+                        <simpleValue>ROOF_COPING</simpleValue>
+                    </value>
+                </property>
+                <property cardinality="required">
+                    <propertySet>
+                        <simpleValue>FacadeBIM_Part</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>GeometryRepresentation</simpleValue>
+                    </baseName>
+                    <value>
+                        <simpleValue>CONSTRUCTION_ENVELOPE</simpleValue>
+                    </value>
+                </property>
+                <property dataType="IFCREAL" cardinality="required">
+                    <propertySet>
+                        <simpleValue>FacadeBIM_Coping</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>PhysicalThicknessMM</simpleValue>
+                    </baseName>
+                    <value>
+                        <xs:restriction base="xs:double">
+                            <xs:minExclusive value="0" fixed="false" />
+                        </xs:restriction>
+                    </value>
+                </property>
+                <property dataType="IFCREAL" cardinality="required">
+                    <propertySet>
+                        <simpleValue>FacadeBIM_Coping</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>FabricationLengthMM</simpleValue>
+                    </baseName>
+                    <value>
+                        <xs:restriction base="xs:double">
+                            <xs:minExclusive value="0" fixed="false" />
+                        </xs:restriction>
+                    </value>
+                </property>
+                <property dataType="IFCREAL" cardinality="required">
+                    <propertySet>
+                        <simpleValue>FacadeBIM_Coping</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>FabricationWidthMM</simpleValue>
+                    </baseName>
+                    <value>
+                        <xs:restriction base="xs:double">
+                            <xs:minExclusive value="0" fixed="false" />
+                        </xs:restriction>
+                    </value>
+                </property>
+                <property dataType="IFCREAL" cardinality="required">
+                    <propertySet>
+                        <simpleValue>FacadeBIM_Coping</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>MaterialDensityKGPerM3</simpleValue>
+                    </baseName>
+                    <value>
+                        <xs:restriction base="xs:double">
+                            <xs:minExclusive value="0" fixed="false" />
+                        </xs:restriction>
+                    </value>
+                </property>
+                <property dataType="IFCREAL" cardinality="required">
+                    <propertySet>
+                        <simpleValue>FacadeBIM_Coping</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>PhysicalMassKG</simpleValue>
+                    </baseName>
+                    <value>
+                        <xs:restriction base="xs:double">
+                            <xs:minExclusive value="0" fixed="false" />
+                        </xs:restriction>
+                    </value>
+                </property>
+                <property dataType="IFCREAL" cardinality="required">
+                    <propertySet>
+                        <simpleValue>FacadeBIM_Coping</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>EnvelopeHeightMM</simpleValue>
+                    </baseName>
+                    <value>
+                        <xs:restriction base="xs:double">
+                            <xs:minExclusive value="0" fixed="false" />
+                        </xs:restriction>
+                    </value>
+                </property>
+                <property cardinality="required">
+                    <propertySet>
+                        <simpleValue>FacadeBIM_Coping</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>QuantityBasis</simpleValue>
+                    </baseName>
+                    <value>
+                        <simpleValue>FLAT_SHEET_NOT_ENVELOPE_VOLUME</simpleValue>
+                    </value>
+                </property>
+                <property cardinality="required">
+                    <propertySet>
+                        <simpleValue>FacadeBIM_Coping</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>Assumption</simpleValue>
+                    </baseName>
+                    <value>
+                        <simpleValue>FICTIONAL_DEMONSTRATION_INPUTS</simpleValue>
+                    </value>
+                </property>
+                <property cardinality="required">
+                    <propertySet>
+                        <simpleValue>FacadeBIM_Coping</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>SourceModelSHA256</simpleValue>
+                    </baseName>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="[0-9a-f]{64}" />
+                        </xs:restriction>
+                    </value>
+                </property>
             </requirements>
         </specification>
     </specifications>

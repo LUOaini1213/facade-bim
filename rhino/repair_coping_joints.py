@@ -18,11 +18,12 @@ for directory in (ROOT, os.path.join(ROOT, "rhino")):
         sys.path.insert(0, directory)
 from facade import config as C
 from facade.model import coping_span
-from facade.pipeline import compute, panel_rows
+from facade.source_integrity import (ALLOWED_COPING_ATTRIBUTES, coping_update_rows,
+                                     read_source_record, write_source_record)
 import repair_roof_coping as legacy
 import spatial_quality as spatial
 
-ALLOWED = ("coping_alu_kg", "weight_kg")
+ALLOWED = ALLOWED_COPING_ATTRIBUTES
 ATTRIBUTE_ARCHIVE_NORMALIZATION = set()
 USER_STRING_LIST_ID = System.Guid("CE28DE29-F4C5-4FAA-A50A-C3A6849B6329")
 
@@ -118,8 +119,19 @@ def cap_quality(model):
 def repair():
     source = os.path.join(ROOT, "model", "facade_bim.3dm")
     before_sha = legacy.digest(source)
+    # Fail closed before any object deletion, backup or model write. The input
+    # record is source-bound; panel dimensions/transforms are checked separately.
+    read_source_record(source)
     model = Rhino.FileIO.File3dm.Read(source)
     assert model is not None and model.Settings.ModelUnitSystem == Rhino.UnitSystem.Millimeters
+    records = []
+    for obj in model.Objects:
+        if isinstance(obj.Geometry, RG.InstanceReferenceGeometry) and obj.Attributes.GetUserString("pid"):
+            strings = obj.Attributes.GetUserStrings()
+            records.append(({key: strings.Get(key) for key in strings.AllKeys},
+                            [[float(getattr(obj.Geometry.Xform, "M%d%d" % (row, column)))
+                              for column in range(4)] for row in range(4)]))
+    rows = coping_update_rows(records)
     before = legacy.inventory(model)
     panels, target, definition = legacy.roof(model)
     target_id = str(target.Attributes.ObjectId)
@@ -130,7 +142,6 @@ def repair():
     previous_length = bounds.Max.X - bounds.Min.X
     before_quality = cap_quality(model)
     assert not before_quality["unresolved"], "cannot diagnose source geometry"
-    rows = {row["pid"]: row for row in panel_rows(compute())}
     old_props = {}
     view_ids = [System.Guid.Empty] + [view.Viewport.Id for view in list(model.AllViews) + list(model.AllNamedViews)]
     for obj in panels:
@@ -182,6 +193,7 @@ def repair():
             shutil.copyfile(candidate, staged)
             assert legacy.digest(candidate) == legacy.digest(staged)
             os.replace(staged, source)
+            write_source_record(source)
         finally:
             if os.path.exists(candidate):
                 os.remove(candidate)

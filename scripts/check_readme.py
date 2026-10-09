@@ -24,7 +24,7 @@ import rhino3dm                # noqa: E402
 from facade import config as C, site          # noqa: E402
 from facade.model import TYPE_NAMES, build_panels  # noqa: E402
 
-EXPECTED = 73
+EXPECTED = 75
 README = open(os.path.join(ROOT, "README.md"), encoding="utf-8").read()
 
 
@@ -76,6 +76,16 @@ def validate_issues():
 
 
 def main():
+    # The README is the committed 24mm reference example. A custom joint is
+    # checked against an explicit source-bound summary, never declared to
+    # match the README's reference numbers.
+    from scripts.check_profile import documentation_mode, verify_profile
+    if documentation_mode(C.COPING_END_JOINT) == "custom_profile":
+        if "README 数字展示 24 mm 默认交付示例" not in README:
+            raise ValueError("README must identify its default reference profile")
+        profile = verify_profile()
+        print("PASS 自定义端缝 %.9g mm 的实际 profile 已独立回算；README 的24 mm参考数字不代表当前产物。" % profile["active_coping_end_joint_mm"])
+        return
     panels = build_panels()
     by_type = {}
     for p in panels:
@@ -209,6 +219,16 @@ def main():
     claim("IFC 立柱与楼板", r"\*\*(\d+)\*\* 根转角立柱为 IfcMember，\*\*(\d+)\*\* 块楼板为 IfcSlab", [ifc_count("IfcMember"), ifc_count("IfcSlab")])
     claim("IFC 真实分件", r"\*\*([\d,]+)\*\* 个 IfcBuildingElementPart", [ifc_count("IfcBuildingElementPart")])
     claim("IFC 材料", r"\*\*(\d+)\*\* 种 IfcMaterial", [ifc_count("IfcMaterial")])
+    import ifcopenshell.util.element as element
+    coping = [element.get_pset(part, "FacadeBIM_Coping") for part in IFC.by_type("IfcBuildingElementPart")]
+    coping = [props for props in coping if props]
+    claim("IFC 压顶制造分件", r"\*\*(\d+)\*\* 个压顶分件另有 FacadeBIM_Coping", [len(coping)])
+    physical = {(props["PhysicalThicknessMM"], props["FabricationLengthMM"], props["FabricationWidthMM"],
+                 props["PhysicalMassKG"], props["EnvelopeHeightMM"]) for props in coping}
+    if len(physical) != 1:
+        failures.append("当前共享压顶的 IFC 物理属性不一致")
+    claim("IFC 压顶制造尺寸与包络", r"真实板厚 \*\*([\d.]+) mm\*\*、制造长度 \*\*([\d.]+) mm\*\*、制造宽度 \*\*([\d.]+) mm\*\*、\s*\n?\s*未四舍五入质量 \*\*([\d.]+) kg\*\*，同时明确 Body 的 \*\*([\d.]+) mm\*\*",
+          ["%g" % value for value in next(iter(physical))] if physical else [None] * 5)
     tasks = IFC.by_type("IfcTask")
     claim("IFC 正式任务", r"\*\*([\d,]+)\*\* 个 IfcTask（\*\*(\d+)\*\* 个安装、\*\*(\d+)\*\* 个交付），每个任务带 IfcTaskTime",
           [len(tasks), sum(task.PredefinedType == "CONSTRUCTION" for task in tasks),

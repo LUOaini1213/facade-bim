@@ -38,9 +38,17 @@ class QualityReports(unittest.TestCase):
         return event
 
     def test_documented_relative_path_cli(self):
-        result = subprocess.run([sys.executable, "scripts/check_quality.py", "model/quality/native_all.json"],
+        result = subprocess.run([sys.executable, "scripts/check_quality.py", "model/quality/native_all.json", "--no-write-reports"],
                                 cwd=ROOT, capture_output=True, text=True, encoding="utf-8")
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_readonly_verification_does_not_create_html(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = self.report_file(folder, self.report)
+            before = path.read_bytes()
+            self.assertTrue(verify(path, write_reports=False)["ok"])
+            self.assertEqual(path.read_bytes(), before)
+            self.assertFalse(path.with_suffix(".html").exists())
 
     def test_actual_native_scope_includes_all_four_corner_posts(self):
         self.assertEqual(self.report["spatial"]["units"], 823)
@@ -48,9 +56,13 @@ class QualityReports(unittest.TestCase):
         self.assertTrue(self.report["model_fixture"]["ok"])
 
     def test_real_end_joint_repair_clears_contacts_without_relaxing_threshold(self):
-        q = self.report["spatial"]
-        self.assertEqual(q["clearance_counts"], {"at_clearance": 72, "contact": 0,
-                                                "below_clearance": 0, "threshold_candidate": 0})
+        # Re-enumerate the complete source-box event set. A legal 20mm end
+        # joint creates additional threshold boundaries; none may be omitted.
+        checked = verify(ROOT / "model/quality/native_all.json", write_reports=False)
+        q = checked["spatial"]
+        self.assertEqual({name: q["clearance_counts"][name] for name in ("contact", "below_clearance", "threshold_candidate")},
+                         {"contact": 0, "below_clearance": 0, "threshold_candidate": 0})
+        self.assertEqual(q["clearance_counts"]["at_clearance"], len(q["clearance_events"]))
         self.assertEqual(q["blocking_clearance_events"], 0)
         self.assertTrue(q["clearance_ok"])
         self.assertEqual(q["clearance_mm"], 10)

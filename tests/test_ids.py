@@ -68,6 +68,24 @@ class DeliveryIDS(unittest.TestCase):
         model = ifcopenshell.file(schema="IFC4" if self.facade else "IFC4X3_ADD2")
         self.assertFalse(validate_model(model)["status"])
 
+    def test_missing_coping_role_cannot_escape_coping_applicability(self):
+        model = self.model()
+        coping = next(part for part in model.by_type("IfcBuildingElementPart") if part.Name == "S-RF-01/08 alu")
+        ps = model.by_id(UE.get_pset(coping, "FacadeBIM_Part")["id"])
+        ifcopenshell.api.pset.edit_pset(model, pset=ps, properties={"PartRole": None})
+        result = validate_model(model)
+        self.assertFalse(result["status"])
+        specific = next(spec for spec in result["specifications"] if "coping" in spec["name"])
+        self.assertEqual(specific["total_applicable"], 90)
+        self.assertFalse(specific["status"])
+
+    def test_negative_coping_physical_mass_is_rejected(self):
+        model = self.model()
+        coping = next(part for part in model.by_type("IfcBuildingElementPart") if part.Name == "S-RF-01/08 alu")
+        ps = model.by_id(UE.get_pset(coping, "FacadeBIM_Coping")["id"])
+        ifcopenshell.api.pset.edit_pset(model, pset=ps, properties={"PhysicalMassKG": -1.0})
+        self.assertFalse(validate_model(model)["status"])
+
 
 if __name__ == "__main__":
     unittest.main()

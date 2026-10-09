@@ -12,7 +12,8 @@ import ifcopenshell
 import ifcopenshell.util.element as element
 import rhino3dm
 
-from scripts.check_ifc import check_part_geometry, check_tasks, verify
+from scripts.check_ifc import (check_coping_semantics, check_part_geometry, check_tasks,
+                               source_configuration, verify)
 from scripts.export_ifc import _box_bounds
 
 
@@ -24,6 +25,75 @@ class DetailedIfc(unittest.TestCase):
         cls.source_panels = {obj.Attributes.GetUserString("pid"): obj for obj in cls.source.Objects
                              if isinstance(obj.Geometry, rhino3dm.InstanceReference) and obj.Attributes.GetUserString("pid")}
         cls.source_objects = {str(obj.Attributes.Id): obj for obj in cls.source.Objects}
+
+    def coping(self):
+        child = next(part for part in self.f.by_type("IfcBuildingElementPart") if part.Name == "S-RF-01/08 alu")
+        metadata = element.get_pset(child, "FacadeBIM_Part")
+        original = self.source_objects[metadata["RhinoObjectID"]]
+        attrs = dict(self.source_panels[metadata["PanelID"]].Attributes.GetUserStrings())
+        return child, original, attrs
+
+    def test_coping_declares_actual_flat_sheet_mass_and_preserves_envelope(self):
+        result = verify(self.f, self.source, geometry=False)
+        self.assertEqual(result["coping_fabrication_parts"], 90)
+        values = [element.get_pset(part, "FacadeBIM_Coping") for part in self.f.by_type("IfcBuildingElementPart")]
+        coping = [props for props in values if props]
+        self.assertEqual(len(coping), 90)
+        _, original, _ = self.coping()
+        box = original.Geometry.GetBoundingBox()
+        record = source_configuration(ROOT / "model/facade_bim.3dm")
+        thickness, density = record["configuration"]["COPING_MM"], record["configuration"]["ALU_DENSITY"]
+        length, width, height = box.Max.X - box.Min.X, box.Max.Y - box.Min.Y, box.Max.Z - box.Min.Z
+        self.assertEqual({(p["PhysicalThicknessMM"], p["FabricationLengthMM"], p["FabricationWidthMM"], p["EnvelopeHeightMM"])
+                          for p in coping}, {(thickness, length, width, height)})
+        self.assertAlmostEqual(sum(p["PhysicalMassKG"] for p in coping), length * width * thickness * density / 1e9 * 90, places=8)
+
+    def test_coping_mass_cannot_be_rounded_or_derived_from_proxy_volume(self):
+        child, original, attrs = self.coping()
+        pset = self.f.by_id(element.get_pset(child, "FacadeBIM_Coping")["id"])
+        prop = next(prop for prop in pset.HasProperties if prop.Name == "PhysicalMassKG")
+        before = prop.NominalValue
+        try:
+            exact = before.wrappedValue
+            rounded = round(exact, 3)
+            # Some legal real-valued joints yield an exactly three-decimal
+            # mass; in that case test a real perturbation rather than truth.
+            rounded = rounded if abs(rounded - exact) > 1e-9 else exact + 0.001
+            box = original.Geometry.GetBoundingBox()
+            density = source_configuration(ROOT / "model/facade_bim.3dm")["configuration"]["ALU_DENSITY"]
+            envelope_mass = (box.Max.X - box.Min.X) * (box.Max.Y - box.Min.Y) * (box.Max.Z - box.Min.Z) * density / 1e9
+            for wrong in (rounded, envelope_mass):
+                with self.subTest(mass=wrong):
+                    prop.NominalValue = self.f.create_entity("IfcReal", wrong)
+                    with self.assertRaisesRegex(AssertionError, "PhysicalMassKG"):
+                        check_coping_semantics(child, original, attrs, source_configuration(ROOT / "model/facade_bim.3dm"))
+        finally:
+            prop.NominalValue = before
+
+    def test_coping_proxy_thickness_and_manufacturing_length_corruption_are_rejected(self):
+        child, original, attrs = self.coping()
+        pset = self.f.by_id(element.get_pset(child, "FacadeBIM_Coping")["id"])
+        for name, wrong in (("PhysicalThicknessMM", 50.0), ("FabricationLengthMM", 1600.0)):
+            prop = next(prop for prop in pset.HasProperties if prop.Name == name)
+            before = prop.NominalValue
+            try:
+                prop.NominalValue = self.f.create_entity("IfcReal", wrong)
+                with self.assertRaisesRegex(AssertionError, name):
+                    check_coping_semantics(child, original, attrs, source_configuration(ROOT / "model/facade_bim.3dm"))
+            finally:
+                prop.NominalValue = before
+
+    def test_coping_role_cannot_hide_envelope_as_a_physical_solid(self):
+        child, original, attrs = self.coping()
+        pset = self.f.by_id(element.get_pset(child, "FacadeBIM_Part")["id"])
+        prop = next(prop for prop in pset.HasProperties if prop.Name == "GeometryRepresentation")
+        before = prop.NominalValue
+        try:
+            prop.NominalValue = self.f.create_entity("IfcLabel", "SOURCE_GEOMETRY")
+            with self.assertRaisesRegex(AssertionError, "role/envelope"):
+                check_coping_semantics(child, original, attrs, source_configuration(ROOT / "model/facade_bim.3dm"))
+        finally:
+            prop.NominalValue = before
 
     def test_parts_are_exactly_the_actual_block_objects(self):
         expected = Counter()

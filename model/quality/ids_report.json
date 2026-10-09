@@ -1,16 +1,16 @@
 {
   "status": true,
-  "total_specifications": 4,
-  "total_specifications_pass": 4,
+  "total_specifications": 5,
+  "total_specifications_pass": 5,
   "total_specifications_fail": 0,
-  "total_checks": 55205,
-  "total_checks_pass": 55205,
+  "total_checks": 71123,
+  "total_checks_pass": 71123,
   "total_checks_fail": 0,
   "title": "Facade BIM IFC delivery requirements",
   "model": "model/facade_bim.ifc",
   "schema": "IFC4",
   "ids": "quality/delivery.ids",
-  "ids_sha256": "e326de4347f9814f5f3488dff1703750cd654eb9cade43a7a8f894ba4e6ad732",
+  "ids_sha256": "7f9d63160fdb475f0cf33f42e6f596b4b38a0eb08f36bae0c4bdc3f1db073f4e",
   "ifctester_version": "0.8.5",
   "specifications": [
     {
@@ -86,7 +86,7 @@
       "is_ifc_version": true,
       "total_applicable": 7464,
       "total_applicable_fail": 0,
-      "total_checks": 44784,
+      "total_checks": 59712,
       "total_checks_fail": 0,
       "requirements": [
         {
@@ -124,6 +124,22 @@
         {
           "label": "FacadeBIM_Part.MaterialName",
           "description": "MaterialName data shall be {'pattern': '.+'} and in the dataset FacadeBIM_Part",
+          "status": true,
+          "total_applicable": 7464,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Part.PartRole",
+          "description": "PartRole data shall be {'enumeration': ['ROOF_COPING', 'RHINO_BLOCK_PART']} and in the dataset FacadeBIM_Part",
+          "status": true,
+          "total_applicable": 7464,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Part.GeometryRepresentation",
+          "description": "GeometryRepresentation data shall be {'enumeration': ['CONSTRUCTION_ENVELOPE', 'SOURCE_GEOMETRY']} and in the dataset FacadeBIM_Part",
           "status": true,
           "total_applicable": 7464,
           "total_fail": 0,
@@ -208,7 +224,106 @@
           "failed_entities": []
         }
       ]
+    },
+    {
+      "name": "Roof coping fabrication and construction envelope semantics",
+      "status": true,
+      "is_ifc_version": true,
+      "total_applicable": 90,
+      "total_applicable_fail": 0,
+      "total_checks": 990,
+      "total_checks_fail": 0,
+      "requirements": [
+        {
+          "label": "FacadeBIM_Part.PartRole",
+          "description": "PartRole data shall be ROOF_COPING and in the dataset FacadeBIM_Part",
+          "status": true,
+          "total_applicable": 90,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Part.GeometryRepresentation",
+          "description": "GeometryRepresentation data shall be CONSTRUCTION_ENVELOPE and in the dataset FacadeBIM_Part",
+          "status": true,
+          "total_applicable": 90,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Coping.PhysicalThicknessMM",
+          "description": "PhysicalThicknessMM data shall be {'minExclusive': '0'} and in the dataset FacadeBIM_Coping",
+          "status": true,
+          "total_applicable": 90,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Coping.FabricationLengthMM",
+          "description": "FabricationLengthMM data shall be {'minExclusive': '0'} and in the dataset FacadeBIM_Coping",
+          "status": true,
+          "total_applicable": 90,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Coping.FabricationWidthMM",
+          "description": "FabricationWidthMM data shall be {'minExclusive': '0'} and in the dataset FacadeBIM_Coping",
+          "status": true,
+          "total_applicable": 90,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Coping.MaterialDensityKGPerM3",
+          "description": "MaterialDensityKGPerM3 data shall be {'minExclusive': '0'} and in the dataset FacadeBIM_Coping",
+          "status": true,
+          "total_applicable": 90,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Coping.PhysicalMassKG",
+          "description": "PhysicalMassKG data shall be {'minExclusive': '0'} and in the dataset FacadeBIM_Coping",
+          "status": true,
+          "total_applicable": 90,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Coping.EnvelopeHeightMM",
+          "description": "EnvelopeHeightMM data shall be {'minExclusive': '0'} and in the dataset FacadeBIM_Coping",
+          "status": true,
+          "total_applicable": 90,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Coping.QuantityBasis",
+          "description": "QuantityBasis data shall be FLAT_SHEET_NOT_ENVELOPE_VOLUME and in the dataset FacadeBIM_Coping",
+          "status": true,
+          "total_applicable": 90,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Coping.Assumption",
+          "description": "Assumption data shall be FICTIONAL_DEMONSTRATION_INPUTS and in the dataset FacadeBIM_Coping",
+          "status": true,
+          "total_applicable": 90,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Coping.SourceModelSHA256",
+          "description": "SourceModelSHA256 data shall be {'pattern': '[0-9a-f]{64}'} and in the dataset FacadeBIM_Coping",
+          "status": true,
+          "total_applicable": 90,
+          "total_fail": 0,
+          "failed_entities": []
+        }
+      ]
     }
   ],
-  "model_sha256": "c2f049edf535aeb8b57547d8daa6995ad6673583edc34ab1406d4be794400c7e"
+  "model_sha256": "acb5cfb093079efb530d57c126164067ddb90b0b9d054752902b4e808ef4aaa7"
 }

@@ -1,0 +1,212 @@
+{
+  "allowed_repair_parameter": "COPING_END_JOINT",
+  "basis": "fictional demonstration inputs; not measured or approved fabrication data",
+  "configuration": {
+    "ALU_DENSITY": 2700.0,
+    "BACKPAN_MM": 3.0,
+    "BRACKETS_PER_PANEL": 2,
+    "BRACKET_KG": 3.5,
+    "BUFFER_DAYS": 1,
+    "COPING_MM": 3.0,
+    "COPING_W": 250,
+    "CORNER": 180,
+    "CRANE": [
+      36000,
+      -8000
+    ],
+    "CRANE_RADIUS": 50000,
+    "CREWS": 2,
+    "CREW_HOURS": 8.0,
+    "DEPTH": 180,
+    "DOOR_GLASS_MM": 12.0,
+    "DOOR_HARDWARE_KG": 25.0,
+    "DOOR_LEAF_H": 2400,
+    "DOOR_MODULES": {
+      "('L1', 'S')": [
+        15,
+        16
+      ]
+    },
+    "ELEVATIONS": [
+      [
+        "S",
+        30
+      ],
+      [
+        "E",
+        15
+      ],
+      [
+        "N",
+        30
+      ],
+      [
+        "W",
+        15
+      ]
+    ],
+    "EXCLUSION": 6000,
+    "GATES": [
+      [
+        [
+          6000,
+          -30000
+        ],
+        [
+          14000,
+          -30000
+        ]
+      ],
+      [
+        [
+          51000,
+          -30000
+        ],
+        [
+          59000,
+          -30000
+        ]
+      ]
+    ],
+    "GLASS_DENSITY": 2500.0,
+    "GLASS_MAX_H": 4200,
+    "GLASS_MAX_W": 2440,
+    "IGU_GLASS_MM": 12.0,
+    "INSTALL_HOURS": {
+      "U1": 1.2,
+      "U2": 0.8,
+      "U3": 1.0,
+      "U4": 3.0,
+      "U5": 0.5
+    },
+    "INSTALL_START": "2026-11-02",
+    "INSULATION_MM": 50.0,
+    "JOINT": 20,
+    "LAYDOWN_AISLE": 4000,
+    "LAYDOWN_COLS": 6,
+    "LAYDOWN_ORIGIN": [
+      20000,
+      -26000
+    ],
+    "LAYDOWN_ROWS": 2,
+    "LEVELS": [
+      [
+        "L1",
+        0,
+        4500
+      ],
+      [
+        "L2",
+        4500,
+        3900
+      ],
+      [
+        "L3",
+        8400,
+        3900
+      ],
+      [
+        "L4",
+        12300,
+        3900
+      ],
+      [
+        "L5",
+        16200,
+        3900
+      ],
+      [
+        "L6",
+        20100,
+        3900
+      ],
+      [
+        "L7",
+        24000,
+        3900
+      ],
+      [
+        "L8",
+        27900,
+        3900
+      ],
+      [
+        "RF",
+        31800,
+        1200
+      ]
+    ],
+    "LIFT_SWL_KG": 400.0,
+    "LOUVER_KG_M2": 12.0,
+    "LOUVER_MODULES": {
+      "('L8', 'N')": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ]
+    },
+    "MINERAL_WOOL_DENSITY": 100.0,
+    "MODULE": 1600,
+    "MULLION_KG_M": 4.2,
+    "MULLION_W": 60,
+    "N_LONG": 30,
+    "N_SHORT": 15,
+    "SITE": [
+      -15000,
+      -30000,
+      83360,
+      36360
+    ],
+    "SLAB_GAP": 150,
+    "SLOT_L": 5000,
+    "SLOT_W": 2200,
+    "SPANDREL_GLASS_MM": 6.0,
+    "SPANDREL_H": 900,
+    "STILLAGE_CAP": {
+      "U1": 4,
+      "U2": 6,
+      "U3": 6,
+      "U4": 2,
+      "U5": 10
+    },
+    "TRANSOM_H": 80,
+    "TRANSOM_KG_M": 2.8,
+    "TRUCKS_PER_DAY": 2,
+    "TRUCK_ROUTE": [
+      [
+        10000,
+        -30000
+      ],
+      [
+        10000,
+        -15600
+      ],
+      [
+        55000,
+        -15600
+      ],
+      [
+        55000,
+        -30000
+      ]
+    ],
+    "TRUCK_STILLAGES": 3,
+    "WORKDAYS": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "schema": 1,
+  "source_sha256": "e512cfbd5be3af31451645773286e7d9eb571a94eb7ec0be0638a30047410a99"
+}

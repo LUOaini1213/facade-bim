@@ -1,0 +1,52 @@
+{
+  "active_coping_end_joint_mm": 24.0,
+  "basis": "fictional demonstration profile; model geometry, not field measurement or approved waterproof detailing",
+  "coping": {
+    "actual_span_x_mm": [
+      2.0,
+      1578.0
+    ],
+    "envelope_height_mm": 50.0,
+    "fabrication_length_mm": 1576.0,
+    "fabrication_width_mm": 250.0,
+    "measured_model_gaps_mm": {
+      "adjacent": 24.0,
+      "corner_post": 12.0,
+      "roof_corner": 16.97056274847714
+    },
+    "panel_count": 90,
+    "physical_mass_kg_per_panel": 3.1914,
+    "physical_mass_kg_total": 287.226,
+    "physical_sheet_thickness_mm": 3.0
+  },
+  "coping_takeoff_display_kg": {
+    "U5": "287.23",
+    "合计": "287.23"
+  },
+  "dependencies_text_lf_sha256": {
+    "data/panels.csv": "af0755a346e1a41c79d7ade9e5818d84185554d221a20141bc8d81afba7e595d",
+    "data/takeoff.csv": "9a03eb33050fb29c9de4732f2cc88dc9572d5c29303a2af0afa73fa009fc2e1f",
+    "model/facade_bim.ifc": "acb5cfb093079efb530d57c126164067ddb90b0b9d054752902b4e808ef4aaa7",
+    "model/quality/native_all.json": "acf098f4d8025632edede936e80d9aa900cf9361df118045521a2420009f7ba8",
+    "model/source_config.json": "a43993884f9f0a307890a8fdd23407877d22cf73e33b0763317a07da578eb114"
+  },
+  "dependency_hash_policy": "UTF8_TEXT_CRLF_TO_LF_SHA256; source 3dm uses exact binary SHA256",
+  "documentation_mode": "default_24mm",
+  "quality": {
+    "clearance_counts": {
+      "at_clearance": 72,
+      "below_clearance": 0,
+      "contact": 0,
+      "threshold_candidate": 0
+    },
+    "clearance_ok": true,
+    "required_clearance_mm": 10.0,
+    "solid_parts": 7477,
+    "units": 823,
+    "unresolved": 0,
+    "volume_clashes": 0
+  },
+  "readme_reference_end_joint_mm": 24.0,
+  "schema": 1,
+  "source_sha256": "e512cfbd5be3af31451645773286e7d9eb571a94eb7ec0be0638a30047410a99"
+}

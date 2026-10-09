@@ -224,7 +224,7 @@ def verify_boundary_checks(fixtures):
     assert curved["clearance_events"][0]["mesh_witness_available"] is False
 
 
-def verify(path):
+def verify(path, write_reports=True):
     source = ROOT / "model" / "facade_bim.3dm"
     data = json.loads(path.read_text(encoding="utf-8"))
     mode = {"native_all": "all", "native_spatial": "spatial", "native_timeline": "timeline"}.get(path.stem, "all")
@@ -316,7 +316,8 @@ def verify(path):
                     "<table><tr><th>类别</th><th>构件 A / 零件</th><th>构件 B / 零件</th><th>模型净距 mm</th><th>要求阈值 mm</th><th>位置 mm</th><th>状态</th></tr>%s</table></html>") % (
                         q["units"], q["solid_parts"], len(q["clashes"]), len(q["clearance_events"]), len(q["unresolved"]),
                         q["clearance_mm"], counts["below_clearance"], counts["at_clearance"], counts["contact"], counts["threshold_candidate"], "".join(rows))
-        path.with_suffix(".html").write_text(document, encoding="utf-8")
+        if write_reports:
+            path.with_suffix(".html").write_text(document, encoding="utf-8")
     if "timeline" in data:
         q = data["timeline"]
         assert q["date_events"] >= 5
@@ -332,6 +333,7 @@ def main():
         sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("paths", nargs="*", type=Path)
+    parser.add_argument("--no-write-reports", action="store_true", help="独立核对，不重写同名HTML")
     args = parser.parse_args()
     paths = args.paths or sorted((ROOT / "model" / "quality").glob("native_*.json"))
     if not paths:
@@ -339,7 +341,7 @@ def main():
     passed = True
     for path in paths:
         path = path.resolve()
-        data = verify(path)
+        data = verify(path, write_reports=not args.no_write_reports)
         passed = passed and data["ok"]
         label = path.relative_to(ROOT) if ROOT in path.parents else path
         print(("PASS " if data["ok"] else "FAIL ") + str(label))
