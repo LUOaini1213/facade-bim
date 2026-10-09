@@ -3,7 +3,9 @@
 import hashlib
 import json
 import os
+import shutil
 import sys
+import tempfile
 import time
 import traceback
 from datetime import date
@@ -92,12 +94,45 @@ def main():
         out["spatial"] = spatial.analyse(units, clearance, max(doc.ModelAbsoluteTolerance, 0.01))
     if os.environ.get("FACADE_QUALITY_MODE") != "spatial":
         import timeline
-        sentinel = doc.Objects.AddTextDot("unrelated user annotation", RG.Point3d(0, 0, 0))
-        out["timeline"] = timeline.run_qa(doc)
-        assert not doc.Objects.FindId(sentinel).IsHidden, "回放不得隐藏无关用户标注"
-        doc.Objects.Delete(sentinel, True)
-        out["timeline"]["document_lifecycle_guarded"] = timeline.run_lifecycle_qa(doc)
-        doc = Rhino.RhinoDoc.ActiveDoc
+        # The real export/reentry test saves the sentinel too. Keep all QA
+        # snapshots and Rhino's intermediate native save outside the delivery.
+        with tempfile.TemporaryDirectory(prefix="facade_timeline_qa_") as folder:
+            os.makedirs(os.path.join(folder, "model"))
+            copied_model = os.path.join(folder, "model", "facade_bim.3dm")
+            shutil.copyfile(model, copied_model)
+            old_roots = timeline.ROOT, timeline.replay.ROOT
+            old_public = os.environ.get("PUBLIC")
+            try:
+                timeline.ROOT = timeline.replay.ROOT = folder
+                os.environ["PUBLIC"] = folder
+                sentinel = doc.Objects.AddTextDot("unrelated user annotation", RG.Point3d(0, 0, 0))
+                try:
+                    out["timeline"] = timeline.run_qa(doc)
+                    assert not doc.Objects.FindId(sentinel).IsHidden, "回放不得隐藏无关用户标注"
+                finally:
+                    doc.Objects.Delete(sentinel, True)
+                for extension in ("3dm", "png", "json"):
+                    exported = os.path.join(folder, "model", "replay", "facade_2026-11-23." + extension)
+                    assert os.path.isfile(exported) and os.path.getsize(exported) > 0, "真实 QA 导出产物缺失"
+                out["timeline"]["qa_export_isolated"] = True
+                out["timeline"]["document_lifecycle_guarded"] = timeline.run_lifecycle_qa(doc)
+                with open(copied_model, "rb") as stream:
+                    assert hashlib.sha256(stream.read()).hexdigest() == digest
+                doc = Rhino.RhinoDoc.ActiveDoc
+            finally:
+                timeline.ROOT, timeline.replay.ROOT = old_roots
+                if old_public is None:
+                    os.environ.pop("PUBLIC", None)
+                else:
+                    os.environ["PUBLIC"] = old_public
+                active = Rhino.RhinoDoc.ActiveDoc
+                if active:
+                    active.Modified = False
+                # Release the lifecycle test's temporary document before the
+                # surrounding directory is removed, including failure paths.
+                assert Rhino.RhinoDoc.OpenFile(model), "QA 结束后无法重新打开源模型"
+                doc = Rhino.RhinoDoc.ActiveDoc
+                assert os.path.normcase(os.path.abspath(doc.Path)) == os.path.normcase(os.path.abspath(model))
     assert hashlib.sha256(open(model, "rb").read()).hexdigest() == digest
     out["source_preserved"] = True
     out["ok"] = all(out[key]["ok"] for key in ("fixtures", "spatial", "timeline") if key in out)
