@@ -1,0 +1,51 @@
+{
+  "ok": true,
+  "rhino": "8.33.26188.13001",
+  "snapshots": [
+    {
+      "date": "2026-10-30",
+      "counts": {
+        "not_delivered": 810,
+        "on_site": 0,
+        "installing": 0,
+        "installed": 0
+      },
+      "occupied_slots": 0,
+      "native_visible_panels": 0
+    },
+    {
+      "date": "2026-11-02",
+      "counts": {
+        "not_delivered": 778,
+        "on_site": 19,
+        "installing": 13,
+        "installed": 0
+      },
+      "occupied_slots": 9,
+      "native_visible_panels": 13
+    },
+    {
+      "date": "2026-11-23",
+      "counts": {
+        "not_delivered": 450,
+        "on_site": 33,
+        "installing": 20,
+        "installed": 307
+      },
+      "occupied_slots": 9,
+      "native_visible_panels": 327
+    },
+    {
+      "date": "2026-12-20",
+      "counts": {
+        "not_delivered": 0,
+        "on_site": 0,
+        "installing": 0,
+        "installed": 810
+      },
+      "occupied_slots": 0,
+      "native_visible_panels": 810
+    }
+  ],
+  "seconds": 4.4
+}

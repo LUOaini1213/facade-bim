@@ -58,6 +58,11 @@ L1 层高 4,500、L2–L8 层高 3,900、屋面女儿墙 1,200。每块板由竖
 Rhino 里 5 种板块是 5 个块定义，810 块板是 810 个块实例，实例名即板块编号；
 整个文件 **4,244** 个对象、**26** 个图层。
 
+U5 压顶总宽 250 mm，背边对齐 180 mm 框深，外侧出挑 70 mm，板端各外伸半条接缝。
+四角压顶以边缘相接，消除了原来的 30 × 30 × 50 mm 体积穿透。
+模型中 50 mm 高的压顶实体表示构造范围；铝板计重仍按配置中的 3 mm 厚度及 250 mm 宽度计算。
+这次修正只平移共享压顶几何，全部板块、定义和零件 GUID、原属性、尺寸及工程量与物理质量均保留。
+
 ![西南角局部：板块编号是 Rhino 模型里的标注](docs/img/detail_sw.png)
 
 ## 模型检查
@@ -109,6 +114,36 @@ Rhino 里 5 种板块是 5 个块定义，810 块板是 810 个块实例，实�
 
 ## 到场与堆场
 
+### Rhino 按日施工回放
+
+推荐在 Rhino 8 打开 `model/facade_bim.3dm`，运行 `rhino/timeline.py`：
+非模态时间轴支持日期滑块、前后一天、播放/暂停、日期跳转、板块编号或当前选择查询，以及导出当前阶段。
+面板打开时可以继续旋转、选择和操作 Rhino；到最后一天自动停止，关闭面板也会停止定时器。
+日期来自模型自身的到场与安装属性，查询会显示原 BIM 数据及当前施工状态；未安装板块保持隐藏。
+
+在 Rhino 8 中打开 `model/facade_bim.3dm`，用 `RunPythonScript` 选择
+`rhino/replay_install.py`。输入任意 `YYYY-MM-DD`，或用 `Next` / `Previous`
+逐日查看；`Save` 导出当前日期的独立 `.3dm`、PNG 和 JSON，`Done` 结束。
+
+回放直接读取每个块实例的到场日、安装日和运输架编号，分成「未到场、堆场待装、
+当日安装、已安装」四种状态。待装板不会提前出现在建筑上；当日安装板以橙色标出，
+已装板显示原构件。运输架按到场与装空日期分配到总平面的 12 个架位，重复利用空架位；
+架位不足或模型日期属性不一致会报错。架子是标有编号和剩余板数的占位示意体。
+
+批量生成开工前、开工日、施工中和完成后的阶段模型：
+
+```bash
+python scripts/run_replay.py
+python scripts/run_replay.py --dates 2026-11-02 2026-11-23 2026-12-20
+python scripts/check_replay.py  # 无需 Rhino，独立读回所有日期模型并核对实际显隐及架位
+```
+
+产物写到 `model/replay/facade_日期.{3dm,png,json}`；原始交付模型可继续用于 IFC 导出。
+统计口径是「当日施工期间」：当日安装的板块已显示，装空的架子当日仍占位、次日释放，
+与既有堆场占用表一致。楼板、转角立柱与施工设施作为静态参照；此功能是离散日期回放。
+
+![Rhino 按日施工回放：2026-11-23](model/replay/facade_2026-11-23.png)
+
 ![施工总平面：塔吊覆盖、堆场架位、车道（Rhino 俯视图）](docs/img/site_plan.png)
 
 沿安装顺序把连续的同类型板块装进运输架（每架 2–10 块，按类型），共 **140** 个架子；
@@ -141,14 +176,49 @@ Rhino 里 5 种板块是 5 个块定义，810 块板是 810 个块实例，实�
 
 - IfcProject → IfcSite → IfcBuilding → **9** 个 IfcBuildingStorey
 - 每层每个立面一个 IfcCurtainWall，共 **36** 个，聚合该段的 IfcPlate，共 **810** 个
-- **5** 个 IfcPlateType 对应 Rhino 的 5 个块定义：几何放在 IfcRepresentationMap 里，
-  每块板用 IfcMappedItem 引用，与 Rhino 的「块定义 / 块实例」一一对应
+- **5** 个 IfcPlateType 对应 Rhino 的 5 个块定义，类型 RepresentationMap 保存真实零件几何；
+  **7,464** 个 IfcBuildingElementPart 对应模型中的框、玻璃、岩棉、背板和百叶等实际 Brep。
+  每个父板聚合自己的子件，实体 Body 和材料存于子件，避免父子重复几何；共享几何按块定义零件复用。
+  中空玻璃按 Rhino 中的单实体导出，不拆成模型中不存在的玻璃与空气层
 - **4** 根转角立柱为 IfcMember，**9** 块楼板为 IfcSlab
 - 每块板挂 Pset_PlateCommon、自定义的 FacadeBIM_Panel（编号、层、列、安装序号与日期、架号、车号、到场日）
   和 Qto_PlateBaseQuantities（面积、周长、重量）
 
-文件共 **27,099** 个实体，ifcopenshell 的 schema 校验 **0** 个问题。GlobalId 由编号经 uuid5 推出、
+- **7** 种 IfcMaterial 关联真实分件与结构；FacadeBIM_Part 保留父板编号、零件序号、零件类、Rhino 身份和材料名
+- **950** 个 IfcTask（**810** 个安装、**140** 个交付），每个任务带 IfcTaskTime，归入正式 IfcWorkSchedule，
+  并以产品输出关系关联板块。日期来自源模型 UserText，任务日窗为 `[00:00, 次日00:00)`，
+  `P1D` 表示日期分辨率，不是实际工时。FacadeBIM_RhinoUserText 逐字段保存全部原始字符串
+
+文件共 **174,791** 个实体，ifcopenshell 的 schema 校验 **0** 个问题。GlobalId 由编号经 uuid5 推出、
 文件头时间戳固定、SET 属性按实体序号排序，同一个 `.3dm` 每次导出逐字节相同，CI 直接比对字节。
+
+## 三维质量与信息交付检查
+
+`rhino/quality_check.py` 对源模型中每个板块的实际块定义 Brep 应用实例变换，并加入结构楼板和转角立柱。
+世界坐标包络只筛候选，碰撞最终由闭合实体布尔交集体积判断；净距用 Rhino `MeshClash` 在实际三角网格上检测。
+默认净距阈值为 10 mm，可以调整。报告分开列出体积穿透、接触、低于净距阈值的事件，以及无法可靠计算的未决项，
+每项含源构件编号、GUID、零件编号和毫米位置。接触需要按连接意图复核，网格见证点不表示精确最短距离。
+同一板块内部的设计连接不在构件间检查范围内；检查面向当前实际模型的静态几何，可按安装日期筛选已装板块。
+
+```bash
+python scripts/run_quality.py                         # 原生 Rhino：几何 + 实际 Eto 控件/定时器事件
+python scripts/run_quality.py --mode spatial --clearance-mm 15 --date 2026-11-23
+python scripts/run_quality.py --mode timeline
+python scripts/check_quality.py                       # 无需 Rhino，独立核对报告与源模型身份/完整范围
+python scripts/check_ids.py                           # IDS 1.0 规则 + JSON/HTML 信息交付报告
+```
+
+原生报告在 `model/quality/native_*.json`，独立检查生成同名 HTML；信息交付规则在 `quality/delivery.ids`，
+其可维护配置是 `quality/profile.json`，用 `python scripts/check_ids.py --write-rules` 重新生成。
+IDS 检查父板编号、板型、日期和架号，实际分件的材料及 Rhino 身份，以及正式任务和施工计划的必填信息。
+`model/quality/ids_report.{json,html}` 保存结果。IDS 规则通过 XML schema 校验；信息检查和几何检查分别执行。
+测试会删除编号/材料、写入错误日期及提供空模型，要求失败；原生几何反例覆盖体积穿透、完全包含、
+相同平面投影但不同高度、净距阈值、仅接触以及包络重叠但物体位于孔洞中。
+时间轴原生检查实际创建 Eto 窗口、驱动滑块事件和真实定时器，并检查反向跳转、暂停、查询、无效输入和关闭。
+
+实现参考：[Rhino Eto 非模态窗口](https://developer.rhino3d.com/en/guides/eto/forms-and-dialogs/)、
+[Rhino MeshClash](https://mcneel.github.io/rhinocommon-api-docs/api/RhinoCommon/html/M_Rhino_Geometry_Intersect_MeshClash_Search_4.htm)、
+[IfcTester / IDS](https://docs.ifcopenshell.org/ifctester.html)。
 
 ## 怎么核、怎么复跑
 
@@ -160,6 +230,10 @@ python -m pytest tests                  # 模型检查、排程约束、.3dm ↔
 python scripts/build_data.py --check    # data/ 与重算结果逐字节一致
 python scripts/export_ifc.py --check    # 由 .3dm 重导的 IFC 与已提交文件逐字节一致
 python scripts/check_readme.py          # 本文每个数字对着产物回算
+python scripts/check_ids.py             # IDS 规则与材料/字段/任务交付要求
+python scripts/check_ifc.py             # 独立核对实际 Rhino 零件、材料、任务时间和关系
+python scripts/check_replay.py          # 独立读取原生日期模型
+python scripts/check_quality.py         # 核对原生几何及时间轴报告
 ```
 
 重建 Rhino 模型与截图需要 Rhino 8（Windows）：
@@ -169,6 +243,10 @@ python scripts/run_rhino.py             # 调起 Rhino 跑 rhino/build_model.py�
 python scripts/export_ifc.py            # 重导 IFC
 python scripts/build_data.py            # 重算 data/
 ```
+
+已有模型可用 `python scripts/run_roof_repair.py` 原生修补压顶，无需重建板块身份；
+脚本先备份、逐对象核对身份与属性，读回候选文件并检查真实转角实体，再替换源文件。
+重复运行会校验已修正状态。修补后重导 IFC，并刷新质量报告及日期快照。
 
 ## 仓库结构
 

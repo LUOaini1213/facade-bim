@@ -154,7 +154,10 @@ def panel_parts(ptype, w, h):
                 zz += 100
         z = z1
     if ptype == "U5":
-        parts.append(("alu", box(-C.JOINT / 2.0, -40, h, w + C.JOINT / 2.0, C.COPING_W - 40, h + 50)))
+        # Back edge aligns with the 180 mm frame depth. Keeping the full 250 mm
+        # width then puts 70 mm outside the facade, without corner penetration.
+        parts.append(("alu", box(-C.JOINT / 2.0, d - C.COPING_W, h,
+                                 w + C.JOINT / 2.0, d, h + 50)))
     return parts
 
 

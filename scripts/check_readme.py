@@ -23,7 +23,7 @@ import rhino3dm                # noqa: E402
 from facade import config as C, site          # noqa: E402
 from facade.model import TYPE_NAMES, build_panels  # noqa: E402
 
-EXPECTED = 62
+EXPECTED = 65
 README = open(os.path.join(ROOT, "README.md"), encoding="utf-8").read()
 
 
@@ -167,6 +167,14 @@ def main():
           [ifc_count("IfcCurtainWall"), ifc_count("IfcPlate")])
     claim("IFC 类型", r"\*\*(\d+)\*\* 个 IfcPlateType 对应 Rhino 的 (\d+) 个块定义", [ifc_count("IfcPlateType"), len(idefs)])
     claim("IFC 立柱与楼板", r"\*\*(\d+)\*\* 根转角立柱为 IfcMember，\*\*(\d+)\*\* 块楼板为 IfcSlab", [ifc_count("IfcMember"), ifc_count("IfcSlab")])
+    claim("IFC 真实分件", r"\*\*([\d,]+)\*\* 个 IfcBuildingElementPart", [ifc_count("IfcBuildingElementPart")])
+    claim("IFC 材料", r"\*\*(\d+)\*\* 种 IfcMaterial", [ifc_count("IfcMaterial")])
+    tasks = IFC.by_type("IfcTask")
+    claim("IFC 正式任务", r"\*\*([\d,]+)\*\* 个 IfcTask（\*\*(\d+)\*\* 个安装、\*\*(\d+)\*\* 个交付），每个任务带 IfcTaskTime",
+          [len(tasks), sum(task.PredefinedType == "CONSTRUCTION" for task in tasks),
+           sum(task.PredefinedType == "USERDEFINED" and task.ObjectType == "DELIVERY" for task in tasks)])
+    if len(IFC.by_type("IfcTaskTime")) != len(tasks) or any(task.TaskTime is None for task in tasks):
+        failures.append("正式 IFC 任务必须逐个有 IfcTaskTime")
     claim("IFC 实体数与校验", r"文件共 \*\*([\d,]+)\*\* 个实体，ifcopenshell 的 schema 校验 \*\*(\d+)\*\* 个问题",
           [len(list(IFC)), validate_issues()])
     claim("仓库结构：检查条数", r"\| (\d+) 条模型检查 \|", [groups["模型"]])
@@ -182,4 +190,6 @@ def main():
 
 
 if __name__ == "__main__":
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
     main()
