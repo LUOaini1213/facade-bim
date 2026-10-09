@@ -93,6 +93,22 @@
           "pset": "FacadeBIM_Part",
           "name": "MaterialName",
           "pattern": ".+"
+        },
+        {
+          "pset": "FacadeBIM_Part",
+          "name": "PartRole",
+          "values": [
+            "ROOF_COPING",
+            "RHINO_BLOCK_PART"
+          ]
+        },
+        {
+          "pset": "FacadeBIM_Part",
+          "name": "GeometryRepresentation",
+          "values": [
+            "CONSTRUCTION_ENVELOPE",
+            "SOURCE_GEOMETRY"
+          ]
         }
       ]
     },
@@ -136,6 +152,80 @@
         {
           "name": "Name",
           "pattern": ".+"
+        }
+      ]
+    },
+    {
+      "id": "F-COPING",
+      "name": "Roof coping fabrication and construction envelope semantics",
+      "entity": "IFCBUILDINGELEMENTPART",
+      "applicability_attributes": [
+        {
+          "name": "Name",
+          "pattern": "[SENW]-RF-[0-9]{2}/08 alu"
+        }
+      ],
+      "properties": [
+        {
+          "pset": "FacadeBIM_Part",
+          "name": "PartRole",
+          "value": "ROOF_COPING"
+        },
+        {
+          "pset": "FacadeBIM_Part",
+          "name": "GeometryRepresentation",
+          "value": "CONSTRUCTION_ENVELOPE"
+        },
+        {
+          "pset": "FacadeBIM_Coping",
+          "name": "PhysicalThicknessMM",
+          "datatype": "IFCREAL",
+          "min_exclusive": 0
+        },
+        {
+          "pset": "FacadeBIM_Coping",
+          "name": "FabricationLengthMM",
+          "datatype": "IFCREAL",
+          "min_exclusive": 0
+        },
+        {
+          "pset": "FacadeBIM_Coping",
+          "name": "FabricationWidthMM",
+          "datatype": "IFCREAL",
+          "min_exclusive": 0
+        },
+        {
+          "pset": "FacadeBIM_Coping",
+          "name": "MaterialDensityKGPerM3",
+          "datatype": "IFCREAL",
+          "min_exclusive": 0
+        },
+        {
+          "pset": "FacadeBIM_Coping",
+          "name": "PhysicalMassKG",
+          "datatype": "IFCREAL",
+          "min_exclusive": 0
+        },
+        {
+          "pset": "FacadeBIM_Coping",
+          "name": "EnvelopeHeightMM",
+          "datatype": "IFCREAL",
+          "min_exclusive": 0
+        },
+        {
+          "pset": "FacadeBIM_Coping",
+          "name": "QuantityBasis",
+          "value": "FLAT_SHEET_NOT_ENVELOPE_VOLUME"
+        },
+        {
+          "pset": "FacadeBIM_Coping",
+          "name": "Assumption",
+          "value": "FICTIONAL_DEMONSTRATION_INPUTS"
+        },
+        {
+          "pset": "FacadeBIM_Coping",
+          "name": "SourceModelSHA256",
+          "pattern": "[0-9a-f]{64}"
         }
       ]
     }

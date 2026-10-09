@@ -75,7 +75,8 @@ def panel_identity(model):
 
 class RoofCoping(unittest.TestCase):
     def test_actual_builder_back_edge_width_and_corner_clearance(self):
-        coping = builder_coping()
+        with patch.object(C, "COPING_END_JOINT", 24):
+            coping = builder_coping()
         bbox = coping.GetBoundingBox()
         self.assertEqual((bbox.Min.Y, bbox.Max.Y), (-70, 180))
         self.assertEqual(bbox.Max.Y - bbox.Min.Y, 250)
@@ -95,7 +96,8 @@ class RoofCoping(unittest.TestCase):
         _, panels, _, target = source_roof()
         bbox = target.Geometry.GetBoundingBox()
         self.assertEqual((bbox.Min.Y, bbox.Max.Y), (-70, 180))
-        self.assertEqual((bbox.Min.X, bbox.Max.X), (2, 1578))
+        self.assertAlmostEqual(bbox.Max.X - bbox.Min.X, C.MODULE - C.COPING_END_JOINT)
+        self.assertAlmostEqual(bbox.Min.X + bbox.Max.X, float(panels[0].Attributes.GetUserString("w_mm")))
         self.assertEqual(corner_volumes(panels, target.Geometry), [])
 
     def test_native_repair_report_preserves_all_panel_identities(self):
@@ -114,8 +116,9 @@ class RoofCoping(unittest.TestCase):
         self.assertEqual(report["after_corners"]["unresolved"], [])
 
     def test_real_plate_length_drives_material_mass_and_rounded_panel_weight(self):
-        p = next(p for p in build_panels() if p.ptype == "U5")
-        q, weight = quantities(p.ptype, p.w, p.h, zones_for(p.ptype, p.h))
+        with patch.object(C, "COPING_END_JOINT", 24):
+            p = next(p for p in build_panels() if p.ptype == "U5")
+            q, weight = quantities(p.ptype, p.w, p.h, zones_for(p.ptype, p.h))
         expected = 1.576 * 0.250 * 0.003 * 2700
         self.assertAlmostEqual(q["coping_alu_kg"], expected, places=10)
         self.assertAlmostEqual(expected * 90, 287.226, places=9)
@@ -135,7 +138,8 @@ class RoofCoping(unittest.TestCase):
 
     def test_actual_instance_gaps_distinguish_neighbor_corner_and_post_interfaces(self):
         _, panels, _, _ = source_roof()
-        cap = builder_coping()
+        with patch.object(C, "COPING_END_JOINT", 24):
+            cap = builder_coping()
         bounds = {}
         for p in panels:
             shape = cap.Duplicate()

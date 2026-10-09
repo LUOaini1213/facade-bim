@@ -39,10 +39,13 @@ jobs:
       - name: Every number in README is recomputed from the artifacts
         run: python scripts/check_readme.py
       - name: IDS delivery requirements (including material and formal task fields)
-        run: python scripts/check_ids.py
+        run: python scripts/check_ids.py --no-write-reports
       - name: Actual Rhino part geometry materials and formal task relationships
         run: python scripts/check_ifc.py
       - name: Independent readback of native replay and quality artifacts
         run: |
           python scripts/check_replay.py
-          python scripts/check_quality.py model/quality/native_all.json
+          python scripts/check_quality.py model/quality/native_all.json --no-write-reports
+          python scripts/check_profile.py --check
+      - name: Complete delivery input and artifact fingerprints
+        run: python scripts/delivery.py --check --manifest-only

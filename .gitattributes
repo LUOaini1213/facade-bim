@@ -6,3 +6,8 @@
 *.py text eol=lf
 *.md text eol=lf
 *.yml text eol=lf
+
+# Portable delivery fingerprints and deterministic public text assets
+*.txt text eol=lf
+*.html text eol=lf
+*.ids text eol=lf

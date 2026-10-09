@@ -7,6 +7,8 @@
 import argparse
 from collections import Counter, defaultdict
 from datetime import date, timedelta
+import hashlib
+import json
 import math
 from pathlib import Path
 import sys
@@ -46,6 +48,56 @@ def _source_parts(source):
 
 def _material(source, obj):
     return source.Materials[obj.Attributes.MaterialIndex]
+
+
+def source_configuration(source_path):
+    """Read the source-bound input witness without importing exporter/config."""
+    source_path = Path(source_path)
+    record = json.loads((source_path.parent / "source_config.json").read_text(encoding="utf-8"))
+    _need(record.get("schema") == 1 and record.get("allowed_repair_parameter") == "COPING_END_JOINT"
+          and record.get("source_sha256") == hashlib.sha256(source_path.read_bytes()).hexdigest(),
+          "source configuration record does not identify the actual source")
+    for name in ("COPING_MM", "COPING_W", "ALU_DENSITY"):
+        value = record.get("configuration", {}).get(name)
+        _need(type(value) in (int, float) and math.isfinite(value) and value > 0,
+              "invalid source-bound fabrication input: " + name)
+    return record
+
+
+def check_coping_semantics(child, source_part, source_props, record):
+    """Independently recompute physical values from source bounds + input witness."""
+    box = source_part.Geometry.GetBoundingBox()
+    is_coping = (source_props["type"] == "U5" and source_part.Attributes.Name == "alu"
+                 and abs(box.Min.Z - float(source_props["h_mm"])) < 1e-7)
+    part = element.get_pset(child, "FacadeBIM_Part") or {}
+    _need(part.get("PartRole") == ("ROOF_COPING" if is_coping else "RHINO_BLOCK_PART")
+          and part.get("GeometryRepresentation") == ("CONSTRUCTION_ENVELOPE" if is_coping else "SOURCE_GEOMETRY"),
+          "part role/envelope semantics differ from actual Rhino part: " + child.Name)
+    props = element.get_pset(child, "FacadeBIM_Coping")
+    if not is_coping:
+        _need(props is None, "non-coping part claims coping fabrication semantics: " + child.Name)
+        return False
+    _need(props is not None, "coping fabrication metadata missing: " + child.Name)
+    config = record["configuration"]
+    length, width, height = box.Max.X - box.Min.X, box.Max.Y - box.Min.Y, box.Max.Z - box.Min.Z
+    thickness, density = config["COPING_MM"], config["ALU_DENSITY"]
+    _need(abs(width - config["COPING_W"]) < 1e-7 and abs(height - 50) < 1e-7,
+          "coping envelope differs from source-bound fabrication inputs")
+    mass = length * width * thickness * density / 1e9
+    expected = {"PhysicalThicknessMM": thickness, "FabricationLengthMM": length,
+                "FabricationWidthMM": width, "MaterialDensityKGPerM3": density,
+                "PhysicalMassKG": mass, "EnvelopeHeightMM": height}
+    for name, value in expected.items():
+        actual = props.get(name)
+        _need(type(actual) in (float, int) and math.isfinite(actual)
+              and math.isclose(actual, value, rel_tol=0.0, abs_tol=1e-9),
+              "coping fabrication value differs from source: " + name + " " + child.Name)
+    _need(props.get("QuantityBasis") == "FLAT_SHEET_NOT_ENVELOPE_VOLUME"
+          and props.get("Assumption") == "FICTIONAL_DEMONSTRATION_INPUTS"
+          and props.get("SourceModelSHA256") == record["source_sha256"],
+          "coping fabrication basis/provenance missing: " + child.Name)
+    _need("%.3f" % mass == source_props["coping_alu_kg"], "coping source rounded quantity differs from fabrication mass")
+    return True
 
 
 def check_part_geometry(f, part, source_part):
@@ -136,15 +188,16 @@ def check_tasks(f, source_panels):
     return len(tasks)
 
 
-def verify(f, source, geometry=True):
+def verify(f, source, geometry=True, config_record=None):
     _need(source is not None, "source Rhino model unreadable")
+    config_record = config_record or source_configuration(ROOT / "model/facade_bim.3dm")
     source_panels = {obj.Attributes.GetUserString("pid"): obj for obj in source.Objects
                      if isinstance(obj.Geometry, rhino3dm.InstanceReference) and obj.Attributes.GetUserString("pid")}
     source_parts = _source_parts(source)
     definitions = {definition.Id: definition.Name for definition in source.InstanceDefinitions}
     plates = {plate.Name: plate for plate in f.by_type("IfcPlate")}
     _need(len(plates) == len(f.by_type("IfcPlate")) and set(plates) == set(source_panels), "parent panel identity set differs")
-    parts_checked, geometry_checked = 0, set()
+    parts_checked, geometry_checked, coping_checked = 0, set(), 0
     all_children = []
     for pid, source_panel in source_panels.items():
         plate = plates[pid]
@@ -186,6 +239,7 @@ def verify(f, source, geometry=True):
             _need((ps["PanelID"], ps["RhinoObjectID"], ps["RhinoDefinition"], ps["PartKind"])
                   == (pid, str(original.Attributes.Id), definition, original.Attributes.Name), "part provenance differs: " + child.Name)
             _need(child.ObjectType == original.Attributes.Name, "part kind differs: " + child.Name)
+            coping_checked += int(check_coping_semantics(child, original, source_props, config_record))
             expected_material = _material(source, original)
             material = element.get_material(child)
             _need(material is not None and material.is_a("IfcMaterial") and material.Name == expected_material.Name
@@ -213,9 +267,11 @@ def verify(f, source, geometry=True):
             all_children.append(child.id())
     _need(Counter(all_children) == Counter(part.id() for part in f.by_type("IfcBuildingElementPart")),
           "orphan or multiply aggregated building element part")
+    _need(coping_checked == sum(obj.Attributes.GetUserString("type") == "U5" for obj in source_panels.values()),
+          "one actual coping per roof panel is required")
     tasks = check_tasks(f, source_panels)
     return {"panels": len(plates), "parts": parts_checked, "shared_part_geometries": len(geometry_checked),
-            "materials": len(f.by_type("IfcMaterial")), "tasks": tasks}
+            "materials": len(f.by_type("IfcMaterial")), "tasks": tasks, "coping_fabrication_parts": coping_checked}
 
 
 def main():
@@ -225,7 +281,8 @@ def main():
     parser.add_argument("--ifc", type=Path, default=ROOT / "model" / "facade_bim.ifc")
     parser.add_argument("--source", type=Path, default=ROOT / "model" / "facade_bim.3dm")
     args = parser.parse_args()
-    result = verify(ifcopenshell.open(str(args.ifc)), rhino3dm.File3dm.Read(str(args.source)))
+    result = verify(ifcopenshell.open(str(args.ifc)), rhino3dm.File3dm.Read(str(args.source)),
+                    config_record=source_configuration(args.source))
     print("PASS IFC ↔ Rhino: " + ", ".join("%s=%s" % item for item in result.items()))
 
 

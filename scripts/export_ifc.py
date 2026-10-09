@@ -28,6 +28,7 @@ import rhino3dm
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
+from facade.source_integrity import read_source_record
 MODEL_3DM = os.path.join(ROOT, "model", "facade_bim.3dm")
 MODEL_IFC = os.path.join(ROOT, "model", "facade_bim.ifc")
 NS = uuid.UUID("5b1f7a1e-2f0c-4b9e-9d1a-6f0a3c2e7b10")
@@ -124,6 +125,31 @@ def _source(model):
     return definitions, instances, posts, slabs
 
 
+def _is_coping(props, part):
+    return (props["type"] == "U5" and part["kind"] == "alu"
+            and abs(part["bounds"][2] - float(props["h_mm"])) < 1e-7)
+
+
+def _coping_properties(props, part, source_record):
+    """Physical flat-sheet estimate; the source Body remains a 50mm envelope."""
+    bounds, config = part["bounds"], source_record["configuration"]
+    length, width, envelope = (bounds[i + 3] - bounds[i] for i in range(3))
+    thickness, density = float(config["COPING_MM"]), float(config["ALU_DENSITY"])
+    if not all(math.isfinite(value) and value > 0 for value in (length, width, envelope, thickness, density)):
+        raise ValueError("invalid source-bound coping fabrication inputs")
+    if abs(width - float(config["COPING_W"])) > 1e-7 or abs(envelope - 50) > 1e-7:
+        raise ValueError("source coping envelope differs from its configuration baseline")
+    mass = length * width * thickness * density / 1e9
+    if "%.3f" % mass != props["coping_alu_kg"]:
+        raise ValueError("source coping quantity differs from actual source span")
+    return {"PhysicalThicknessMM": thickness, "FabricationLengthMM": length,
+            "FabricationWidthMM": width, "MaterialDensityKGPerM3": density,
+            "PhysicalMassKG": mass, "EnvelopeHeightMM": envelope,
+            "QuantityBasis": "FLAT_SHEET_NOT_ENVELOPE_VOLUME",
+            "Assumption": "FICTIONAL_DEMONSTRATION_INPUTS",
+            "SourceModelSHA256": source_record["source_sha256"]}
+
+
 def _axis(f, origin=(0.0, 0.0, 0.0), axis=None, reference=None):
     return f.createIfcAxis2Placement3D(f.createIfcCartesianPoint(tuple(float(v) for v in origin)),
                                      f.createIfcDirection(axis) if axis else None,
@@ -218,9 +244,10 @@ def _tasks(f, project, plates, props_by_id):
                         RelatedObjects=outputs[pid], RelatingProduct=plates[pid])
 
 
-def build_ifc(instances, model=None):
+def build_ifc(instances, model=None, source_record=None):
     run = ifcopenshell.api.run
     model = model or rhino3dm.File3dm.Read(MODEL_3DM)
+    source_record = source_record or read_source_record(MODEL_3DM)
     definitions, source_instances, posts, slabs = _source(model)
     f = ifcopenshell.file(schema="IFC4")
     f.header.file_name.name = "facade_bim.ifc"
@@ -322,7 +349,11 @@ def build_ifc(instances, model=None):
             child.Representation = f.createIfcProductDefinitionShape(None, None,
                 [f.createIfcShapeRepresentation(body, "Body", "MappedRepresentation", [mapped])])
             _pset(f, child, "FacadeBIM_Part", {"PanelID": pid, "PartIndex": part["index"], "PartKind": part["kind"],
-                "RhinoObjectID": part["rhino_id"], "RhinoDefinition": props_by_id[pid]["type"], "MaterialName": part["material"][0]})
+                "RhinoObjectID": part["rhino_id"], "RhinoDefinition": props_by_id[pid]["type"], "MaterialName": part["material"][0],
+                "PartRole": "ROOF_COPING" if _is_coping(props_by_id[pid], part) else "RHINO_BLOCK_PART",
+                "GeometryRepresentation": "CONSTRUCTION_ENVELOPE" if _is_coping(props_by_id[pid], part) else "SOURCE_GEOMETRY"})
+            if _is_coping(props_by_id[pid], part):
+                _pset(f, child, "FacadeBIM_Coping", _coping_properties(props_by_id[pid], part, source_record))
             material_products[part["material"]].append(child)
             parts.append(child)
         f.create_entity("IfcRelAggregates", GlobalId=gid("parts " + pid), RelatingObject=plate, RelatedObjects=parts)
@@ -400,7 +431,7 @@ def export(path=MODEL_IFC, source_path=MODEL_3DM):
     if model is None:
         raise ValueError("读不了 " + source_path)
     instances = _instances(model)
-    f = build_ifc(instances, model)
+    f = build_ifc(instances, model, read_source_record(source_path))
     with open(path, "w", encoding="utf-8", newline="\n") as stream:
         stream.write(f.to_string())
     return f, instances

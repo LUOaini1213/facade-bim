@@ -6,8 +6,8 @@
 8-storey office block; five panel types are Rhino block definitions and every panel instance carries 26
 attributes. The same model drives design-rule checks, quantity take-off, a 4D install schedule, stillage /
 truck / laydown logistics and a site plan, and exports to IFC4 that is schema-valid and byte-reproducible.
-CI re-derives every number in this README from the committed `.3dm`, IFC and CSV files — Rhino is not
-needed to verify anything here.
+CI re-derives the default 24 mm reference figures from the committed `.3dm`, IFC and CSV files.
+Custom end joints have a separately verified source-bound profile summary. Offline verification needs no Rhino.
 
 ![Rhino 8 渲染：单元式幕墙与施工总平面](docs/img/hero.png)
 
@@ -17,10 +17,18 @@ needed to verify anything here.
 - 模型检查 7 条 + 工地布置检查 5 条，**12/12** 通过；每条检查都有一个故意弄坏的反例证明它会失败
 - 4D：**2026-11-02** 开装，**42** 个工作日装完；**140** 个运输架、**47** 车；堆场峰值 **10** 架
 - IFC4：**810** 个 IfcPlate，schema 校验 **0** 问题；交给几何引擎算出实体后逐块比对，位置与模型偏差小于 0.01 mm
-- 下文每个数字都由 `scripts/check_readme.py` 对着已提交的产物回算，CI 每次提交都跑
+- 默认交付的下文数字由 `scripts/check_readme.py` 对着已提交的产物回算，CI 每次提交都跑
+
+README 数字展示 24 mm 默认交付示例，包括几何、工程量、IFC 和质量结果。
+自定义 `COPING_END_JOINT` 的实际结果见 `model/profile_summary.json`；摘要绑定当前源 SHA，
+记录真实跨度、未舍入板材质量、三类模型净距和完整质量计数。
+`python scripts/check_profile.py --write` 在原生质量检查及 IFC/数据导出后生成摘要，
+`python scripts/check_profile.py --check` 只读回算源几何、IFC、CSV 和完整原生事件集合。
+默认 24 mm 仍核对 README 的全部数字；自定义端缝核对实际 profile，明确不会声称本文参考数字等于当前产物。
 
 建筑是虚构的；非物理常数的参数（型材线密度、工效、每架板数、车辆与堆场限制）集中在
-[`facade/config.py`](facade/config.py)，逐项标着【假设】。改那里、重跑，下面的表全部跟着变。
+[`facade/config.py`](facade/config.py)，逐项标着【假设】。下面的表展示默认参考交付；
+已有源只允许单改压顶端缝，其它输入须明确重建源模型。自定义交付的实际结果由 profile 摘要给出。
 
 ## 一个模型，六份产物
 
@@ -188,11 +196,17 @@ python scripts/check_replay.py  # 无需 Rhino，独立读回所有日期模型�
   和 Qto_PlateBaseQuantities（面积、周长、重量）
 
 - **7** 种 IfcMaterial 关联真实分件与结构；FacadeBIM_Part 保留父板编号、零件序号、零件类、Rhino 身份和材料名
+  并区分 `ROOF_COPING` / `RHINO_BLOCK_PART` 角色，以及 `CONSTRUCTION_ENVELOPE` / `SOURCE_GEOMETRY` 表示用途。
+  **90** 个压顶分件另有 FacadeBIM_Coping：真实板厚 **3 mm**、制造长度 **1576 mm**、制造宽度 **250 mm**、
+  未四舍五入质量 **3.1914 kg**，同时明确 Body 的 **50 mm** 高度是构造包络。
+  密度和板厚取绑定当前 `.3dm` SHA 的 `model/source_config.json` 示例输入；长度、宽度取真实源几何。
+  属性名的 `MM` / `KG` / `KGPerM3` 后缀声明单位，`FLAT_SHEET_NOT_ENVELOPE_VOLUME` 说明质量按平板估算，
+  这些输入不是实测或获批加工资料。IDS 检查必需字段与正数，独立检查器重算全部压顶数值，拒绝把代理实体体积当板材质量。
 - **950** 个 IfcTask（**810** 个安装、**140** 个交付），每个任务带 IfcTaskTime，归入正式 IfcWorkSchedule，
   并以产品输出关系关联板块。日期来自源模型 UserText，任务日窗为 `[00:00, 次日00:00)`，
   `P1D` 表示日期分辨率，不是实际工时。FacadeBIM_RhinoUserText 逐字段保存全部原始字符串
 
-文件共 **174,791** 个实体，ifcopenshell 的 schema 校验 **0** 个问题。GlobalId 由编号经 uuid5 推出、
+文件共 **190,709** 个实体，ifcopenshell 的 schema 校验 **0** 个问题。GlobalId 由编号经 uuid5 推出、
 文件头时间戳固定、SET 属性按实体序号排序，同一个 `.3dm` 每次导出逐字节相同，CI 直接比对字节。
 
 ## 三维质量与信息交付检查
@@ -223,7 +237,9 @@ python scripts/check_ids.py                           # IDS 1.0 规则 + JSON/HT
 原生报告在 `model/quality/native_*.json`，独立检查生成同名 HTML；信息交付规则在 `quality/delivery.ids`，
 其可维护配置是 `quality/profile.json`，用 `python scripts/check_ids.py --write-rules` 重新生成。
 IDS 检查父板编号、板型、日期和架号，实际分件的材料及 Rhino 身份，以及正式任务和施工计划的必填信息。
+压顶另检查构造包络角色、物理尺寸和质量；压顶适用范围按稳定零件名称确定，删除角色字段不能逃避适用规则。
 `model/quality/ids_report.{json,html}` 保存结果。IDS 规则通过 XML schema 校验；信息检查和几何检查分别执行。
+只读交付核对可给 `check_ids.py` 和 `check_quality.py` 加 `--no-write-reports`，不会重写已提交的报告。
 测试会删除编号/材料、写入错误日期及提供空模型，要求失败；原生几何反例覆盖体积穿透、完全包含、
 相同平面投影但不同高度、净距阈值、仅接触以及包络重叠但物体位于孔洞中。
 时间轴原生检查实际创建 Eto 窗口、驱动滑块事件和真实定时器，并检查反向跳转、暂停、查询、无效输入和关闭。
@@ -259,7 +275,11 @@ python scripts/build_data.py            # 重算 data/
 ```
 
 已有模型可用 `python scripts/run_roof_repair.py --end-joints` 按配置原生修补压顶端缝和真实铝板用量，无需重建板块身份；
-脚本先备份、逐对象核对身份与属性，读回候选文件并检查真实转角实体，再替换源文件。
+脚本首先验证 `model/source_config.json` 的源 SHA 与非端缝配置基线，并逐一核对全部板块尺寸、属性和实际变换。
+只有 `COPING_END_JOINT` 可以在已有源上修补；更改 `JOINT`、`MODULE`、板厚、密度或其它输入会在任何模型写入前失败，
+需要明确重建源模型。不要手工修改基线文件来绕过检查。
+允许更新的压顶数量和吊装重量从同一份源 `w_mm` / `h_mm` 与目标跨度计算，不与重新生成的另一套尺寸混用。
+通过前置检查后，脚本先备份、逐对象核对身份与属性，读回候选文件并检查真实转角实体，再替换源文件和更新源绑定记录。
 重复运行会校验已修正状态。修补后重导 IFC，并刷新质量报告及日期快照。
 
 ## 仓库结构
@@ -287,3 +307,17 @@ Rhino 里的建模脚本和 CI 里的测试 import 的是同一份代码。
 ## 许可
 
 MIT，见 [LICENSE](LICENSE)。
+
+## 完整交付入口
+
+使用已经安装 `requirements.txt` 的虚拟环境解释器运行以下命令；所有子步骤沿用这个解释器。
+
+```powershell
+.\.venv\Scripts\python.exe scripts\delivery.py --check
+.\.venv\Scripts\python.exe scripts\delivery.py --rebuild
+```
+
+`--check` 离线核对完整交付索引并执行独立模型、IFC、IDS、净距及回放检查，不启动 Rhino 或重写正式报告。
+`--rebuild` 在有许可证的 Windows Rhino 中修补允许的端缝参数，刷新数据、IFC、IDS、完整质量报告和正式日期回放，最后通过全部检查才标记交付成功。其他源参数变化会在修补前拒绝，须明确重建源模型及其输入基线。
+
+`model/delivery_index.json` 绑定代码、配置、源模型与全部正式产物，记录依赖及 Rhino 版本。文本按统一换行计算指纹；源模型和图片按原始字节核对。输入或任一产物改变都会使旧索引失效，中途失败保留失败状态。`--manifest-only` 供 CI 在独立检查之后核对指纹。
