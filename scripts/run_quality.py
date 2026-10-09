@@ -30,6 +30,9 @@ def main():
         parser.error("找不到 Rhino 8；请设置 RHINO_EXE")
     source = ROOT / "model" / "facade_bim.3dm"
     before = hashlib.sha256(source.read_bytes()).hexdigest()
+    replay_hashes = {path: hashlib.sha256(path.read_bytes()).hexdigest()
+                     for path in (ROOT / "model" / "replay").glob("facade_*.*")
+                     if path.suffix in (".3dm", ".png", ".json")}
     log = ROOT / "model" / "quality" / ("native_" + args.mode + ".json")
     log.parent.mkdir(parents=True, exist_ok=True)
     if log.exists():
@@ -59,6 +62,9 @@ def main():
             sys.exit("Rhino 质量检查超时；仅终止本次启动的进程")
     if hashlib.sha256(source.read_bytes()).hexdigest() != before:
         sys.exit("源模型意外改变")
+    for path, digest in replay_hashes.items():
+        if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != digest:
+            sys.exit("质量 QA 意外改变正式日期快照：" + str(path.relative_to(ROOT)))
     if not log.is_file():
         sys.exit("Rhino 未写日志；请检查许可证和脚本环境")
     data = json.loads(log.read_text(encoding="utf-8"))
@@ -71,14 +77,17 @@ def main():
             print(data["error"])
         if "spatial" in data:
             q = data["spatial"]
-            print("体积碰撞 %d，净距/接触事件 %d，未决 %d；完整定位见同名 HTML/JSON" % (
-                len(q["clashes"]), len(q["clearance_events"]), len(q["unresolved"])))
+            counts = q["clearance_counts"]
+            print("体积碰撞 %d，净距不足 %d，阈值边界 %d，未批准接触 %d，距离待核 %d，内核未决 %d；定位见同名 HTML/JSON" % (
+                len(q["clashes"]), counts["below_clearance"], counts["at_clearance"], counts["contact"], counts["threshold_candidate"], len(q["unresolved"])))
         sys.exit(1)
     print("PASS Rhino 原生质量检查：" + str(log.relative_to(ROOT)))
     if "spatial" in data:
         q = data["spatial"]
-        print("%d 构件 / %d 实体零件；体积碰撞 %d，净距/接触事件 %d，未决 %d" % (
-            q["units"], q["solid_parts"], len(q["clashes"]), len(q["clearance_events"]), len(q["unresolved"])))
+        counts = q["clearance_counts"]
+        print("%d 构件 / %d 实体零件；体积碰撞 %d，净距不足 %d，阈值边界 %d，未批准接触 %d，距离待核 %d，内核未决 %d" % (
+            q["units"], q["solid_parts"], len(q["clashes"]), counts["below_clearance"], counts["at_clearance"], counts["contact"], counts["threshold_candidate"], len(q["unresolved"])))
+        print("净距状态：" + ("通过当前模型阈值检查" if q["clearance_ok"] else "存在未批准接触、真实不足或待核；需构造复核"))
     if "timeline" in data:
         print("实际 Eto 滑块/定时器/查询/暂停/关闭检查通过")
 

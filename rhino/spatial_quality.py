@@ -8,6 +8,9 @@ import Rhino
 import Rhino.Geometry as RG
 from Rhino.Geometry.Intersect import MeshClash
 
+CLEARANCE_EPSILON_MM = 1e-7  # floating-point comparison only, not a design/tolerance allowance
+PLANAR_MESH_ERROR_MM = 1e-6  # certified polygonal boundary budget; enlarge a no-hit query conservatively
+
 
 class InconclusiveGeometry(RuntimeError):
     pass
@@ -102,7 +105,10 @@ def _box_proof(item):
     brep, bbox = item["brep"], item["bbox"]
     epsilon = 1e-7
     proved = False
-    if brep.Vertices.Count == 8 and brep.Edges.Count == 12 and brep.Faces.Count == 6:
+    bounds = [getattr(point, axis) for point in (bbox.Min, bbox.Max) for axis in "XYZ"]
+    if (all(math.isfinite(value) for value in bounds)
+            and all(getattr(bbox.Max, axis) > getattr(bbox.Min, axis) for axis in "XYZ")
+            and brep.Vertices.Count == 8 and brep.Edges.Count == 12 and brep.Faces.Count == 6):
         corners = set()
         proved = True
         for vertex in brep.Vertices:
@@ -139,6 +145,39 @@ def _box_proof(item):
         proved = proved and len(supports) == 6
     item["axis_box_proof"] = bool(proved)
     return bool(proved)
+
+
+def _clearance_proof(a, b):
+    """An AABB distance is exact only after both actual Breps prove to be boxes."""
+    if not (_box_proof(a) and _box_proof(b)):
+        return None
+    value = gap(a["bbox"], b["bbox"])
+    if not math.isfinite(value) or value < 0:
+        raise InconclusiveGeometry("non-finite proved-box clearance")
+    bounds = lambda box: [[float(getattr(point, axis)) for axis in "XYZ"]
+                          for point in (box.Min, box.Max)]
+    return {"actual_gap_mm": value, "distance_evidence": {
+        "method": "proved_axis_aligned_box_gap", "axis_box_proof": [True, True],
+        "a_bounds_mm": bounds(a["bbox"]), "b_bounds_mm": bounds(b["bbox"]),
+        "comparison_epsilon_mm": CLEARANCE_EPSILON_MM}}
+
+
+def _clearance_kind(value, clearance):
+    if value <= CLEARANCE_EPSILON_MM:
+        return "contact"
+    if math.isclose(value, clearance, rel_tol=0.0, abs_tol=CLEARANCE_EPSILON_MM):
+        return "at_clearance"
+    return "below_clearance" if value < clearance else None
+
+
+def _box_witness(a, b):
+    """Midpoint of closest points of two proved boxes; model geometry, not a survey."""
+    values = []
+    for axis in "XYZ":
+        lo = max(getattr(a.Min, axis), getattr(b.Min, axis))
+        hi = min(getattr(a.Max, axis), getattr(b.Max, axis))
+        values.append((lo + hi) / 2.0)
+    return values
 
 
 def _planar_mesh_proof(item):
@@ -313,11 +352,11 @@ def _intersection(a, b, tolerance, trace):
 def check_pair(a, b, clearance=10.0, tolerance=0.01):
     _parameters(clearance, tolerance)
     hits, near, unresolved = [], [], []
-    if gap(a["bbox"], b["bbox"]) > clearance:
+    if gap(a["bbox"], b["bbox"]) > clearance + CLEARANCE_EPSILON_MM:
         return hits, near, unresolved
     for pa in a["parts"]:
         for pb in b["parts"]:
-            if gap(pa["bbox"], pb["bbox"]) > clearance:
+            if gap(pa["bbox"], pb["bbox"]) > clearance + CLEARANCE_EPSILON_MM:
                 continue
             detail = {"a": a["id"], "b": b["id"], "a_guid": a["guid"], "b_guid": b["guid"],
                       "a_part": pa["name"], "b_part": pb["name"]}
@@ -329,19 +368,38 @@ def check_pair(a, b, clearance=10.0, tolerance=0.01):
                         hits.append(dict(detail, intersection_volume_mm3=round(volume, 6),
                                          point_mm=center, evidence=trace))
                         continue
-                events = MeshClash.Search(pa["mesh"], pb["mesh"], max(clearance, tolerance), 1)
+                proof = _clearance_proof(pa, pb)
+                mesh_proofs = [_planar_mesh_proof(pa), _planar_mesh_proof(pb)] if proof is None else None
+                certified_mesh = mesh_proofs is not None and all(value["ok"] for value in mesh_proofs)
+                search_distance = max(clearance, tolerance) + (2 * PLANAR_MESH_ERROR_MM if certified_mesh else 0.0)
+                events = MeshClash.Search(pa["mesh"], pb["mesh"], search_distance, 1)
                 if events is None:
                     raise InconclusiveGeometry("MeshClash returned null")
+                kind = _clearance_kind(proof["actual_gap_mm"], clearance) if proof else "threshold_candidate"
+                if kind is None or (not proof and not events and certified_mesh):
+                    continue
+                contact_search = MeshClash.Search(pa["mesh"], pb["mesh"], tolerance, 1)
+                if contact_search is None:
+                    raise InconclusiveGeometry("contact MeshClash returned null")
+                row = dict(detail, kind=kind, required_clearance_mm=clearance,
+                           mesh_witness_available=bool(events),
+                           mesh_contact_search={"tolerance_mm": tolerance, "hit": bool(contact_search)})
+                if proof:
+                    row.update(proof)
+                else:
+                    row["review_required"] = True
+                    row["distance_status"] = "mesh threshold candidate; exact model distance unverified"
+                    row["clearance_mesh_proof"] = {"proofs": mesh_proofs, "search_distance_mm": search_distance,
+                                                    "boundary_error_budget_mm": 2 * PLANAR_MESH_ERROR_MM}
                 if events:
-                    contact = MeshClash.Search(pa["mesh"], pb["mesh"], tolerance, 1)
-                    if contact is None:
-                        raise InconclusiveGeometry("contact MeshClash returned null")
                     event = events[0]
                     if not event.ClashPoint.IsValid or not math.isfinite(float(event.ClashRadius)):
                         raise InconclusiveGeometry("invalid mesh-clearance witness")
-                    near.append(dict(detail, kind="contact" if contact else "below_clearance",
-                                     required_clearance_mm=clearance, point_mm=xyz(event.ClashPoint),
-                                     witness_radius_mm=float(event.ClashRadius)))
+                    row.update(point_mm=xyz(event.ClashPoint), witness_radius_mm=float(event.ClashRadius))
+                else:
+                    row["point_mm"] = _box_witness(pa["bbox"], pb["bbox"])
+                    row["point_source"] = "proved_box_closest_midpoint" if proof else "unverified_bbox_candidate_midpoint"
+                near.append(row)
             except Exception as error:
                 unresolved.append(dict(detail, reason=str(error), evidence=trace))
     return hits, near, unresolved
@@ -353,9 +411,9 @@ def analyse(units, clearance=10.0, tolerance=0.01):
     active, clashes, nearby, unresolved = [], [], [], []
     candidates = 0
     for b in ordered:
-        active = [a for a in active if a["bbox"].Max.X + clearance >= b["bbox"].Min.X]
+        active = [a for a in active if a["bbox"].Max.X + clearance + CLEARANCE_EPSILON_MM >= b["bbox"].Min.X]
         for a in active:
-            if gap(a["bbox"], b["bbox"]) > clearance:
+            if gap(a["bbox"], b["bbox"]) > clearance + CLEARANCE_EPSILON_MM:
                 continue
             candidates += 1
             hits, near, errors = check_pair(a, b, clearance, tolerance)
@@ -363,13 +421,18 @@ def analyse(units, clearance=10.0, tolerance=0.01):
             nearby.extend(near)
             unresolved.extend(errors)
         active.append(b)
-    return {"ok": not clashes and not unresolved, "clearance_ok": not nearby and not clashes and not unresolved,
+    blocking = [event for event in nearby if event["kind"] != "at_clearance"]
+    return {"ok": not clashes and not unresolved, "clearance_ok": not blocking and not clashes and not unresolved,
             "units": len(units), "solid_parts": sum(len(u["parts"]) for u in units),
             "candidate_pairs": candidates, "clashes": clashes, "clearance_events": nearby,
             "unresolved": unresolved, "clearance_mm": clearance, "boolean_tolerance_mm": tolerance,
+            "clearance_comparison_epsilon_mm": CLEARANCE_EPSILON_MM,
+            "clearance_counts": {kind: sum(event["kind"] == kind for event in nearby)
+                                 for kind in ("contact", "below_clearance", "at_clearance", "threshold_candidate")},
+            "blocking_clearance_events": len(blocking),
             "method": "closed Brep boolean volume; proved-box or certified polygonal-boundary fallback; mesh threshold clearance",
             "scope": "between distinct units; internal designed connections within each unit are not checked",
-            "clearance_semantics": "contacts are reported separately; mesh witnesses do not claim exact minimum distance"}
+            "clearance_semantics": "proved boxes have exact model gaps; at-threshold records do not block; contacts remain unapproved; non-box mesh witnesses require distance review, not an exact minimum-distance claim"}
 
 
 def _fixture_cases():
@@ -473,6 +536,41 @@ def run_fixtures(diagnostics=None):
         assert "diagnostic" in diagnostic_rejected[0]["reason"]
     finally:
         globals()["_mesh_boundaries"] = original
+    boundary = []
+    a, b = cases[2][1:3]
+    for threshold, expected in ((6, "below_clearance"), (5, "at_clearance"), (4, None)):
+        row = _diagnose(a, b, threshold)
+        q = analyse([a, b], threshold)
+        row.update(expected_kind=expected, aggregate_clearance_ok=q["clearance_ok"])
+        assert not row["clashes"] and not row["unresolved"]
+        if expected is None:
+            assert not row["clearance_events"]
+        else:
+            assert len(row["clearance_events"]) == 1 and row["clearance_events"][0]["kind"] == expected
+            assert abs(row["clearance_events"][0]["actual_gap_mm"] - 5) <= CLEARANCE_EPSILON_MM
+        assert q["clearance_ok"] == (threshold <= 5), "equality must not be called insufficient clearance"
+        boundary.append(row)
+    almost = unit("9.999mm-separated", [part(RG.Box(RG.BoundingBox(
+        RG.Point3d(0, 0, 19.999), RG.Point3d(10, 10, 29.999))).ToBrep())])
+    narrow = _diagnose(a, almost, 10)
+    narrow["aggregate_clearance_ok"] = analyse([a, almost], 10)["clearance_ok"]
+    assert not narrow["clashes"] and not narrow["unresolved"] and not narrow["aggregate_clearance_ok"]
+    assert len(narrow["clearance_events"]) == 1 and narrow["clearance_events"][0]["kind"] == "below_clearance"
+    assert abs(narrow["clearance_events"][0]["actual_gap_mm"] - 9.999) <= CLEARANCE_EPSILON_MM
+    candidate = _diagnose(cases[-1][1], cases[-1][2], 3)
+    candidate["aggregate_clearance_ok"] = analyse([cases[-1][1], cases[-1][2]], 3)["clearance_ok"]
+    assert not candidate["clashes"] and not candidate["unresolved"] and not candidate["aggregate_clearance_ok"]
+    assert candidate["clearance_events"] and all(item["kind"] == "threshold_candidate"
+        and item["review_required"] and "actual_gap_mm" not in item for item in candidate["clearance_events"])
+    sphere = unit("curved-no-hit", [part(RG.Brep.CreateFromSphere(RG.Sphere(RG.Point3d(20, 20, 5), 10)))])
+    curved = _diagnose(a, sphere, 1)
+    curved["aggregate_clearance_ok"] = analyse([a, sphere], 1)["clearance_ok"]
+    assert not curved["clashes"] and not curved["unresolved"] and not curved["aggregate_clearance_ok"]
+    assert len(curved["clearance_events"]) == 1 and curved["clearance_events"][0]["kind"] == "threshold_candidate"
+    assert curved["clearance_events"][0]["mesh_witness_available"] is False
     return {"ok": True, "checks": [case[0] for case in cases], "diagnostics": records,
+            "boundary_checks": {"ok": True, "model_gap_mm": 5.0, "thresholds_mm": [6, 5, 4],
+                                "diagnostics": boundary, "subthreshold_check": narrow,
+                                "nonbox_candidate_check": candidate, "uncertified_nohit_check": curved},
             "failure_counterexample": {"ok": True, "unresolved": rejected,
                                        "invalid_hit_diagnostic_unresolved": diagnostic_rejected}}
