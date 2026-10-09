@@ -4,12 +4,13 @@ import hashlib
 import itertools
 import json
 from pathlib import Path
+from unittest.mock import patch
 import unittest
 
 import rhino3dm as R
 
 from facade import config as C
-from facade.model import zones_for
+from facade.model import build_panels, coping_span, quantities, zones_for
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -34,7 +35,7 @@ def builder_coping():
     node = next(node for node in source.body if isinstance(node, ast.FunctionDef) and node.name == "panel_parts")
     def box(x0, y0, z0, x1, y1, z1):
         return R.Brep.CreateFromBox(R.Box(R.BoundingBox(R.Point3d(x0, y0, z0), R.Point3d(x1, y1, z1))))
-    namespace = {"C": C, "zones_for": zones_for, "box": box}
+    namespace = {"C": C, "zones_for": zones_for, "coping_span": coping_span, "box": box}
     exec(compile(ast.Module(body=[node], type_ignores=[]), "panel_parts", "exec"), namespace)
     return namespace["panel_parts"]("U5", 1580, 1180)[-1][1]
 
@@ -79,12 +80,12 @@ class RoofCoping(unittest.TestCase):
         self.assertEqual((bbox.Min.Y, bbox.Max.Y), (-70, 180))
         self.assertEqual(bbox.Max.Y - bbox.Min.Y, 250)
         self.assertEqual(bbox.Max.Z - bbox.Min.Z, 50)
+        self.assertEqual((bbox.Min.X, bbox.Max.X), (2, 1578))
         self.assertEqual(corner_volumes(source_roof()[1], coping), [])
 
     def test_old_offset_counterexample_reproduces_four_actual_clashes(self):
         _, panels, _, target = source_roof()
-        old = target.Geometry.Duplicate()
-        self.assertTrue(old.Translate(R.Vector3d(0, 210 - old.GetBoundingBox().Max.Y, 0)))
+        old = R.Brep.CreateFromBox(R.Box(R.BoundingBox(R.Point3d(-10, -40, 1180), R.Point3d(1590, 210, 1230))))
         events = corner_volumes(panels, old)
         self.assertEqual(len(events), 4)
         for _, _, volume in events:
@@ -94,6 +95,7 @@ class RoofCoping(unittest.TestCase):
         _, panels, _, target = source_roof()
         bbox = target.Geometry.GetBoundingBox()
         self.assertEqual((bbox.Min.Y, bbox.Max.Y), (-70, 180))
+        self.assertEqual((bbox.Min.X, bbox.Max.X), (2, 1578))
         self.assertEqual(corner_volumes(panels, target.Geometry), [])
 
     def test_native_repair_report_preserves_all_panel_identities(self):
@@ -110,6 +112,48 @@ class RoofCoping(unittest.TestCase):
         self.assertEqual(report["definitions_preserved"], len(model.InstanceDefinitions))
         self.assertEqual(report["after_corners"]["clashes"], [])
         self.assertEqual(report["after_corners"]["unresolved"], [])
+
+    def test_real_plate_length_drives_material_mass_and_rounded_panel_weight(self):
+        p = next(p for p in build_panels() if p.ptype == "U5")
+        q, weight = quantities(p.ptype, p.w, p.h, zones_for(p.ptype, p.h))
+        expected = 1.576 * 0.250 * 0.003 * 2700
+        self.assertAlmostEqual(q["coping_alu_kg"], expected, places=10)
+        self.assertAlmostEqual(expected * 90, 287.226, places=9)
+        self.assertEqual(p.weight_kg, round(weight, 1))
+        with patch.object(C, "COPING_END_JOINT", 28):
+            other, other_weight = quantities(p.ptype, p.w, p.h, zones_for(p.ptype, p.h))
+        self.assertAlmostEqual(other["coping_alu_kg"] - q["coping_alu_kg"], -0.004 * 0.250 * 0.003 * 2700)
+        self.assertAlmostEqual(other_weight - weight, other["coping_alu_kg"] - q["coping_alu_kg"])
+
+    def test_invalid_joint_and_material_values_fail_before_geometry_build(self):
+        for key, value in (("COPING_END_JOINT", 0), ("COPING_END_JOINT", -1),
+                           ("COPING_END_JOINT", float("nan")), ("COPING_END_JOINT", float("inf")),
+                           ("COPING_END_JOINT", True), ("COPING_END_JOINT", 1600),
+                           ("COPING_MM", 0), ("COPING_W", -1), ("ALU_DENSITY", float("nan"))):
+            with self.subTest(key=key, value=value), patch.object(C, key, value), self.assertRaises(ValueError):
+                builder_coping()
+
+    def test_actual_instance_gaps_distinguish_neighbor_corner_and_post_interfaces(self):
+        _, panels, _, _ = source_roof()
+        cap = builder_coping()
+        bounds = {}
+        for p in panels:
+            shape = cap.Duplicate()
+            shape.Transform(p.Geometry.Xform)
+            bounds[p.Attributes.GetUserString("pid")] = shape.GetBoundingBox()
+        from scripts.check_quality import box_gap
+        convert = lambda b: [[b.Min.X, b.Min.Y, b.Min.Z], [b.Max.X, b.Max.Y, b.Max.Z]]
+        self.assertAlmostEqual(box_gap(convert(bounds["S-RF-01"]), convert(bounds["S-RF-02"])), 24)
+        self.assertAlmostEqual(box_gap(convert(bounds["S-RF-01"]), convert(bounds["W-RF-15"])), 12 * 2 ** 0.5)
+        post = [[0, 0, 0], [180, 180, 33000]]
+        self.assertAlmostEqual(box_gap(convert(bounds["S-RF-01"]), post), 12)
+        # A valid but insufficient 18mm demonstration joint must be found as
+        # a 9mm post gap; configuration never overrides the 10mm checker.
+        with patch.object(C, "COPING_END_JOINT", 18):
+            smaller = builder_coping()
+            p = next(p for p in panels if p.Attributes.GetUserString("pid") == "S-RF-01")
+            smaller.Transform(p.Geometry.Xform)
+            self.assertAlmostEqual(box_gap(convert(smaller.GetBoundingBox()), post), 9)
 
 
 if __name__ == "__main__":

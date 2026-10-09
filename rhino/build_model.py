@@ -29,7 +29,7 @@ import Rhino.Geometry as RG                            # noqa: E402
 from System.Collections.Generic import List            # noqa: E402
 
 from facade import config as C, site                   # noqa: E402
-from facade.model import OUT_X, OUT_Y, TYPE_NAMES, corner_posts, to_world, zones_for  # noqa: E402
+from facade.model import OUT_X, OUT_Y, TYPE_NAMES, coping_span, corner_posts, to_world, zones_for  # noqa: E402
 from facade.pipeline import compute, panel_rows        # noqa: E402
 
 LOG = {"started": time.strftime("%Y-%m-%d %H:%M:%S"), "steps": []}
@@ -156,8 +156,8 @@ def panel_parts(ptype, w, h):
     if ptype == "U5":
         # Back edge aligns with the 180 mm frame depth. Keeping the full 250 mm
         # width then puts 70 mm outside the facade, without corner penetration.
-        parts.append(("alu", box(-C.JOINT / 2.0, d - C.COPING_W, h,
-                                 w + C.JOINT / 2.0, d, h + 50)))
+        x0, x1 = coping_span(w)
+        parts.append(("alu", box(x0, d - C.COPING_W, h, x1, d, h + 50)))
     return parts
 
 
