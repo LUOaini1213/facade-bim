@@ -19,7 +19,7 @@ jobs:
         with:
           python-version: "3.9"
       - name: Model checks and schedule invariants (stdlib only)
-        run: python -m unittest tests.test_model tests.test_schedule -v
+        run: python -m unittest tests.test_model tests.test_schedule tests.test_replay -v
       - name: data/ is exactly what the model computes
         run: python scripts/build_data.py --check
 
@@ -38,3 +38,11 @@ jobs:
         run: python scripts/export_ifc.py --check
       - name: Every number in README is recomputed from the artifacts
         run: python scripts/check_readme.py
+      - name: IDS delivery requirements (including material and formal task fields)
+        run: python scripts/check_ids.py
+      - name: Actual Rhino part geometry materials and formal task relationships
+        run: python scripts/check_ifc.py
+      - name: Independent readback of native replay and quality artifacts
+        run: |
+          python scripts/check_replay.py
+          python scripts/check_quality.py model/quality/native_all.json

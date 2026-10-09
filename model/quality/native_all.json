@@ -1,0 +1,6694 @@
+{
+  "rhino": "8.33.26188.13001",
+  "source_sha256": "21e2dc83704503eb21fe82f4a543d15ce44e8abae1f311b46c5028b16de6b61e",
+  "date": "all final geometry",
+  "fixtures": {
+    "ok": true,
+    "checks": [
+      "100 mm3 overlap",
+      "full containment",
+      "3D separated projection",
+      "clearance threshold",
+      "contact without overlap",
+      "void inside overlapping bounding boxes"
+    ],
+    "diagnostics": [
+      {
+        "a": "A",
+        "b": "overlap",
+        "clearance_mm": 5,
+        "bbox_gap_mm": 0.0,
+        "parts": [
+          {
+            "bbox_min_mm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bbox_max_mm": [
+              10.0,
+              10.0,
+              10.0
+            ],
+            "volume_mm3": 1000.0,
+            "mesh_faces": 12,
+            "axis_box_proof": true,
+            "planar_mesh_proof": {
+              "ok": true,
+              "mesh_valid": true,
+              "mesh_solid": true,
+              "boundary_components": 1,
+              "brep_volume": 1000.0,
+              "mesh_volume": 1000.0,
+              "brep_area": 600.0,
+              "mesh_area": 600.0,
+              "max_boundary_error_mm": 5.17892563931115e-15
+            }
+          },
+          {
+            "bbox_min_mm": [
+              9.0,
+              0.0,
+              0.0
+            ],
+            "bbox_max_mm": [
+              19.0,
+              10.0,
+              10.0
+            ],
+            "volume_mm3": 1000.0000000000007,
+            "mesh_faces": 12,
+            "axis_box_proof": true,
+            "planar_mesh_proof": {
+              "ok": true,
+              "mesh_valid": true,
+              "mesh_solid": true,
+              "boundary_components": 1,
+              "brep_volume": 1000.0000000000007,
+              "mesh_volume": 1000.0,
+              "brep_area": 600.0,
+              "mesh_area": 600.0,
+              "max_boundary_error_mm": 7.350984424391015e-15
+            }
+          }
+        ],
+        "brep_boolean": {
+          "is_null": false,
+          "count": 1,
+          "volumes_mm3": [
+            100.00000000000011
+          ]
+        },
+        "brep_brep": {
+          "success": true,
+          "curves": 4,
+          "points": 0
+        },
+        "mesh_mesh": {
+          "success": true,
+          "intersections": 4,
+          "overlap_polylines": 3,
+          "log": "An intersection computed a wrong result. Hit is invalid.\n"
+        },
+        "point_containment": {
+          "a_sample_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "b_sample_mm": [
+            9.0,
+            0.0,
+            0.0
+          ],
+          "a_in_b": false,
+          "b_in_a": false,
+          "a_in_b_inclusive": false,
+          "b_in_a_inclusive": true,
+          "a_in_b_mesh": false,
+          "b_in_a_mesh": false
+        },
+        "clashes": [
+          {
+            "a": "A",
+            "b": "overlap",
+            "a_guid": "",
+            "b_guid": "",
+            "a_part": "solid",
+            "b_part": "solid",
+            "intersection_volume_mm3": 100.0,
+            "point_mm": [
+              9.5,
+              5.0,
+              5.0
+            ],
+            "evidence": {
+              "brep_boolean": {
+                "is_null": false,
+                "count": 1
+              },
+              "resolution": "closed Brep boolean intersection"
+            }
+          }
+        ],
+        "clearance_events": [],
+        "unresolved": [],
+        "fixture": "100 mm3 overlap"
+      },
+      {
+        "a": "A",
+        "b": "contained",
+        "clearance_mm": 1,
+        "bbox_gap_mm": 0.0,
+        "parts": [
+          {
+            "bbox_min_mm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bbox_max_mm": [
+              10.0,
+              10.0,
+              10.0
+            ],
+            "volume_mm3": 1000.0,
+            "mesh_faces": 12,
+            "axis_box_proof": true,
+            "planar_mesh_proof": {
+              "ok": true,
+              "mesh_valid": true,
+              "mesh_solid": true,
+              "boundary_components": 1,
+              "brep_volume": 1000.0,
+              "mesh_volume": 1000.0,
+              "brep_area": 600.0,
+              "mesh_area": 600.0,
+              "max_boundary_error_mm": 5.17892563931115e-15
+            }
+          },
+          {
+            "bbox_min_mm": [
+              2.0,
+              2.0,
+              2.0
+            ],
+            "bbox_max_mm": [
+              3.0,
+              3.0,
+              3.0
+            ],
+            "volume_mm3": 1.0000000000000009,
+            "mesh_faces": 12,
+            "axis_box_proof": true,
+            "planar_mesh_proof": {
+              "ok": true,
+              "mesh_valid": true,
+              "mesh_solid": true,
+              "boundary_components": 1,
+              "brep_volume": 1.0000000000000009,
+              "mesh_volume": 1.0,
+              "brep_area": 6.0,
+              "mesh_area": 6.0,
+              "max_boundary_error_mm": 4.440892098500626e-16
+            }
+          }
+        ],
+        "brep_boolean": {
+          "is_null": false,
+          "count": 0,
+          "volumes_mm3": []
+        },
+        "brep_brep": {
+          "success": true,
+          "curves": 0,
+          "points": 0
+        },
+        "mesh_mesh": {
+          "success": true,
+          "intersections": 0,
+          "overlap_polylines": 0,
+          "log": ""
+        },
+        "point_containment": {
+          "a_sample_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "b_sample_mm": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "a_in_b": false,
+          "b_in_a": true,
+          "a_in_b_inclusive": false,
+          "b_in_a_inclusive": true,
+          "a_in_b_mesh": false,
+          "b_in_a_mesh": true
+        },
+        "clashes": [
+          {
+            "a": "A",
+            "b": "contained",
+            "a_guid": "",
+            "b_guid": "",
+            "a_part": "solid",
+            "b_part": "solid",
+            "intersection_volume_mm3": 1.0,
+            "point_mm": [
+              2.5,
+              2.5,
+              2.5
+            ],
+            "evidence": {
+              "brep_boolean": {
+                "is_null": false,
+                "count": 0
+              },
+              "brep_brep": {
+                "success": true,
+                "curves": 0,
+                "points": 0
+              },
+              "axis_box_proof": [
+                true,
+                true
+              ],
+              "resolution": "proved axis-aligned box intersection"
+            }
+          }
+        ],
+        "clearance_events": [],
+        "unresolved": [],
+        "fixture": "full containment",
+        "polygonal_containment_subcheck": {
+          "a": "cavity",
+          "b": "in-polygonal-material",
+          "clearance_mm": 1,
+          "bbox_gap_mm": 0.0,
+          "parts": [
+            {
+              "bbox_min_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "bbox_max_mm": [
+                10.0,
+                10.0,
+                10.0
+              ],
+              "volume_mm3": 640.0,
+              "mesh_faces": 32,
+              "axis_box_proof": false,
+              "planar_mesh_proof": {
+                "ok": true,
+                "mesh_valid": true,
+                "mesh_solid": true,
+                "boundary_components": 1,
+                "brep_volume": 640.0,
+                "mesh_volume": 640.0,
+                "brep_area": 768.0000000000002,
+                "mesh_area": 768.0,
+                "max_boundary_error_mm": 5.17892563931115e-15
+              }
+            },
+            {
+              "bbox_min_mm": [
+                0.25,
+                0.25,
+                4.0
+              ],
+              "bbox_max_mm": [
+                1.25,
+                1.25,
+                6.0
+              ],
+              "volume_mm3": 2.0000000000000004,
+              "mesh_faces": 12,
+              "axis_box_proof": true,
+              "planar_mesh_proof": {
+                "ok": true,
+                "mesh_valid": true,
+                "mesh_solid": true,
+                "boundary_components": 1,
+                "brep_volume": 2.0000000000000004,
+                "mesh_volume": 2.0,
+                "brep_area": 10.0,
+                "mesh_area": 10.0,
+                "max_boundary_error_mm": 8.881784197001252e-16
+              }
+            }
+          ],
+          "brep_boolean": {
+            "is_null": false,
+            "count": 0,
+            "volumes_mm3": []
+          },
+          "brep_brep": {
+            "success": true,
+            "curves": 0,
+            "points": 0
+          },
+          "mesh_mesh": {
+            "success": true,
+            "intersections": 0,
+            "overlap_polylines": 0,
+            "log": ""
+          },
+          "point_containment": {
+            "a_sample_mm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "b_sample_mm": [
+              0.25,
+              0.25,
+              4.0
+            ],
+            "a_in_b": false,
+            "b_in_a": true,
+            "a_in_b_inclusive": false,
+            "b_in_a_inclusive": true,
+            "a_in_b_mesh": false,
+            "b_in_a_mesh": true
+          },
+          "clashes": [
+            {
+              "a": "cavity",
+              "b": "in-polygonal-material",
+              "a_guid": "",
+              "b_guid": "",
+              "a_part": "solid",
+              "b_part": "solid",
+              "intersection_volume_mm3": 2.0,
+              "point_mm": [
+                0.75,
+                0.75,
+                5.0
+              ],
+              "evidence": {
+                "brep_boolean": {
+                  "is_null": false,
+                  "count": 0
+                },
+                "brep_brep": {
+                  "success": true,
+                  "curves": 0,
+                  "points": 0
+                },
+                "axis_box_proof": [
+                  false,
+                  true
+                ],
+                "planar_mesh_proof": [
+                  {
+                    "ok": true,
+                    "mesh_valid": true,
+                    "mesh_solid": true,
+                    "boundary_components": 1,
+                    "brep_volume": 640.0,
+                    "mesh_volume": 640.0,
+                    "brep_area": 768.0000000000002,
+                    "mesh_area": 768.0,
+                    "max_boundary_error_mm": 5.17892563931115e-15
+                  },
+                  {
+                    "ok": true,
+                    "mesh_valid": true,
+                    "mesh_solid": true,
+                    "boundary_components": 1,
+                    "brep_volume": 2.0000000000000004,
+                    "mesh_volume": 2.0,
+                    "brep_area": 10.0,
+                    "mesh_area": 10.0,
+                    "max_boundary_error_mm": 8.881784197001252e-16
+                  }
+                ],
+                "mesh_mesh": {
+                  "success": true,
+                  "intersections": 0,
+                  "overlap_polylines": 0,
+                  "log": ""
+                },
+                "point_containment": {
+                  "a_sample_mm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "b_sample_mm": [
+                    0.25,
+                    0.25,
+                    4.0
+                  ],
+                  "a_in_b": false,
+                  "b_in_a": true,
+                  "a_in_b_inclusive": false,
+                  "b_in_a_inclusive": true,
+                  "a_in_b_mesh": false,
+                  "b_in_a_mesh": true
+                },
+                "resolution": "certified disjoint polygonal boundaries and containment"
+              }
+            }
+          ],
+          "clearance_events": [],
+          "unresolved": [],
+          "forced_fallback": {
+            "volume_mm3": 2.0000000000000004,
+            "centroid_mm": [
+              0.75,
+              0.75,
+              5.0
+            ],
+            "evidence": {
+              "axis_box_proof": [
+                false,
+                true
+              ],
+              "planar_mesh_proof": [
+                {
+                  "ok": true,
+                  "mesh_valid": true,
+                  "mesh_solid": true,
+                  "boundary_components": 1,
+                  "brep_volume": 640.0,
+                  "mesh_volume": 640.0,
+                  "brep_area": 768.0000000000002,
+                  "mesh_area": 768.0,
+                  "max_boundary_error_mm": 5.17892563931115e-15
+                },
+                {
+                  "ok": true,
+                  "mesh_valid": true,
+                  "mesh_solid": true,
+                  "boundary_components": 1,
+                  "brep_volume": 2.0000000000000004,
+                  "mesh_volume": 2.0,
+                  "brep_area": 10.0,
+                  "mesh_area": 10.0,
+                  "max_boundary_error_mm": 8.881784197001252e-16
+                }
+              ],
+              "mesh_mesh": {
+                "success": true,
+                "intersections": 0,
+                "overlap_polylines": 0,
+                "log": ""
+              },
+              "point_containment": {
+                "a_sample_mm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "b_sample_mm": [
+                  0.25,
+                  0.25,
+                  4.0
+                ],
+                "a_in_b": false,
+                "b_in_a": true,
+                "a_in_b_inclusive": false,
+                "b_in_a_inclusive": true,
+                "a_in_b_mesh": false,
+                "b_in_a_mesh": true
+              },
+              "resolution": "certified disjoint polygonal boundaries and containment"
+            }
+          }
+        }
+      },
+      {
+        "a": "A",
+        "b": "above",
+        "clearance_mm": 6,
+        "bbox_gap_mm": 5.0,
+        "parts": [
+          {
+            "bbox_min_mm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bbox_max_mm": [
+              10.0,
+              10.0,
+              10.0
+            ],
+            "volume_mm3": 1000.0,
+            "mesh_faces": 12,
+            "axis_box_proof": true,
+            "planar_mesh_proof": {
+              "ok": true,
+              "mesh_valid": true,
+              "mesh_solid": true,
+              "boundary_components": 1,
+              "brep_volume": 1000.0,
+              "mesh_volume": 1000.0,
+              "brep_area": 600.0,
+              "mesh_area": 600.0,
+              "max_boundary_error_mm": 5.17892563931115e-15
+            }
+          },
+          {
+            "bbox_min_mm": [
+              0.0,
+              0.0,
+              15.0
+            ],
+            "bbox_max_mm": [
+              10.0,
+              10.0,
+              25.0
+            ],
+            "volume_mm3": 1000.0000000000005,
+            "mesh_faces": 12,
+            "axis_box_proof": true,
+            "planar_mesh_proof": {
+              "ok": true,
+              "mesh_valid": true,
+              "mesh_solid": true,
+              "boundary_components": 1,
+              "brep_volume": 1000.0000000000005,
+              "mesh_volume": 1000.0,
+              "brep_area": 600.0,
+              "mesh_area": 600.0,
+              "max_boundary_error_mm": 8.042797661766892e-15
+            }
+          }
+        ],
+        "brep_boolean": {
+          "is_null": false,
+          "count": 0,
+          "volumes_mm3": []
+        },
+        "brep_brep": {
+          "success": true,
+          "curves": 0,
+          "points": 0
+        },
+        "mesh_mesh": {
+          "success": true,
+          "intersections": 0,
+          "overlap_polylines": 0,
+          "log": ""
+        },
+        "point_containment": {
+          "a_sample_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "b_sample_mm": [
+            0.0,
+            0.0,
+            15.0
+          ],
+          "a_in_b": false,
+          "b_in_a": false,
+          "a_in_b_inclusive": false,
+          "b_in_a_inclusive": false,
+          "a_in_b_mesh": false,
+          "b_in_a_mesh": false
+        },
+        "clashes": [],
+        "clearance_events": [
+          {
+            "a": "A",
+            "b": "above",
+            "a_guid": "",
+            "b_guid": "",
+            "a_part": "solid",
+            "b_part": "solid",
+            "kind": "below_clearance",
+            "required_clearance_mm": 6,
+            "point_mm": [
+              0.0,
+              0.0,
+              12.5
+            ],
+            "witness_radius_mm": 3.0
+          }
+        ],
+        "unresolved": [],
+        "fixture": "3D separated projection"
+      },
+      {
+        "a": "A",
+        "b": "above",
+        "clearance_mm": 4,
+        "bbox_gap_mm": 5.0,
+        "parts": [
+          {
+            "bbox_min_mm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bbox_max_mm": [
+              10.0,
+              10.0,
+              10.0
+            ],
+            "volume_mm3": 1000.0,
+            "mesh_faces": 12,
+            "axis_box_proof": true,
+            "planar_mesh_proof": {
+              "ok": true,
+              "mesh_valid": true,
+              "mesh_solid": true,
+              "boundary_components": 1,
+              "brep_volume": 1000.0,
+              "mesh_volume": 1000.0,
+              "brep_area": 600.0,
+              "mesh_area": 600.0,
+              "max_boundary_error_mm": 5.17892563931115e-15
+            }
+          },
+          {
+            "bbox_min_mm": [
+              0.0,
+              0.0,
+              15.0
+            ],
+            "bbox_max_mm": [
+              10.0,
+              10.0,
+              25.0
+            ],
+            "volume_mm3": 1000.0000000000005,
+            "mesh_faces": 12,
+            "axis_box_proof": true,
+            "planar_mesh_proof": {
+              "ok": true,
+              "mesh_valid": true,
+              "mesh_solid": true,
+              "boundary_components": 1,
+              "brep_volume": 1000.0000000000005,
+              "mesh_volume": 1000.0,
+              "brep_area": 600.0,
+              "mesh_area": 600.0,
+              "max_boundary_error_mm": 8.042797661766892e-15
+            }
+          }
+        ],
+        "brep_boolean": {
+          "is_null": false,
+          "count": 0,
+          "volumes_mm3": []
+        },
+        "brep_brep": {
+          "success": true,
+          "curves": 0,
+          "points": 0
+        },
+        "mesh_mesh": {
+          "success": true,
+          "intersections": 0,
+          "overlap_polylines": 0,
+          "log": ""
+        },
+        "point_containment": {
+          "a_sample_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "b_sample_mm": [
+            0.0,
+            0.0,
+            15.0
+          ],
+          "a_in_b": false,
+          "b_in_a": false,
+          "a_in_b_inclusive": false,
+          "b_in_a_inclusive": false,
+          "a_in_b_mesh": false,
+          "b_in_a_mesh": false
+        },
+        "clashes": [],
+        "clearance_events": [],
+        "unresolved": [],
+        "fixture": "clearance threshold"
+      },
+      {
+        "a": "A",
+        "b": "touching",
+        "clearance_mm": 2,
+        "bbox_gap_mm": 0.0,
+        "parts": [
+          {
+            "bbox_min_mm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bbox_max_mm": [
+              10.0,
+              10.0,
+              10.0
+            ],
+            "volume_mm3": 1000.0,
+            "mesh_faces": 12,
+            "axis_box_proof": true,
+            "planar_mesh_proof": {
+              "ok": true,
+              "mesh_valid": true,
+              "mesh_solid": true,
+              "boundary_components": 1,
+              "brep_volume": 1000.0,
+              "mesh_volume": 1000.0,
+              "brep_area": 600.0,
+              "mesh_area": 600.0,
+              "max_boundary_error_mm": 5.17892563931115e-15
+            }
+          },
+          {
+            "bbox_min_mm": [
+              10.0,
+              0.0,
+              0.0
+            ],
+            "bbox_max_mm": [
+              20.0,
+              10.0,
+              10.0
+            ],
+            "volume_mm3": 1000.0000000000005,
+            "mesh_faces": 12,
+            "axis_box_proof": true,
+            "planar_mesh_proof": {
+              "ok": true,
+              "mesh_valid": true,
+              "mesh_solid": true,
+              "boundary_components": 1,
+              "brep_volume": 1000.0000000000005,
+              "mesh_volume": 1000.0,
+              "brep_area": 600.0,
+              "mesh_area": 600.0,
+              "max_boundary_error_mm": 8.042797661766892e-15
+            }
+          }
+        ],
+        "brep_boolean": {
+          "is_null": true,
+          "count": 0,
+          "volumes_mm3": []
+        },
+        "brep_brep": {
+          "success": true,
+          "curves": 2,
+          "points": 0
+        },
+        "mesh_mesh": {
+          "success": true,
+          "intersections": 0,
+          "overlap_polylines": 1,
+          "log": ""
+        },
+        "point_containment": {
+          "a_sample_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "b_sample_mm": [
+            10.0,
+            0.0,
+            0.0
+          ],
+          "a_in_b": false,
+          "b_in_a": false,
+          "a_in_b_inclusive": false,
+          "b_in_a_inclusive": true,
+          "a_in_b_mesh": false,
+          "b_in_a_mesh": false
+        },
+        "clashes": [],
+        "clearance_events": [
+          {
+            "a": "A",
+            "b": "touching",
+            "a_guid": "",
+            "b_guid": "",
+            "a_part": "solid",
+            "b_part": "solid",
+            "kind": "contact",
+            "required_clearance_mm": 2,
+            "point_mm": [
+              10.0,
+              0.0,
+              0.0
+            ],
+            "witness_radius_mm": 1.0
+          }
+        ],
+        "unresolved": [],
+        "fixture": "contact without overlap"
+      },
+      {
+        "a": "cavity",
+        "b": "in-void",
+        "clearance_mm": 1,
+        "bbox_gap_mm": 0.0,
+        "parts": [
+          {
+            "bbox_min_mm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bbox_max_mm": [
+              10.0,
+              10.0,
+              10.0
+            ],
+            "volume_mm3": 640.0,
+            "mesh_faces": 32,
+            "axis_box_proof": false,
+            "planar_mesh_proof": {
+              "ok": true,
+              "mesh_valid": true,
+              "mesh_solid": true,
+              "boundary_components": 1,
+              "brep_volume": 640.0,
+              "mesh_volume": 640.0,
+              "brep_area": 768.0000000000002,
+              "mesh_area": 768.0,
+              "max_boundary_error_mm": 5.17892563931115e-15
+            }
+          },
+          {
+            "bbox_min_mm": [
+              4.0,
+              4.0,
+              4.0
+            ],
+            "bbox_max_mm": [
+              6.0,
+              6.0,
+              6.0
+            ],
+            "volume_mm3": 8.000000000000007,
+            "mesh_faces": 12,
+            "axis_box_proof": true,
+            "planar_mesh_proof": {
+              "ok": true,
+              "mesh_valid": true,
+              "mesh_solid": true,
+              "boundary_components": 1,
+              "brep_volume": 8.000000000000007,
+              "mesh_volume": 8.0,
+              "brep_area": 24.0,
+              "mesh_area": 24.0,
+              "max_boundary_error_mm": 8.881784197001252e-16
+            }
+          }
+        ],
+        "brep_boolean": {
+          "is_null": false,
+          "count": 0,
+          "volumes_mm3": []
+        },
+        "brep_brep": {
+          "success": true,
+          "curves": 0,
+          "points": 0
+        },
+        "mesh_mesh": {
+          "success": true,
+          "intersections": 0,
+          "overlap_polylines": 0,
+          "log": ""
+        },
+        "point_containment": {
+          "a_sample_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "b_sample_mm": [
+            4.0,
+            4.0,
+            4.0
+          ],
+          "a_in_b": false,
+          "b_in_a": false,
+          "a_in_b_inclusive": false,
+          "b_in_a_inclusive": false,
+          "a_in_b_mesh": false,
+          "b_in_a_mesh": false
+        },
+        "clashes": [],
+        "clearance_events": [],
+        "unresolved": [],
+        "fixture": "void inside overlapping bounding boxes"
+      }
+    ],
+    "failure_counterexample": {
+      "ok": true,
+      "unresolved": [
+        {
+          "a": "cavity",
+          "b": "in-void",
+          "a_guid": "",
+          "b_guid": "",
+          "a_part": "solid",
+          "b_part": "solid",
+          "reason": "MeshMesh returned False (operation failed): native API",
+          "evidence": {
+            "brep_boolean": {
+              "is_null": false,
+              "count": 0
+            },
+            "brep_brep": {
+              "success": true,
+              "curves": 0,
+              "points": 0
+            },
+            "axis_box_proof": [
+              false,
+              true
+            ],
+            "planar_mesh_proof": [
+              {
+                "ok": true,
+                "mesh_valid": true,
+                "mesh_solid": true,
+                "boundary_components": 1,
+                "brep_volume": 640.0,
+                "mesh_volume": 640.0,
+                "brep_area": 768.0000000000002,
+                "mesh_area": 768.0,
+                "max_boundary_error_mm": 5.17892563931115e-15
+              },
+              {
+                "ok": true,
+                "mesh_valid": true,
+                "mesh_solid": true,
+                "boundary_components": 1,
+                "brep_volume": 8.000000000000007,
+                "mesh_volume": 8.0,
+                "brep_area": 24.0,
+                "mesh_area": 24.0,
+                "max_boundary_error_mm": 8.881784197001252e-16
+              }
+            ],
+            "mesh_mesh": {
+              "success": false,
+              "intersections": 0,
+              "overlap_polylines": 0
+            }
+          }
+        }
+      ],
+      "invalid_hit_diagnostic_unresolved": [
+        {
+          "a": "cavity",
+          "b": "in-void",
+          "a_guid": "",
+          "b_guid": "",
+          "a_part": "solid",
+          "b_part": "solid",
+          "reason": "MeshMesh diagnostic prevents a conclusive empty-boundary proof",
+          "evidence": {
+            "brep_boolean": {
+              "is_null": false,
+              "count": 0
+            },
+            "brep_brep": {
+              "success": true,
+              "curves": 0,
+              "points": 0
+            },
+            "axis_box_proof": [
+              false,
+              true
+            ],
+            "planar_mesh_proof": [
+              {
+                "ok": true,
+                "mesh_valid": true,
+                "mesh_solid": true,
+                "boundary_components": 1,
+                "brep_volume": 640.0,
+                "mesh_volume": 640.0,
+                "brep_area": 768.0000000000002,
+                "mesh_area": 768.0,
+                "max_boundary_error_mm": 5.17892563931115e-15
+              },
+              {
+                "ok": true,
+                "mesh_valid": true,
+                "mesh_solid": true,
+                "boundary_components": 1,
+                "brep_volume": 8.000000000000007,
+                "mesh_volume": 8.0,
+                "brep_area": 24.0,
+                "mesh_area": 24.0,
+                "max_boundary_error_mm": 8.881784197001252e-16
+              }
+            ],
+            "mesh_mesh": {
+              "success": true,
+              "intersections": 0,
+              "overlap_polylines": 0,
+              "log": "An intersection computed a wrong result. Hit is invalid."
+            }
+          }
+        }
+      ]
+    }
+  },
+  "model_fixture": {
+    "ok": true,
+    "source_panel": "S-L1-01",
+    "corner_post_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+    "copied_panel_shift_mm": [
+      -200,
+      0,
+      0
+    ],
+    "volume_events": 8,
+    "source_document_unchanged": true
+  },
+  "spatial": {
+    "ok": true,
+    "clearance_ok": false,
+    "units": 823,
+    "solid_parts": 7477,
+    "candidate_pairs": 162,
+    "clashes": [],
+    "clearance_events": [
+      {
+        "a": "W-RF-01",
+        "b": "W-RF-02",
+        "a_guid": "db1341e0-621d-4c1f-87ba-cbba2439ee47",
+        "b_guid": "626e913d-bc00-4bc2-b653-2403e657ba69",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          22585.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-01",
+        "b": "W-RF-02",
+        "a_guid": "db1341e0-621d-4c1f-87ba-cbba2439ee47",
+        "b_guid": "626e913d-bc00-4bc2-b653-2403e657ba69",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          22575.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-01",
+        "b": "W-RF-02",
+        "a_guid": "db1341e0-621d-4c1f-87ba-cbba2439ee47",
+        "b_guid": "626e913d-bc00-4bc2-b653-2403e657ba69",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          -70.0,
+          22580.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-02",
+        "b": "W-RF-03",
+        "a_guid": "626e913d-bc00-4bc2-b653-2403e657ba69",
+        "b_guid": "94176c78-5d4b-44b4-b0b0-f6e96815e3fc",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          20985.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-02",
+        "b": "W-RF-03",
+        "a_guid": "626e913d-bc00-4bc2-b653-2403e657ba69",
+        "b_guid": "94176c78-5d4b-44b4-b0b0-f6e96815e3fc",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          20975.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-02",
+        "b": "W-RF-03",
+        "a_guid": "626e913d-bc00-4bc2-b653-2403e657ba69",
+        "b_guid": "94176c78-5d4b-44b4-b0b0-f6e96815e3fc",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          -70.0,
+          20980.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-03",
+        "b": "W-RF-04",
+        "a_guid": "94176c78-5d4b-44b4-b0b0-f6e96815e3fc",
+        "b_guid": "9f73c9b7-f518-496f-a122-a2a63e1de899",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          19385.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-03",
+        "b": "W-RF-04",
+        "a_guid": "94176c78-5d4b-44b4-b0b0-f6e96815e3fc",
+        "b_guid": "9f73c9b7-f518-496f-a122-a2a63e1de899",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          19375.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-03",
+        "b": "W-RF-04",
+        "a_guid": "94176c78-5d4b-44b4-b0b0-f6e96815e3fc",
+        "b_guid": "9f73c9b7-f518-496f-a122-a2a63e1de899",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          -70.0,
+          19380.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-04",
+        "b": "W-RF-05",
+        "a_guid": "9f73c9b7-f518-496f-a122-a2a63e1de899",
+        "b_guid": "48066180-074f-48ef-8bc8-e5f030701473",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          17785.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-04",
+        "b": "W-RF-05",
+        "a_guid": "9f73c9b7-f518-496f-a122-a2a63e1de899",
+        "b_guid": "48066180-074f-48ef-8bc8-e5f030701473",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          17775.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-04",
+        "b": "W-RF-05",
+        "a_guid": "9f73c9b7-f518-496f-a122-a2a63e1de899",
+        "b_guid": "48066180-074f-48ef-8bc8-e5f030701473",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          -70.0,
+          17780.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-05",
+        "b": "W-RF-06",
+        "a_guid": "48066180-074f-48ef-8bc8-e5f030701473",
+        "b_guid": "6740586f-cb5a-4572-a462-b53429166912",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          16185.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-05",
+        "b": "W-RF-06",
+        "a_guid": "48066180-074f-48ef-8bc8-e5f030701473",
+        "b_guid": "6740586f-cb5a-4572-a462-b53429166912",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          16175.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-05",
+        "b": "W-RF-06",
+        "a_guid": "48066180-074f-48ef-8bc8-e5f030701473",
+        "b_guid": "6740586f-cb5a-4572-a462-b53429166912",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          -70.0,
+          16180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-06",
+        "b": "W-RF-07",
+        "a_guid": "6740586f-cb5a-4572-a462-b53429166912",
+        "b_guid": "c6d8ba85-4a1c-476e-8d22-267dc59ab0b6",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          14585.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-06",
+        "b": "W-RF-07",
+        "a_guid": "6740586f-cb5a-4572-a462-b53429166912",
+        "b_guid": "c6d8ba85-4a1c-476e-8d22-267dc59ab0b6",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          14575.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-06",
+        "b": "W-RF-07",
+        "a_guid": "6740586f-cb5a-4572-a462-b53429166912",
+        "b_guid": "c6d8ba85-4a1c-476e-8d22-267dc59ab0b6",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          -70.0,
+          14580.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-07",
+        "b": "W-RF-08",
+        "a_guid": "c6d8ba85-4a1c-476e-8d22-267dc59ab0b6",
+        "b_guid": "a3b2949f-9bde-4698-b553-908f9fa42654",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          12985.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-07",
+        "b": "W-RF-08",
+        "a_guid": "c6d8ba85-4a1c-476e-8d22-267dc59ab0b6",
+        "b_guid": "a3b2949f-9bde-4698-b553-908f9fa42654",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          12975.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-07",
+        "b": "W-RF-08",
+        "a_guid": "c6d8ba85-4a1c-476e-8d22-267dc59ab0b6",
+        "b_guid": "a3b2949f-9bde-4698-b553-908f9fa42654",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          -70.0,
+          12980.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-08",
+        "b": "W-RF-09",
+        "a_guid": "a3b2949f-9bde-4698-b553-908f9fa42654",
+        "b_guid": "4c330efd-c9d6-49d8-9c1f-cca67be46e96",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          11385.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-08",
+        "b": "W-RF-09",
+        "a_guid": "a3b2949f-9bde-4698-b553-908f9fa42654",
+        "b_guid": "4c330efd-c9d6-49d8-9c1f-cca67be46e96",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          11375.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-08",
+        "b": "W-RF-09",
+        "a_guid": "a3b2949f-9bde-4698-b553-908f9fa42654",
+        "b_guid": "4c330efd-c9d6-49d8-9c1f-cca67be46e96",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          -70.0,
+          11380.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-09",
+        "b": "W-RF-10",
+        "a_guid": "4c330efd-c9d6-49d8-9c1f-cca67be46e96",
+        "b_guid": "664bd2e3-b90a-4164-87cd-77979680bfaa",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          9785.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-09",
+        "b": "W-RF-10",
+        "a_guid": "4c330efd-c9d6-49d8-9c1f-cca67be46e96",
+        "b_guid": "664bd2e3-b90a-4164-87cd-77979680bfaa",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          9775.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-09",
+        "b": "W-RF-10",
+        "a_guid": "4c330efd-c9d6-49d8-9c1f-cca67be46e96",
+        "b_guid": "664bd2e3-b90a-4164-87cd-77979680bfaa",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          -70.0,
+          9780.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-10",
+        "b": "W-RF-11",
+        "a_guid": "664bd2e3-b90a-4164-87cd-77979680bfaa",
+        "b_guid": "762d734f-9ede-4383-a5e4-4da72f3567ac",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          8185.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-10",
+        "b": "W-RF-11",
+        "a_guid": "664bd2e3-b90a-4164-87cd-77979680bfaa",
+        "b_guid": "762d734f-9ede-4383-a5e4-4da72f3567ac",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          8175.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-10",
+        "b": "W-RF-11",
+        "a_guid": "664bd2e3-b90a-4164-87cd-77979680bfaa",
+        "b_guid": "762d734f-9ede-4383-a5e4-4da72f3567ac",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          -70.0,
+          8180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-11",
+        "b": "W-RF-12",
+        "a_guid": "762d734f-9ede-4383-a5e4-4da72f3567ac",
+        "b_guid": "7a6e7322-6fbc-4142-9d55-01a044a84848",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          6585.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-11",
+        "b": "W-RF-12",
+        "a_guid": "762d734f-9ede-4383-a5e4-4da72f3567ac",
+        "b_guid": "7a6e7322-6fbc-4142-9d55-01a044a84848",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          6575.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-11",
+        "b": "W-RF-12",
+        "a_guid": "762d734f-9ede-4383-a5e4-4da72f3567ac",
+        "b_guid": "7a6e7322-6fbc-4142-9d55-01a044a84848",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          -70.0,
+          6580.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-12",
+        "b": "W-RF-13",
+        "a_guid": "7a6e7322-6fbc-4142-9d55-01a044a84848",
+        "b_guid": "49355e53-2c5e-4335-8020-5ded2d1ee887",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          4985.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-12",
+        "b": "W-RF-13",
+        "a_guid": "7a6e7322-6fbc-4142-9d55-01a044a84848",
+        "b_guid": "49355e53-2c5e-4335-8020-5ded2d1ee887",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          4975.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-12",
+        "b": "W-RF-13",
+        "a_guid": "7a6e7322-6fbc-4142-9d55-01a044a84848",
+        "b_guid": "49355e53-2c5e-4335-8020-5ded2d1ee887",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          -70.0,
+          4980.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-13",
+        "b": "W-RF-14",
+        "a_guid": "49355e53-2c5e-4335-8020-5ded2d1ee887",
+        "b_guid": "085671c5-02d8-43b8-af20-eed37748c45b",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          3385.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-13",
+        "b": "W-RF-14",
+        "a_guid": "49355e53-2c5e-4335-8020-5ded2d1ee887",
+        "b_guid": "085671c5-02d8-43b8-af20-eed37748c45b",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          3375.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-13",
+        "b": "W-RF-14",
+        "a_guid": "49355e53-2c5e-4335-8020-5ded2d1ee887",
+        "b_guid": "085671c5-02d8-43b8-af20-eed37748c45b",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          -70.0,
+          3380.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-14",
+        "b": "W-RF-15",
+        "a_guid": "085671c5-02d8-43b8-af20-eed37748c45b",
+        "b_guid": "64b08665-034d-47eb-aea3-e95b4db5fd5a",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          1785.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-14",
+        "b": "W-RF-15",
+        "a_guid": "085671c5-02d8-43b8-af20-eed37748c45b",
+        "b_guid": "64b08665-034d-47eb-aea3-e95b4db5fd5a",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          1775.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-14",
+        "b": "W-RF-15",
+        "a_guid": "085671c5-02d8-43b8-af20-eed37748c45b",
+        "b_guid": "64b08665-034d-47eb-aea3-e95b4db5fd5a",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          -70.0,
+          1780.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-15",
+        "b": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "a_guid": "64b08665-034d-47eb-aea3-e95b4db5fd5a",
+        "b_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "a_part": "alu#2",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          185.0,
+          31810.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-15",
+        "b": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "a_guid": "64b08665-034d-47eb-aea3-e95b4db5fd5a",
+        "b_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "a_part": "alu#8",
+        "b_part": "幕墙::转角立柱",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          180.0,
+          32995.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-01",
+        "b": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "a_guid": "db1341e0-621d-4c1f-87ba-cbba2439ee47",
+        "b_guid": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "a_part": "alu#1",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          24175.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-01",
+        "b": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "a_guid": "db1341e0-621d-4c1f-87ba-cbba2439ee47",
+        "b_guid": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "a_part": "alu#8",
+        "b_part": "幕墙::转角立柱",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          24180.0,
+          32995.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b": "W-L1-01",
+        "a_guid": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b_guid": "007f8098-b173-487d-a0ea-0e26ad752691",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          158.436499,
+          24175.0,
+          3953.308431
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b": "W-L1-15",
+        "a_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b_guid": "23216885-5d83-414e-849c-a398cdc07413",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          21.563501,
+          185.0,
+          3953.308431
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b": "W-L2-01",
+        "a_guid": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b_guid": "5a2a2fe0-2633-4706-9cf7-16c39be079cb",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          24175.0,
+          8390.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b": "W-L2-15",
+        "a_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b_guid": "691308c3-c2e5-41de-b0dd-e9092f6e5675",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          185.0,
+          8390.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b": "W-L3-01",
+        "a_guid": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b_guid": "9d52c19e-cb08-44c2-92c7-4adf5761110b",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          24175.0,
+          12290.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b": "W-L3-15",
+        "a_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b_guid": "358de5ef-8b67-404b-ab2e-1986ec345289",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          185.0,
+          12290.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b": "W-L4-01",
+        "a_guid": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b_guid": "486e854c-bf88-424e-90dd-98c8aec09dac",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          24175.0,
+          16190.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b": "W-L4-15",
+        "a_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b_guid": "1428ca87-0763-4b12-bc23-9ee4b0e19fe1",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          185.0,
+          12310.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b": "W-L5-01",
+        "a_guid": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b_guid": "40a1894c-13cc-4ba9-82e2-4330bf5b3530",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          24175.0,
+          20090.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b": "W-L5-15",
+        "a_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b_guid": "31a3fc98-758b-4f49-af97-1804805d6ddf",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          185.0,
+          16210.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b": "W-L6-01",
+        "a_guid": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b_guid": "c7ab479d-77ec-4db6-ae95-2d179f3b5687",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          24175.0,
+          23990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b": "W-L6-15",
+        "a_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b_guid": "93b6b2f3-81b0-465c-ac29-d52e009a7d1f",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          185.0,
+          20110.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b": "W-L7-01",
+        "a_guid": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b_guid": "9b7c0e49-35e6-4d4f-8fdb-721d790cf125",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          24175.0,
+          27890.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b": "W-L7-15",
+        "a_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b_guid": "da71f6f8-c6e5-4b61-a2bd-e5720cc4b5db",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          185.0,
+          24010.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b": "W-L8-01",
+        "a_guid": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b_guid": "d8aa2661-e4ae-444b-8835-41c75886b869",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          24175.0,
+          31790.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b": "W-L8-15",
+        "a_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b_guid": "5cf7411e-323c-4489-b08b-940612b65cfc",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          0.0,
+          185.0,
+          27910.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-01",
+        "b": "N-RF-30",
+        "a_guid": "db1341e0-621d-4c1f-87ba-cbba2439ee47",
+        "b_guid": "482732d9-aa7c-4042-8ee1-63c075d91063",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          24175.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-01",
+        "b": "N-RF-30",
+        "a_guid": "db1341e0-621d-4c1f-87ba-cbba2439ee47",
+        "b_guid": "482732d9-aa7c-4042-8ee1-63c075d91063",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          185.0,
+          24180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-01",
+        "b": "N-RF-30",
+        "a_guid": "db1341e0-621d-4c1f-87ba-cbba2439ee47",
+        "b_guid": "482732d9-aa7c-4042-8ee1-63c075d91063",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          24180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b": "N-RF-30",
+        "a_guid": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b_guid": "482732d9-aa7c-4042-8ee1-63c075d91063",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          185.0,
+          24360.0,
+          31810.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b": "N-RF-30",
+        "a_guid": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b_guid": "482732d9-aa7c-4042-8ee1-63c075d91063",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          24180.0,
+          32995.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-15",
+        "b": "S-RF-01",
+        "a_guid": "64b08665-034d-47eb-aea3-e95b4db5fd5a",
+        "b_guid": "671f1cfc-736f-46c6-a469-cbc6d9f69062",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          185.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-15",
+        "b": "S-RF-01",
+        "a_guid": "64b08665-034d-47eb-aea3-e95b4db5fd5a",
+        "b_guid": "671f1cfc-736f-46c6-a469-cbc6d9f69062",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          185.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "W-RF-15",
+        "b": "S-RF-01",
+        "a_guid": "64b08665-034d-47eb-aea3-e95b4db5fd5a",
+        "b_guid": "671f1cfc-736f-46c6-a469-cbc6d9f69062",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b": "S-RF-01",
+        "a_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b_guid": "671f1cfc-736f-46c6-a469-cbc6d9f69062",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          185.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b": "S-RF-01",
+        "a_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b_guid": "671f1cfc-736f-46c6-a469-cbc6d9f69062",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          180.0,
+          180.0,
+          32995.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b": "N-L1-30",
+        "a_guid": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b_guid": "83d3db23-3275-4e0d-8541-0d18f0ddbe1e",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          185.0,
+          24360.0,
+          10.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b": "N-L2-30",
+        "a_guid": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b_guid": "732b9b46-10d9-4d34-863e-6979b8faaf03",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          185.0,
+          24360.0,
+          8390.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b": "N-L3-30",
+        "a_guid": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b_guid": "f1fd1550-95e3-4ee1-9cdb-3d83ea91fc83",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          185.0,
+          24360.0,
+          12290.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b": "N-L4-30",
+        "a_guid": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b_guid": "f4c26af0-ca25-48dc-b513-bbc9fed7696e",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          185.0,
+          24360.0,
+          12310.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b": "N-L5-30",
+        "a_guid": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b_guid": "96ffff03-0dcb-4a76-b8fb-927c22af4ce4",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          185.0,
+          24360.0,
+          16210.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b": "N-L6-30",
+        "a_guid": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b_guid": "74dd220c-d28d-42bf-a6c5-6c85d6ff4700",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          185.0,
+          24360.0,
+          20110.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b": "N-L7-30",
+        "a_guid": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b_guid": "157c1ec9-8720-4ddd-919a-c64f518aca43",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          185.0,
+          24360.0,
+          24010.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b": "N-L8-30",
+        "a_guid": "8e982e97-3588-42b0-bae3-7b8f32fe3568",
+        "b_guid": "c13fa1bd-6ef3-4292-a598-cef53fe688b2",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          185.0,
+          24360.0,
+          27910.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b": "S-L1-01",
+        "a_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b_guid": "64ec35ea-5a16-4e16-8179-8caf31df71e0",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          185.0,
+          0.0,
+          4490.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b": "S-L2-01",
+        "a_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b_guid": "a5ab42fe-549a-4d1d-ac89-636e4c90fd4f",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          185.0,
+          0.0,
+          8390.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b": "S-L3-01",
+        "a_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b_guid": "2367c1f4-8757-4e4d-bfbe-0046092f5ae6",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          185.0,
+          0.0,
+          12290.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b": "S-L4-01",
+        "a_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b_guid": "82d6ab5e-d193-4cf8-a4f3-771439b3f819",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          185.0,
+          0.0,
+          16190.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b": "S-L5-01",
+        "a_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b_guid": "4b4bcbf4-d16f-420b-908c-0422ac92875e",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          185.0,
+          0.0,
+          20090.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b": "S-L6-01",
+        "a_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b_guid": "49b75524-b843-46c1-afc0-d3a88d2d7eff",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          185.0,
+          0.0,
+          23990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b": "S-L7-01",
+        "a_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b_guid": "b512af2b-c528-47dc-b8f7-1004af5d5037",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          185.0,
+          0.0,
+          27890.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b": "S-L8-01",
+        "a_guid": "7e4cdf3c-bd31-4f55-9188-d717983ef5c3",
+        "b_guid": "16663853-675c-4712-8100-c272def9c09d",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          185.0,
+          0.0,
+          31790.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-30",
+        "b": "N-RF-29",
+        "a_guid": "482732d9-aa7c-4042-8ee1-63c075d91063",
+        "b_guid": "4414da81-5391-493f-904a-5a55bfc92515",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          1775.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-30",
+        "b": "N-RF-29",
+        "a_guid": "482732d9-aa7c-4042-8ee1-63c075d91063",
+        "b_guid": "4414da81-5391-493f-904a-5a55bfc92515",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          1785.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-30",
+        "b": "N-RF-29",
+        "a_guid": "482732d9-aa7c-4042-8ee1-63c075d91063",
+        "b_guid": "4414da81-5391-493f-904a-5a55bfc92515",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          1780.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-01",
+        "b": "S-RF-02",
+        "a_guid": "671f1cfc-736f-46c6-a469-cbc6d9f69062",
+        "b_guid": "65524ca7-c88c-43c3-a55e-586b18dda010",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          1775.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-01",
+        "b": "S-RF-02",
+        "a_guid": "671f1cfc-736f-46c6-a469-cbc6d9f69062",
+        "b_guid": "65524ca7-c88c-43c3-a55e-586b18dda010",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          1785.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-01",
+        "b": "S-RF-02",
+        "a_guid": "671f1cfc-736f-46c6-a469-cbc6d9f69062",
+        "b_guid": "65524ca7-c88c-43c3-a55e-586b18dda010",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          1780.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-29",
+        "b": "N-RF-28",
+        "a_guid": "4414da81-5391-493f-904a-5a55bfc92515",
+        "b_guid": "b809cbf0-d5a2-4a79-9a8d-d04c0ce76655",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          3375.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-29",
+        "b": "N-RF-28",
+        "a_guid": "4414da81-5391-493f-904a-5a55bfc92515",
+        "b_guid": "b809cbf0-d5a2-4a79-9a8d-d04c0ce76655",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          3385.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-29",
+        "b": "N-RF-28",
+        "a_guid": "4414da81-5391-493f-904a-5a55bfc92515",
+        "b_guid": "b809cbf0-d5a2-4a79-9a8d-d04c0ce76655",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          3380.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-02",
+        "b": "S-RF-03",
+        "a_guid": "65524ca7-c88c-43c3-a55e-586b18dda010",
+        "b_guid": "e2fea3cc-6a95-4313-a1b5-40a95d68c988",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          3375.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-02",
+        "b": "S-RF-03",
+        "a_guid": "65524ca7-c88c-43c3-a55e-586b18dda010",
+        "b_guid": "e2fea3cc-6a95-4313-a1b5-40a95d68c988",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          3385.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-02",
+        "b": "S-RF-03",
+        "a_guid": "65524ca7-c88c-43c3-a55e-586b18dda010",
+        "b_guid": "e2fea3cc-6a95-4313-a1b5-40a95d68c988",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          3380.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-28",
+        "b": "N-RF-27",
+        "a_guid": "b809cbf0-d5a2-4a79-9a8d-d04c0ce76655",
+        "b_guid": "a6ea3220-5322-4516-8128-9e35f45e1a1d",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          4975.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-28",
+        "b": "N-RF-27",
+        "a_guid": "b809cbf0-d5a2-4a79-9a8d-d04c0ce76655",
+        "b_guid": "a6ea3220-5322-4516-8128-9e35f45e1a1d",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          4985.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-28",
+        "b": "N-RF-27",
+        "a_guid": "b809cbf0-d5a2-4a79-9a8d-d04c0ce76655",
+        "b_guid": "a6ea3220-5322-4516-8128-9e35f45e1a1d",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          4980.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-03",
+        "b": "S-RF-04",
+        "a_guid": "e2fea3cc-6a95-4313-a1b5-40a95d68c988",
+        "b_guid": "cf5f8adf-466d-492f-8759-2249061f4317",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          4975.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-03",
+        "b": "S-RF-04",
+        "a_guid": "e2fea3cc-6a95-4313-a1b5-40a95d68c988",
+        "b_guid": "cf5f8adf-466d-492f-8759-2249061f4317",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          4985.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-03",
+        "b": "S-RF-04",
+        "a_guid": "e2fea3cc-6a95-4313-a1b5-40a95d68c988",
+        "b_guid": "cf5f8adf-466d-492f-8759-2249061f4317",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          4980.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-27",
+        "b": "N-RF-26",
+        "a_guid": "a6ea3220-5322-4516-8128-9e35f45e1a1d",
+        "b_guid": "12117a52-dfa1-4e6d-912c-09a83ed8f515",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          6575.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-27",
+        "b": "N-RF-26",
+        "a_guid": "a6ea3220-5322-4516-8128-9e35f45e1a1d",
+        "b_guid": "12117a52-dfa1-4e6d-912c-09a83ed8f515",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          6585.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-27",
+        "b": "N-RF-26",
+        "a_guid": "a6ea3220-5322-4516-8128-9e35f45e1a1d",
+        "b_guid": "12117a52-dfa1-4e6d-912c-09a83ed8f515",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          6580.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-04",
+        "b": "S-RF-05",
+        "a_guid": "cf5f8adf-466d-492f-8759-2249061f4317",
+        "b_guid": "57a652c5-5e57-4704-b06d-1c9564f3a58d",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          6575.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-04",
+        "b": "S-RF-05",
+        "a_guid": "cf5f8adf-466d-492f-8759-2249061f4317",
+        "b_guid": "57a652c5-5e57-4704-b06d-1c9564f3a58d",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          6585.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-04",
+        "b": "S-RF-05",
+        "a_guid": "cf5f8adf-466d-492f-8759-2249061f4317",
+        "b_guid": "57a652c5-5e57-4704-b06d-1c9564f3a58d",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          6580.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-26",
+        "b": "N-RF-25",
+        "a_guid": "12117a52-dfa1-4e6d-912c-09a83ed8f515",
+        "b_guid": "c214bdd1-ce36-43cf-80a2-380161a057c6",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          8175.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-26",
+        "b": "N-RF-25",
+        "a_guid": "12117a52-dfa1-4e6d-912c-09a83ed8f515",
+        "b_guid": "c214bdd1-ce36-43cf-80a2-380161a057c6",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          8185.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-26",
+        "b": "N-RF-25",
+        "a_guid": "12117a52-dfa1-4e6d-912c-09a83ed8f515",
+        "b_guid": "c214bdd1-ce36-43cf-80a2-380161a057c6",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          8180.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-05",
+        "b": "S-RF-06",
+        "a_guid": "57a652c5-5e57-4704-b06d-1c9564f3a58d",
+        "b_guid": "3693d1d0-2ae5-45ea-8af2-04014850dcde",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          8175.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-05",
+        "b": "S-RF-06",
+        "a_guid": "57a652c5-5e57-4704-b06d-1c9564f3a58d",
+        "b_guid": "3693d1d0-2ae5-45ea-8af2-04014850dcde",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          8185.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-05",
+        "b": "S-RF-06",
+        "a_guid": "57a652c5-5e57-4704-b06d-1c9564f3a58d",
+        "b_guid": "3693d1d0-2ae5-45ea-8af2-04014850dcde",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          8180.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-25",
+        "b": "N-RF-24",
+        "a_guid": "c214bdd1-ce36-43cf-80a2-380161a057c6",
+        "b_guid": "5784222c-681a-4a0a-8a17-77846847f35e",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          9775.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-25",
+        "b": "N-RF-24",
+        "a_guid": "c214bdd1-ce36-43cf-80a2-380161a057c6",
+        "b_guid": "5784222c-681a-4a0a-8a17-77846847f35e",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          9785.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-25",
+        "b": "N-RF-24",
+        "a_guid": "c214bdd1-ce36-43cf-80a2-380161a057c6",
+        "b_guid": "5784222c-681a-4a0a-8a17-77846847f35e",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          9780.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-06",
+        "b": "S-RF-07",
+        "a_guid": "3693d1d0-2ae5-45ea-8af2-04014850dcde",
+        "b_guid": "b2403daa-992f-42b7-b1f2-bf79eb3de6cb",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          9775.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-06",
+        "b": "S-RF-07",
+        "a_guid": "3693d1d0-2ae5-45ea-8af2-04014850dcde",
+        "b_guid": "b2403daa-992f-42b7-b1f2-bf79eb3de6cb",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          9785.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-06",
+        "b": "S-RF-07",
+        "a_guid": "3693d1d0-2ae5-45ea-8af2-04014850dcde",
+        "b_guid": "b2403daa-992f-42b7-b1f2-bf79eb3de6cb",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          9780.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-24",
+        "b": "N-RF-23",
+        "a_guid": "5784222c-681a-4a0a-8a17-77846847f35e",
+        "b_guid": "f3c9b9b5-c189-454d-b2dc-eb41b54e5468",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          11375.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-24",
+        "b": "N-RF-23",
+        "a_guid": "5784222c-681a-4a0a-8a17-77846847f35e",
+        "b_guid": "f3c9b9b5-c189-454d-b2dc-eb41b54e5468",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          11385.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-24",
+        "b": "N-RF-23",
+        "a_guid": "5784222c-681a-4a0a-8a17-77846847f35e",
+        "b_guid": "f3c9b9b5-c189-454d-b2dc-eb41b54e5468",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          11380.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-07",
+        "b": "S-RF-08",
+        "a_guid": "b2403daa-992f-42b7-b1f2-bf79eb3de6cb",
+        "b_guid": "8cc2079f-d822-4ce1-8fac-3fd7e8df7f4a",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          11375.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-07",
+        "b": "S-RF-08",
+        "a_guid": "b2403daa-992f-42b7-b1f2-bf79eb3de6cb",
+        "b_guid": "8cc2079f-d822-4ce1-8fac-3fd7e8df7f4a",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          11385.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-07",
+        "b": "S-RF-08",
+        "a_guid": "b2403daa-992f-42b7-b1f2-bf79eb3de6cb",
+        "b_guid": "8cc2079f-d822-4ce1-8fac-3fd7e8df7f4a",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          11380.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-23",
+        "b": "N-RF-22",
+        "a_guid": "f3c9b9b5-c189-454d-b2dc-eb41b54e5468",
+        "b_guid": "cba0edd7-3666-4227-943d-8bc803c0493a",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          12975.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-23",
+        "b": "N-RF-22",
+        "a_guid": "f3c9b9b5-c189-454d-b2dc-eb41b54e5468",
+        "b_guid": "cba0edd7-3666-4227-943d-8bc803c0493a",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          12985.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-23",
+        "b": "N-RF-22",
+        "a_guid": "f3c9b9b5-c189-454d-b2dc-eb41b54e5468",
+        "b_guid": "cba0edd7-3666-4227-943d-8bc803c0493a",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          12980.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-08",
+        "b": "S-RF-09",
+        "a_guid": "8cc2079f-d822-4ce1-8fac-3fd7e8df7f4a",
+        "b_guid": "30086c45-5d3e-4056-9fc5-c81928f7fd44",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          12975.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-08",
+        "b": "S-RF-09",
+        "a_guid": "8cc2079f-d822-4ce1-8fac-3fd7e8df7f4a",
+        "b_guid": "30086c45-5d3e-4056-9fc5-c81928f7fd44",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          12985.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-08",
+        "b": "S-RF-09",
+        "a_guid": "8cc2079f-d822-4ce1-8fac-3fd7e8df7f4a",
+        "b_guid": "30086c45-5d3e-4056-9fc5-c81928f7fd44",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          12980.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-22",
+        "b": "N-RF-21",
+        "a_guid": "cba0edd7-3666-4227-943d-8bc803c0493a",
+        "b_guid": "b4ee2a38-81d3-4e11-86fe-5fa562b5640c",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          14575.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-22",
+        "b": "N-RF-21",
+        "a_guid": "cba0edd7-3666-4227-943d-8bc803c0493a",
+        "b_guid": "b4ee2a38-81d3-4e11-86fe-5fa562b5640c",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          14585.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-22",
+        "b": "N-RF-21",
+        "a_guid": "cba0edd7-3666-4227-943d-8bc803c0493a",
+        "b_guid": "b4ee2a38-81d3-4e11-86fe-5fa562b5640c",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          14580.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-09",
+        "b": "S-RF-10",
+        "a_guid": "30086c45-5d3e-4056-9fc5-c81928f7fd44",
+        "b_guid": "a2e23956-6dc7-4618-a110-cf186fb10d1d",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          14575.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-09",
+        "b": "S-RF-10",
+        "a_guid": "30086c45-5d3e-4056-9fc5-c81928f7fd44",
+        "b_guid": "a2e23956-6dc7-4618-a110-cf186fb10d1d",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          14585.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-09",
+        "b": "S-RF-10",
+        "a_guid": "30086c45-5d3e-4056-9fc5-c81928f7fd44",
+        "b_guid": "a2e23956-6dc7-4618-a110-cf186fb10d1d",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          14580.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-21",
+        "b": "N-RF-20",
+        "a_guid": "b4ee2a38-81d3-4e11-86fe-5fa562b5640c",
+        "b_guid": "4a7a0033-c3cd-4f6d-8695-ffabc00f6ea8",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          16175.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-21",
+        "b": "N-RF-20",
+        "a_guid": "b4ee2a38-81d3-4e11-86fe-5fa562b5640c",
+        "b_guid": "4a7a0033-c3cd-4f6d-8695-ffabc00f6ea8",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          16185.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-21",
+        "b": "N-RF-20",
+        "a_guid": "b4ee2a38-81d3-4e11-86fe-5fa562b5640c",
+        "b_guid": "4a7a0033-c3cd-4f6d-8695-ffabc00f6ea8",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          16180.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-10",
+        "b": "S-RF-11",
+        "a_guid": "a2e23956-6dc7-4618-a110-cf186fb10d1d",
+        "b_guid": "47cacd5c-50c9-4b9d-b857-a5be9f968fa9",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          16175.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-10",
+        "b": "S-RF-11",
+        "a_guid": "a2e23956-6dc7-4618-a110-cf186fb10d1d",
+        "b_guid": "47cacd5c-50c9-4b9d-b857-a5be9f968fa9",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          16185.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-10",
+        "b": "S-RF-11",
+        "a_guid": "a2e23956-6dc7-4618-a110-cf186fb10d1d",
+        "b_guid": "47cacd5c-50c9-4b9d-b857-a5be9f968fa9",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          16180.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-20",
+        "b": "N-RF-19",
+        "a_guid": "4a7a0033-c3cd-4f6d-8695-ffabc00f6ea8",
+        "b_guid": "daa2e487-326f-411b-991c-09b26c3bf0d1",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          17775.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-20",
+        "b": "N-RF-19",
+        "a_guid": "4a7a0033-c3cd-4f6d-8695-ffabc00f6ea8",
+        "b_guid": "daa2e487-326f-411b-991c-09b26c3bf0d1",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          17785.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-20",
+        "b": "N-RF-19",
+        "a_guid": "4a7a0033-c3cd-4f6d-8695-ffabc00f6ea8",
+        "b_guid": "daa2e487-326f-411b-991c-09b26c3bf0d1",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          17780.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-11",
+        "b": "S-RF-12",
+        "a_guid": "47cacd5c-50c9-4b9d-b857-a5be9f968fa9",
+        "b_guid": "9a6a45fe-5128-461b-9072-61269ce41e08",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          17775.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-11",
+        "b": "S-RF-12",
+        "a_guid": "47cacd5c-50c9-4b9d-b857-a5be9f968fa9",
+        "b_guid": "9a6a45fe-5128-461b-9072-61269ce41e08",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          17785.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-11",
+        "b": "S-RF-12",
+        "a_guid": "47cacd5c-50c9-4b9d-b857-a5be9f968fa9",
+        "b_guid": "9a6a45fe-5128-461b-9072-61269ce41e08",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          17780.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-19",
+        "b": "N-RF-18",
+        "a_guid": "daa2e487-326f-411b-991c-09b26c3bf0d1",
+        "b_guid": "dddc0995-f4e6-4b8d-93e0-37a4479ca3ad",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          19375.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-19",
+        "b": "N-RF-18",
+        "a_guid": "daa2e487-326f-411b-991c-09b26c3bf0d1",
+        "b_guid": "dddc0995-f4e6-4b8d-93e0-37a4479ca3ad",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          19385.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-19",
+        "b": "N-RF-18",
+        "a_guid": "daa2e487-326f-411b-991c-09b26c3bf0d1",
+        "b_guid": "dddc0995-f4e6-4b8d-93e0-37a4479ca3ad",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          19380.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-12",
+        "b": "S-RF-13",
+        "a_guid": "9a6a45fe-5128-461b-9072-61269ce41e08",
+        "b_guid": "73bc48e3-c522-4232-a706-2899538b9c62",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          19375.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-12",
+        "b": "S-RF-13",
+        "a_guid": "9a6a45fe-5128-461b-9072-61269ce41e08",
+        "b_guid": "73bc48e3-c522-4232-a706-2899538b9c62",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          19385.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-12",
+        "b": "S-RF-13",
+        "a_guid": "9a6a45fe-5128-461b-9072-61269ce41e08",
+        "b_guid": "73bc48e3-c522-4232-a706-2899538b9c62",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          19380.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-18",
+        "b": "N-RF-17",
+        "a_guid": "dddc0995-f4e6-4b8d-93e0-37a4479ca3ad",
+        "b_guid": "fc3d9f6c-a4d5-4c51-aa33-d76589950dea",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          20975.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-18",
+        "b": "N-RF-17",
+        "a_guid": "dddc0995-f4e6-4b8d-93e0-37a4479ca3ad",
+        "b_guid": "fc3d9f6c-a4d5-4c51-aa33-d76589950dea",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          20985.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-18",
+        "b": "N-RF-17",
+        "a_guid": "dddc0995-f4e6-4b8d-93e0-37a4479ca3ad",
+        "b_guid": "fc3d9f6c-a4d5-4c51-aa33-d76589950dea",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          20980.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-13",
+        "b": "S-RF-14",
+        "a_guid": "73bc48e3-c522-4232-a706-2899538b9c62",
+        "b_guid": "013b219a-8ff1-401a-ae68-b457caca7949",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          20975.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-13",
+        "b": "S-RF-14",
+        "a_guid": "73bc48e3-c522-4232-a706-2899538b9c62",
+        "b_guid": "013b219a-8ff1-401a-ae68-b457caca7949",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          20985.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-13",
+        "b": "S-RF-14",
+        "a_guid": "73bc48e3-c522-4232-a706-2899538b9c62",
+        "b_guid": "013b219a-8ff1-401a-ae68-b457caca7949",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          20980.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-17",
+        "b": "N-RF-16",
+        "a_guid": "fc3d9f6c-a4d5-4c51-aa33-d76589950dea",
+        "b_guid": "ec32d508-ff30-489a-b090-e3bed006ab77",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          22575.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-17",
+        "b": "N-RF-16",
+        "a_guid": "fc3d9f6c-a4d5-4c51-aa33-d76589950dea",
+        "b_guid": "ec32d508-ff30-489a-b090-e3bed006ab77",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          22585.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-17",
+        "b": "N-RF-16",
+        "a_guid": "fc3d9f6c-a4d5-4c51-aa33-d76589950dea",
+        "b_guid": "ec32d508-ff30-489a-b090-e3bed006ab77",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          22580.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-14",
+        "b": "S-RF-15",
+        "a_guid": "013b219a-8ff1-401a-ae68-b457caca7949",
+        "b_guid": "b2a352c8-60e4-4315-995a-8540f23897cc",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          22575.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-14",
+        "b": "S-RF-15",
+        "a_guid": "013b219a-8ff1-401a-ae68-b457caca7949",
+        "b_guid": "b2a352c8-60e4-4315-995a-8540f23897cc",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          22585.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-14",
+        "b": "S-RF-15",
+        "a_guid": "013b219a-8ff1-401a-ae68-b457caca7949",
+        "b_guid": "b2a352c8-60e4-4315-995a-8540f23897cc",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          22580.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-16",
+        "b": "N-RF-15",
+        "a_guid": "ec32d508-ff30-489a-b090-e3bed006ab77",
+        "b_guid": "cd9e2551-8ed8-4504-b68f-fbeda231443c",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          24175.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-16",
+        "b": "N-RF-15",
+        "a_guid": "ec32d508-ff30-489a-b090-e3bed006ab77",
+        "b_guid": "cd9e2551-8ed8-4504-b68f-fbeda231443c",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          24185.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-16",
+        "b": "N-RF-15",
+        "a_guid": "ec32d508-ff30-489a-b090-e3bed006ab77",
+        "b_guid": "cd9e2551-8ed8-4504-b68f-fbeda231443c",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          24180.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-15",
+        "b": "S-RF-16",
+        "a_guid": "b2a352c8-60e4-4315-995a-8540f23897cc",
+        "b_guid": "f9cf6a0f-1128-4eca-a8af-687052d4b821",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          24175.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-15",
+        "b": "S-RF-16",
+        "a_guid": "b2a352c8-60e4-4315-995a-8540f23897cc",
+        "b_guid": "f9cf6a0f-1128-4eca-a8af-687052d4b821",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          24185.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-15",
+        "b": "S-RF-16",
+        "a_guid": "b2a352c8-60e4-4315-995a-8540f23897cc",
+        "b_guid": "f9cf6a0f-1128-4eca-a8af-687052d4b821",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          24180.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-15",
+        "b": "N-RF-14",
+        "a_guid": "cd9e2551-8ed8-4504-b68f-fbeda231443c",
+        "b_guid": "aeb8095e-0e3a-4762-807e-af5a209d7d74",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          25775.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-15",
+        "b": "N-RF-14",
+        "a_guid": "cd9e2551-8ed8-4504-b68f-fbeda231443c",
+        "b_guid": "aeb8095e-0e3a-4762-807e-af5a209d7d74",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          25785.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-15",
+        "b": "N-RF-14",
+        "a_guid": "cd9e2551-8ed8-4504-b68f-fbeda231443c",
+        "b_guid": "aeb8095e-0e3a-4762-807e-af5a209d7d74",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          25780.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-16",
+        "b": "S-RF-17",
+        "a_guid": "f9cf6a0f-1128-4eca-a8af-687052d4b821",
+        "b_guid": "17fa85a4-ee55-4e56-a45e-083948abb4bb",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          25775.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-16",
+        "b": "S-RF-17",
+        "a_guid": "f9cf6a0f-1128-4eca-a8af-687052d4b821",
+        "b_guid": "17fa85a4-ee55-4e56-a45e-083948abb4bb",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          25785.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-16",
+        "b": "S-RF-17",
+        "a_guid": "f9cf6a0f-1128-4eca-a8af-687052d4b821",
+        "b_guid": "17fa85a4-ee55-4e56-a45e-083948abb4bb",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          25780.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-14",
+        "b": "N-RF-13",
+        "a_guid": "aeb8095e-0e3a-4762-807e-af5a209d7d74",
+        "b_guid": "5b3c0ed8-c8b5-4cc2-83e6-f7a67f327bda",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          27375.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-14",
+        "b": "N-RF-13",
+        "a_guid": "aeb8095e-0e3a-4762-807e-af5a209d7d74",
+        "b_guid": "5b3c0ed8-c8b5-4cc2-83e6-f7a67f327bda",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          27385.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-14",
+        "b": "N-RF-13",
+        "a_guid": "aeb8095e-0e3a-4762-807e-af5a209d7d74",
+        "b_guid": "5b3c0ed8-c8b5-4cc2-83e6-f7a67f327bda",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          27380.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-17",
+        "b": "S-RF-18",
+        "a_guid": "17fa85a4-ee55-4e56-a45e-083948abb4bb",
+        "b_guid": "8970223c-ab32-443c-84cf-6d2fd255b682",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          27375.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-17",
+        "b": "S-RF-18",
+        "a_guid": "17fa85a4-ee55-4e56-a45e-083948abb4bb",
+        "b_guid": "8970223c-ab32-443c-84cf-6d2fd255b682",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          27385.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-17",
+        "b": "S-RF-18",
+        "a_guid": "17fa85a4-ee55-4e56-a45e-083948abb4bb",
+        "b_guid": "8970223c-ab32-443c-84cf-6d2fd255b682",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          27380.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-13",
+        "b": "N-RF-12",
+        "a_guid": "5b3c0ed8-c8b5-4cc2-83e6-f7a67f327bda",
+        "b_guid": "4fe72bef-6a26-4a2f-8f20-9ae2c89a9d4d",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          28975.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-13",
+        "b": "N-RF-12",
+        "a_guid": "5b3c0ed8-c8b5-4cc2-83e6-f7a67f327bda",
+        "b_guid": "4fe72bef-6a26-4a2f-8f20-9ae2c89a9d4d",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          28985.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-13",
+        "b": "N-RF-12",
+        "a_guid": "5b3c0ed8-c8b5-4cc2-83e6-f7a67f327bda",
+        "b_guid": "4fe72bef-6a26-4a2f-8f20-9ae2c89a9d4d",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          28980.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-18",
+        "b": "S-RF-19",
+        "a_guid": "8970223c-ab32-443c-84cf-6d2fd255b682",
+        "b_guid": "a8ef6814-06d3-4765-823d-5de76b4f8ccf",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          28975.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-18",
+        "b": "S-RF-19",
+        "a_guid": "8970223c-ab32-443c-84cf-6d2fd255b682",
+        "b_guid": "a8ef6814-06d3-4765-823d-5de76b4f8ccf",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          28985.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-18",
+        "b": "S-RF-19",
+        "a_guid": "8970223c-ab32-443c-84cf-6d2fd255b682",
+        "b_guid": "a8ef6814-06d3-4765-823d-5de76b4f8ccf",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          28980.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-12",
+        "b": "N-RF-11",
+        "a_guid": "4fe72bef-6a26-4a2f-8f20-9ae2c89a9d4d",
+        "b_guid": "2168ea5e-0209-4f70-addc-c0294088ee99",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          30575.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-12",
+        "b": "N-RF-11",
+        "a_guid": "4fe72bef-6a26-4a2f-8f20-9ae2c89a9d4d",
+        "b_guid": "2168ea5e-0209-4f70-addc-c0294088ee99",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          30585.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-12",
+        "b": "N-RF-11",
+        "a_guid": "4fe72bef-6a26-4a2f-8f20-9ae2c89a9d4d",
+        "b_guid": "2168ea5e-0209-4f70-addc-c0294088ee99",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          30580.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-19",
+        "b": "S-RF-20",
+        "a_guid": "a8ef6814-06d3-4765-823d-5de76b4f8ccf",
+        "b_guid": "c883a3d4-9a01-480e-ba21-17e62f1ceea8",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          30575.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-19",
+        "b": "S-RF-20",
+        "a_guid": "a8ef6814-06d3-4765-823d-5de76b4f8ccf",
+        "b_guid": "c883a3d4-9a01-480e-ba21-17e62f1ceea8",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          30585.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-19",
+        "b": "S-RF-20",
+        "a_guid": "a8ef6814-06d3-4765-823d-5de76b4f8ccf",
+        "b_guid": "c883a3d4-9a01-480e-ba21-17e62f1ceea8",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          30580.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-11",
+        "b": "N-RF-10",
+        "a_guid": "2168ea5e-0209-4f70-addc-c0294088ee99",
+        "b_guid": "b68e2471-3e23-46c0-b81a-7a3d57fd3c0b",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          32175.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-11",
+        "b": "N-RF-10",
+        "a_guid": "2168ea5e-0209-4f70-addc-c0294088ee99",
+        "b_guid": "b68e2471-3e23-46c0-b81a-7a3d57fd3c0b",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          32185.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-11",
+        "b": "N-RF-10",
+        "a_guid": "2168ea5e-0209-4f70-addc-c0294088ee99",
+        "b_guid": "b68e2471-3e23-46c0-b81a-7a3d57fd3c0b",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          32180.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-20",
+        "b": "S-RF-21",
+        "a_guid": "c883a3d4-9a01-480e-ba21-17e62f1ceea8",
+        "b_guid": "340ae4f9-03bc-45a5-af05-2694e00625dc",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          32175.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-20",
+        "b": "S-RF-21",
+        "a_guid": "c883a3d4-9a01-480e-ba21-17e62f1ceea8",
+        "b_guid": "340ae4f9-03bc-45a5-af05-2694e00625dc",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          32185.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-20",
+        "b": "S-RF-21",
+        "a_guid": "c883a3d4-9a01-480e-ba21-17e62f1ceea8",
+        "b_guid": "340ae4f9-03bc-45a5-af05-2694e00625dc",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          32180.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-10",
+        "b": "N-RF-09",
+        "a_guid": "b68e2471-3e23-46c0-b81a-7a3d57fd3c0b",
+        "b_guid": "5e4bcdf5-9d3a-46be-b278-31c83a39f2bc",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          33775.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-10",
+        "b": "N-RF-09",
+        "a_guid": "b68e2471-3e23-46c0-b81a-7a3d57fd3c0b",
+        "b_guid": "5e4bcdf5-9d3a-46be-b278-31c83a39f2bc",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          33785.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-10",
+        "b": "N-RF-09",
+        "a_guid": "b68e2471-3e23-46c0-b81a-7a3d57fd3c0b",
+        "b_guid": "5e4bcdf5-9d3a-46be-b278-31c83a39f2bc",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          33780.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-21",
+        "b": "S-RF-22",
+        "a_guid": "340ae4f9-03bc-45a5-af05-2694e00625dc",
+        "b_guid": "82869b1d-521d-4b5d-8f04-549d4077dc86",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          33775.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-21",
+        "b": "S-RF-22",
+        "a_guid": "340ae4f9-03bc-45a5-af05-2694e00625dc",
+        "b_guid": "82869b1d-521d-4b5d-8f04-549d4077dc86",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          33785.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-21",
+        "b": "S-RF-22",
+        "a_guid": "340ae4f9-03bc-45a5-af05-2694e00625dc",
+        "b_guid": "82869b1d-521d-4b5d-8f04-549d4077dc86",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          33780.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-09",
+        "b": "N-RF-08",
+        "a_guid": "5e4bcdf5-9d3a-46be-b278-31c83a39f2bc",
+        "b_guid": "e72025b1-8ff7-4ac8-ae97-377be76cb010",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          35375.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-09",
+        "b": "N-RF-08",
+        "a_guid": "5e4bcdf5-9d3a-46be-b278-31c83a39f2bc",
+        "b_guid": "e72025b1-8ff7-4ac8-ae97-377be76cb010",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          35385.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-09",
+        "b": "N-RF-08",
+        "a_guid": "5e4bcdf5-9d3a-46be-b278-31c83a39f2bc",
+        "b_guid": "e72025b1-8ff7-4ac8-ae97-377be76cb010",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          35380.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-22",
+        "b": "S-RF-23",
+        "a_guid": "82869b1d-521d-4b5d-8f04-549d4077dc86",
+        "b_guid": "01d1347c-b147-4c99-9bc9-124dc6fa44cd",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          35375.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-22",
+        "b": "S-RF-23",
+        "a_guid": "82869b1d-521d-4b5d-8f04-549d4077dc86",
+        "b_guid": "01d1347c-b147-4c99-9bc9-124dc6fa44cd",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          35385.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-22",
+        "b": "S-RF-23",
+        "a_guid": "82869b1d-521d-4b5d-8f04-549d4077dc86",
+        "b_guid": "01d1347c-b147-4c99-9bc9-124dc6fa44cd",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          35380.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-08",
+        "b": "N-RF-07",
+        "a_guid": "e72025b1-8ff7-4ac8-ae97-377be76cb010",
+        "b_guid": "d6d78432-36cd-426c-b74a-8130dbd0279e",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          36975.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-08",
+        "b": "N-RF-07",
+        "a_guid": "e72025b1-8ff7-4ac8-ae97-377be76cb010",
+        "b_guid": "d6d78432-36cd-426c-b74a-8130dbd0279e",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          36985.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-08",
+        "b": "N-RF-07",
+        "a_guid": "e72025b1-8ff7-4ac8-ae97-377be76cb010",
+        "b_guid": "d6d78432-36cd-426c-b74a-8130dbd0279e",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          36980.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-23",
+        "b": "S-RF-24",
+        "a_guid": "01d1347c-b147-4c99-9bc9-124dc6fa44cd",
+        "b_guid": "6e8968ca-7c66-4fff-9a5e-3e8e6fcddefb",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          36975.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-23",
+        "b": "S-RF-24",
+        "a_guid": "01d1347c-b147-4c99-9bc9-124dc6fa44cd",
+        "b_guid": "6e8968ca-7c66-4fff-9a5e-3e8e6fcddefb",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          36985.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-23",
+        "b": "S-RF-24",
+        "a_guid": "01d1347c-b147-4c99-9bc9-124dc6fa44cd",
+        "b_guid": "6e8968ca-7c66-4fff-9a5e-3e8e6fcddefb",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          36980.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-07",
+        "b": "N-RF-06",
+        "a_guid": "d6d78432-36cd-426c-b74a-8130dbd0279e",
+        "b_guid": "bea548d7-18ba-4b47-8e61-6a4599518227",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          38575.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-07",
+        "b": "N-RF-06",
+        "a_guid": "d6d78432-36cd-426c-b74a-8130dbd0279e",
+        "b_guid": "bea548d7-18ba-4b47-8e61-6a4599518227",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          38585.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-07",
+        "b": "N-RF-06",
+        "a_guid": "d6d78432-36cd-426c-b74a-8130dbd0279e",
+        "b_guid": "bea548d7-18ba-4b47-8e61-6a4599518227",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          38580.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-24",
+        "b": "S-RF-25",
+        "a_guid": "6e8968ca-7c66-4fff-9a5e-3e8e6fcddefb",
+        "b_guid": "9cdb3689-555f-4e7e-be70-a3068db77cd1",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          38575.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-24",
+        "b": "S-RF-25",
+        "a_guid": "6e8968ca-7c66-4fff-9a5e-3e8e6fcddefb",
+        "b_guid": "9cdb3689-555f-4e7e-be70-a3068db77cd1",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          38585.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-24",
+        "b": "S-RF-25",
+        "a_guid": "6e8968ca-7c66-4fff-9a5e-3e8e6fcddefb",
+        "b_guid": "9cdb3689-555f-4e7e-be70-a3068db77cd1",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          38580.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-06",
+        "b": "N-RF-05",
+        "a_guid": "bea548d7-18ba-4b47-8e61-6a4599518227",
+        "b_guid": "52f7866e-6f99-4a8c-b8d3-a8f6c3377556",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          40175.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-06",
+        "b": "N-RF-05",
+        "a_guid": "bea548d7-18ba-4b47-8e61-6a4599518227",
+        "b_guid": "52f7866e-6f99-4a8c-b8d3-a8f6c3377556",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          40185.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-06",
+        "b": "N-RF-05",
+        "a_guid": "bea548d7-18ba-4b47-8e61-6a4599518227",
+        "b_guid": "52f7866e-6f99-4a8c-b8d3-a8f6c3377556",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          40180.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-25",
+        "b": "S-RF-26",
+        "a_guid": "9cdb3689-555f-4e7e-be70-a3068db77cd1",
+        "b_guid": "01e0258c-cd68-49d3-91bc-ac032c120be4",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          40175.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-25",
+        "b": "S-RF-26",
+        "a_guid": "9cdb3689-555f-4e7e-be70-a3068db77cd1",
+        "b_guid": "01e0258c-cd68-49d3-91bc-ac032c120be4",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          40185.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-25",
+        "b": "S-RF-26",
+        "a_guid": "9cdb3689-555f-4e7e-be70-a3068db77cd1",
+        "b_guid": "01e0258c-cd68-49d3-91bc-ac032c120be4",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          40180.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-05",
+        "b": "N-RF-04",
+        "a_guid": "52f7866e-6f99-4a8c-b8d3-a8f6c3377556",
+        "b_guid": "c38a0e97-9baf-4f89-b843-9bad9700d8a8",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          41775.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-05",
+        "b": "N-RF-04",
+        "a_guid": "52f7866e-6f99-4a8c-b8d3-a8f6c3377556",
+        "b_guid": "c38a0e97-9baf-4f89-b843-9bad9700d8a8",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          41785.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-05",
+        "b": "N-RF-04",
+        "a_guid": "52f7866e-6f99-4a8c-b8d3-a8f6c3377556",
+        "b_guid": "c38a0e97-9baf-4f89-b843-9bad9700d8a8",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          41780.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-26",
+        "b": "S-RF-27",
+        "a_guid": "01e0258c-cd68-49d3-91bc-ac032c120be4",
+        "b_guid": "5a114c56-5fae-44c1-bd58-1f9a31fcee8e",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          41775.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-26",
+        "b": "S-RF-27",
+        "a_guid": "01e0258c-cd68-49d3-91bc-ac032c120be4",
+        "b_guid": "5a114c56-5fae-44c1-bd58-1f9a31fcee8e",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          41785.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-26",
+        "b": "S-RF-27",
+        "a_guid": "01e0258c-cd68-49d3-91bc-ac032c120be4",
+        "b_guid": "5a114c56-5fae-44c1-bd58-1f9a31fcee8e",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          41780.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-04",
+        "b": "N-RF-03",
+        "a_guid": "c38a0e97-9baf-4f89-b843-9bad9700d8a8",
+        "b_guid": "7436ce80-220e-49bc-9bfe-d81de9e9e344",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          43375.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-04",
+        "b": "N-RF-03",
+        "a_guid": "c38a0e97-9baf-4f89-b843-9bad9700d8a8",
+        "b_guid": "7436ce80-220e-49bc-9bfe-d81de9e9e344",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          43385.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-04",
+        "b": "N-RF-03",
+        "a_guid": "c38a0e97-9baf-4f89-b843-9bad9700d8a8",
+        "b_guid": "7436ce80-220e-49bc-9bfe-d81de9e9e344",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          43380.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-27",
+        "b": "S-RF-28",
+        "a_guid": "5a114c56-5fae-44c1-bd58-1f9a31fcee8e",
+        "b_guid": "963382bf-9043-48a5-b3e0-589a314e0325",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          43375.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-27",
+        "b": "S-RF-28",
+        "a_guid": "5a114c56-5fae-44c1-bd58-1f9a31fcee8e",
+        "b_guid": "963382bf-9043-48a5-b3e0-589a314e0325",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          43385.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-27",
+        "b": "S-RF-28",
+        "a_guid": "5a114c56-5fae-44c1-bd58-1f9a31fcee8e",
+        "b_guid": "963382bf-9043-48a5-b3e0-589a314e0325",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          43380.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-03",
+        "b": "N-RF-02",
+        "a_guid": "7436ce80-220e-49bc-9bfe-d81de9e9e344",
+        "b_guid": "83c8a17c-3757-43c9-96ee-b3b426d0bc7f",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          44975.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-03",
+        "b": "N-RF-02",
+        "a_guid": "7436ce80-220e-49bc-9bfe-d81de9e9e344",
+        "b_guid": "83c8a17c-3757-43c9-96ee-b3b426d0bc7f",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          44985.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-03",
+        "b": "N-RF-02",
+        "a_guid": "7436ce80-220e-49bc-9bfe-d81de9e9e344",
+        "b_guid": "83c8a17c-3757-43c9-96ee-b3b426d0bc7f",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          44980.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-28",
+        "b": "S-RF-29",
+        "a_guid": "963382bf-9043-48a5-b3e0-589a314e0325",
+        "b_guid": "1f0f07bf-f48a-4db4-b20a-c1370d31bd64",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          44975.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-28",
+        "b": "S-RF-29",
+        "a_guid": "963382bf-9043-48a5-b3e0-589a314e0325",
+        "b_guid": "1f0f07bf-f48a-4db4-b20a-c1370d31bd64",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          44985.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-28",
+        "b": "S-RF-29",
+        "a_guid": "963382bf-9043-48a5-b3e0-589a314e0325",
+        "b_guid": "1f0f07bf-f48a-4db4-b20a-c1370d31bd64",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          44980.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-02",
+        "b": "N-RF-01",
+        "a_guid": "83c8a17c-3757-43c9-96ee-b3b426d0bc7f",
+        "b_guid": "d27ad9cf-26a2-449c-84ef-5d7e962cdbba",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          46575.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-02",
+        "b": "N-RF-01",
+        "a_guid": "83c8a17c-3757-43c9-96ee-b3b426d0bc7f",
+        "b_guid": "d27ad9cf-26a2-449c-84ef-5d7e962cdbba",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          46585.0,
+          24360.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-02",
+        "b": "N-RF-01",
+        "a_guid": "83c8a17c-3757-43c9-96ee-b3b426d0bc7f",
+        "b_guid": "d27ad9cf-26a2-449c-84ef-5d7e962cdbba",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          46580.0,
+          24430.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-29",
+        "b": "S-RF-30",
+        "a_guid": "1f0f07bf-f48a-4db4-b20a-c1370d31bd64",
+        "b_guid": "c9a9070d-3d43-4d46-a6e9-4543cbd4ade7",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          46575.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-29",
+        "b": "S-RF-30",
+        "a_guid": "1f0f07bf-f48a-4db4-b20a-c1370d31bd64",
+        "b_guid": "c9a9070d-3d43-4d46-a6e9-4543cbd4ade7",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          46585.0,
+          0.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-29",
+        "b": "S-RF-30",
+        "a_guid": "1f0f07bf-f48a-4db4-b20a-c1370d31bd64",
+        "b_guid": "c9a9070d-3d43-4d46-a6e9-4543cbd4ade7",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          46580.0,
+          -70.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-01",
+        "b": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "a_guid": "d27ad9cf-26a2-449c-84ef-5d7e962cdbba",
+        "b_guid": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "a_part": "alu#1",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48175.0,
+          24180.0,
+          31810.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-01",
+        "b": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "a_guid": "d27ad9cf-26a2-449c-84ef-5d7e962cdbba",
+        "b_guid": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "a_part": "alu#8",
+        "b_part": "幕墙::转角立柱",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          24180.0,
+          32995.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-L1-01",
+        "b": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "a_guid": "da371e03-75ca-45a5-8a95-2d363af01884",
+        "b_guid": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "a_part": "alu#1",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48175.0,
+          24360.0,
+          4490.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-L2-01",
+        "b": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "a_guid": "5722f21f-abe7-4878-b57c-e84351d9cbe6",
+        "b_guid": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "a_part": "alu#1",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48175.0,
+          24180.0,
+          8390.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-L3-01",
+        "b": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "a_guid": "ba19bfb0-56dc-4a66-b3ae-6d7a9079aa06",
+        "b_guid": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "a_part": "alu#1",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48175.0,
+          24180.0,
+          12290.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-L4-01",
+        "b": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "a_guid": "d0743cd8-f9c4-4a51-973a-fc2a605b42ed",
+        "b_guid": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "a_part": "alu#1",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48175.0,
+          24180.0,
+          12310.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-L5-01",
+        "b": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "a_guid": "ea861e59-0113-4ccb-9dc9-eb89269d862c",
+        "b_guid": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "a_part": "alu#1",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48175.0,
+          24180.0,
+          16210.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-L6-01",
+        "b": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "a_guid": "a1b5f554-7d91-41ee-a4cb-3b0de87be5d8",
+        "b_guid": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "a_part": "alu#1",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48175.0,
+          24180.0,
+          20110.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-L7-01",
+        "b": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "a_guid": "8554fb06-351b-4456-ba6b-632aedf6195f",
+        "b_guid": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "a_part": "alu#1",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48175.0,
+          24180.0,
+          24010.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-L8-01",
+        "b": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "a_guid": "471cb079-d0a5-4331-9ddc-2d9507fc2948",
+        "b_guid": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "a_part": "alu#1",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48175.0,
+          24180.0,
+          27910.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "b": "E-L1-15",
+        "a_guid": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "b_guid": "d5c5a9d2-727d-47e5-9618-1b0b4c4762e4",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48338.436499,
+          24175.0,
+          3953.308431
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "b": "E-L2-15",
+        "a_guid": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "b_guid": "55ea611b-2588-4567-adb5-08e5ff4acd34",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          24175.0,
+          8390.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "b": "E-L3-15",
+        "a_guid": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "b_guid": "cb1b69bb-68e2-415e-ae4c-22894e2ca570",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          24175.0,
+          12290.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "b": "E-L4-15",
+        "a_guid": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "b_guid": "2d862661-7f5f-42f3-b3fd-6f78dc564d2f",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          24175.0,
+          12310.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "b": "E-L5-15",
+        "a_guid": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "b_guid": "ac9d2b61-2615-432b-80d3-e1bc8dbd2430",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          24175.0,
+          16210.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "b": "E-L6-15",
+        "a_guid": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "b_guid": "3a3d940a-f608-451b-9f50-b2e44eb277cd",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          24175.0,
+          20110.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "b": "E-L7-15",
+        "a_guid": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "b_guid": "4c4be41e-ca4d-47a6-9ba0-37e66a5dddc4",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          24175.0,
+          24010.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "b": "E-L8-15",
+        "a_guid": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "b_guid": "e5ecc19d-03c9-4f5a-8f5a-41dda7761726",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          24175.0,
+          27910.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-30",
+        "b": "E-RF-01",
+        "a_guid": "c9a9070d-3d43-4d46-a6e9-4543cbd4ade7",
+        "b_guid": "6772b3cf-da0d-44a1-abff-55bfe262d9dd",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48175.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-30",
+        "b": "E-RF-01",
+        "a_guid": "c9a9070d-3d43-4d46-a6e9-4543cbd4ade7",
+        "b_guid": "6772b3cf-da0d-44a1-abff-55bfe262d9dd",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          185.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-30",
+        "b": "E-RF-01",
+        "a_guid": "c9a9070d-3d43-4d46-a6e9-4543cbd4ade7",
+        "b_guid": "6772b3cf-da0d-44a1-abff-55bfe262d9dd",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-01",
+        "b": "E-RF-02",
+        "a_guid": "6772b3cf-da0d-44a1-abff-55bfe262d9dd",
+        "b_guid": "40504f76-c287-43af-bc1d-a1577e159d02",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          1775.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-01",
+        "b": "E-RF-02",
+        "a_guid": "6772b3cf-da0d-44a1-abff-55bfe262d9dd",
+        "b_guid": "40504f76-c287-43af-bc1d-a1577e159d02",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          1785.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-01",
+        "b": "E-RF-02",
+        "a_guid": "6772b3cf-da0d-44a1-abff-55bfe262d9dd",
+        "b_guid": "40504f76-c287-43af-bc1d-a1577e159d02",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48430.0,
+          1780.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-02",
+        "b": "E-RF-03",
+        "a_guid": "40504f76-c287-43af-bc1d-a1577e159d02",
+        "b_guid": "a4084fc4-2c11-459c-bb10-9ff8150473e4",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          3375.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-02",
+        "b": "E-RF-03",
+        "a_guid": "40504f76-c287-43af-bc1d-a1577e159d02",
+        "b_guid": "a4084fc4-2c11-459c-bb10-9ff8150473e4",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          3385.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-02",
+        "b": "E-RF-03",
+        "a_guid": "40504f76-c287-43af-bc1d-a1577e159d02",
+        "b_guid": "a4084fc4-2c11-459c-bb10-9ff8150473e4",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48430.0,
+          3380.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-03",
+        "b": "E-RF-04",
+        "a_guid": "a4084fc4-2c11-459c-bb10-9ff8150473e4",
+        "b_guid": "39b12acf-3660-4296-8543-3cc2410ef57e",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          4975.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-03",
+        "b": "E-RF-04",
+        "a_guid": "a4084fc4-2c11-459c-bb10-9ff8150473e4",
+        "b_guid": "39b12acf-3660-4296-8543-3cc2410ef57e",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          4985.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-03",
+        "b": "E-RF-04",
+        "a_guid": "a4084fc4-2c11-459c-bb10-9ff8150473e4",
+        "b_guid": "39b12acf-3660-4296-8543-3cc2410ef57e",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48430.0,
+          4980.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-04",
+        "b": "E-RF-05",
+        "a_guid": "39b12acf-3660-4296-8543-3cc2410ef57e",
+        "b_guid": "631391c2-6293-40fa-9e87-8c4fe43b3a5a",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          6575.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-04",
+        "b": "E-RF-05",
+        "a_guid": "39b12acf-3660-4296-8543-3cc2410ef57e",
+        "b_guid": "631391c2-6293-40fa-9e87-8c4fe43b3a5a",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          6585.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-04",
+        "b": "E-RF-05",
+        "a_guid": "39b12acf-3660-4296-8543-3cc2410ef57e",
+        "b_guid": "631391c2-6293-40fa-9e87-8c4fe43b3a5a",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48430.0,
+          6580.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-05",
+        "b": "E-RF-06",
+        "a_guid": "631391c2-6293-40fa-9e87-8c4fe43b3a5a",
+        "b_guid": "f1644da0-a6ad-46f1-b7cd-e9d29bc29496",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          8175.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-05",
+        "b": "E-RF-06",
+        "a_guid": "631391c2-6293-40fa-9e87-8c4fe43b3a5a",
+        "b_guid": "f1644da0-a6ad-46f1-b7cd-e9d29bc29496",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          8185.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-05",
+        "b": "E-RF-06",
+        "a_guid": "631391c2-6293-40fa-9e87-8c4fe43b3a5a",
+        "b_guid": "f1644da0-a6ad-46f1-b7cd-e9d29bc29496",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48430.0,
+          8180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-06",
+        "b": "E-RF-07",
+        "a_guid": "f1644da0-a6ad-46f1-b7cd-e9d29bc29496",
+        "b_guid": "c3b61788-d392-449c-abb0-1fa3aa48ccf9",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          9775.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-06",
+        "b": "E-RF-07",
+        "a_guid": "f1644da0-a6ad-46f1-b7cd-e9d29bc29496",
+        "b_guid": "c3b61788-d392-449c-abb0-1fa3aa48ccf9",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          9785.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-06",
+        "b": "E-RF-07",
+        "a_guid": "f1644da0-a6ad-46f1-b7cd-e9d29bc29496",
+        "b_guid": "c3b61788-d392-449c-abb0-1fa3aa48ccf9",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48430.0,
+          9780.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-07",
+        "b": "E-RF-08",
+        "a_guid": "c3b61788-d392-449c-abb0-1fa3aa48ccf9",
+        "b_guid": "ea3c224d-66a1-467c-97d6-821a5d3beb87",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          11375.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-07",
+        "b": "E-RF-08",
+        "a_guid": "c3b61788-d392-449c-abb0-1fa3aa48ccf9",
+        "b_guid": "ea3c224d-66a1-467c-97d6-821a5d3beb87",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          11385.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-07",
+        "b": "E-RF-08",
+        "a_guid": "c3b61788-d392-449c-abb0-1fa3aa48ccf9",
+        "b_guid": "ea3c224d-66a1-467c-97d6-821a5d3beb87",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48430.0,
+          11380.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-08",
+        "b": "E-RF-09",
+        "a_guid": "ea3c224d-66a1-467c-97d6-821a5d3beb87",
+        "b_guid": "ca90c49e-1241-46df-8efb-ae63b5df66fd",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          12975.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-08",
+        "b": "E-RF-09",
+        "a_guid": "ea3c224d-66a1-467c-97d6-821a5d3beb87",
+        "b_guid": "ca90c49e-1241-46df-8efb-ae63b5df66fd",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          12985.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-08",
+        "b": "E-RF-09",
+        "a_guid": "ea3c224d-66a1-467c-97d6-821a5d3beb87",
+        "b_guid": "ca90c49e-1241-46df-8efb-ae63b5df66fd",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48430.0,
+          12980.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-09",
+        "b": "E-RF-10",
+        "a_guid": "ca90c49e-1241-46df-8efb-ae63b5df66fd",
+        "b_guid": "de0c2cf8-7a63-4dfb-b84b-00a15add304b",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          14575.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-09",
+        "b": "E-RF-10",
+        "a_guid": "ca90c49e-1241-46df-8efb-ae63b5df66fd",
+        "b_guid": "de0c2cf8-7a63-4dfb-b84b-00a15add304b",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          14585.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-09",
+        "b": "E-RF-10",
+        "a_guid": "ca90c49e-1241-46df-8efb-ae63b5df66fd",
+        "b_guid": "de0c2cf8-7a63-4dfb-b84b-00a15add304b",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48430.0,
+          14580.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-10",
+        "b": "E-RF-11",
+        "a_guid": "de0c2cf8-7a63-4dfb-b84b-00a15add304b",
+        "b_guid": "07211e19-b600-43a5-a654-54ecfdff1eed",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          16175.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-10",
+        "b": "E-RF-11",
+        "a_guid": "de0c2cf8-7a63-4dfb-b84b-00a15add304b",
+        "b_guid": "07211e19-b600-43a5-a654-54ecfdff1eed",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          16185.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-10",
+        "b": "E-RF-11",
+        "a_guid": "de0c2cf8-7a63-4dfb-b84b-00a15add304b",
+        "b_guid": "07211e19-b600-43a5-a654-54ecfdff1eed",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48430.0,
+          16180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-11",
+        "b": "E-RF-12",
+        "a_guid": "07211e19-b600-43a5-a654-54ecfdff1eed",
+        "b_guid": "10abd4a6-445c-4a45-a622-f6b74be73f07",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          17775.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-11",
+        "b": "E-RF-12",
+        "a_guid": "07211e19-b600-43a5-a654-54ecfdff1eed",
+        "b_guid": "10abd4a6-445c-4a45-a622-f6b74be73f07",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          17785.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-11",
+        "b": "E-RF-12",
+        "a_guid": "07211e19-b600-43a5-a654-54ecfdff1eed",
+        "b_guid": "10abd4a6-445c-4a45-a622-f6b74be73f07",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48430.0,
+          17780.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-12",
+        "b": "E-RF-13",
+        "a_guid": "10abd4a6-445c-4a45-a622-f6b74be73f07",
+        "b_guid": "811ec01b-c29d-4655-9d47-9c83bab8f51b",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          19375.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-12",
+        "b": "E-RF-13",
+        "a_guid": "10abd4a6-445c-4a45-a622-f6b74be73f07",
+        "b_guid": "811ec01b-c29d-4655-9d47-9c83bab8f51b",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          19385.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-12",
+        "b": "E-RF-13",
+        "a_guid": "10abd4a6-445c-4a45-a622-f6b74be73f07",
+        "b_guid": "811ec01b-c29d-4655-9d47-9c83bab8f51b",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48430.0,
+          19380.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-13",
+        "b": "E-RF-14",
+        "a_guid": "811ec01b-c29d-4655-9d47-9c83bab8f51b",
+        "b_guid": "5f2ecbe0-5a9a-4d04-ba42-a6e89103ad91",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          20975.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-13",
+        "b": "E-RF-14",
+        "a_guid": "811ec01b-c29d-4655-9d47-9c83bab8f51b",
+        "b_guid": "5f2ecbe0-5a9a-4d04-ba42-a6e89103ad91",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          20985.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-13",
+        "b": "E-RF-14",
+        "a_guid": "811ec01b-c29d-4655-9d47-9c83bab8f51b",
+        "b_guid": "5f2ecbe0-5a9a-4d04-ba42-a6e89103ad91",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48430.0,
+          20980.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-01",
+        "b": "E-RF-15",
+        "a_guid": "d27ad9cf-26a2-449c-84ef-5d7e962cdbba",
+        "b_guid": "f6bff21a-a2b7-42a8-ad96-38af54a390b0",
+        "a_part": "alu#1",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48175.0,
+          24180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-01",
+        "b": "E-RF-15",
+        "a_guid": "d27ad9cf-26a2-449c-84ef-5d7e962cdbba",
+        "b_guid": "f6bff21a-a2b7-42a8-ad96-38af54a390b0",
+        "a_part": "alu#8",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          24175.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "N-RF-01",
+        "b": "E-RF-15",
+        "a_guid": "d27ad9cf-26a2-449c-84ef-5d7e962cdbba",
+        "b_guid": "f6bff21a-a2b7-42a8-ad96-38af54a390b0",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          24180.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "b": "E-RF-15",
+        "a_guid": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "b_guid": "f6bff21a-a2b7-42a8-ad96-38af54a390b0",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#2",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          24175.0,
+          31810.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "b": "E-RF-15",
+        "a_guid": "39848a70-cbcb-4525-ade5-84781d425d08",
+        "b_guid": "f6bff21a-a2b7-42a8-ad96-38af54a390b0",
+        "a_part": "幕墙::转角立柱",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          24180.0,
+          32995.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-14",
+        "b": "E-RF-15",
+        "a_guid": "5f2ecbe0-5a9a-4d04-ba42-a6e89103ad91",
+        "b_guid": "f6bff21a-a2b7-42a8-ad96-38af54a390b0",
+        "a_part": "alu#2",
+        "b_part": "alu#8",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          22575.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-14",
+        "b": "E-RF-15",
+        "a_guid": "5f2ecbe0-5a9a-4d04-ba42-a6e89103ad91",
+        "b_guid": "f6bff21a-a2b7-42a8-ad96-38af54a390b0",
+        "a_part": "alu#8",
+        "b_part": "alu#1",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          22585.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-14",
+        "b": "E-RF-15",
+        "a_guid": "5f2ecbe0-5a9a-4d04-ba42-a6e89103ad91",
+        "b_guid": "f6bff21a-a2b7-42a8-ad96-38af54a390b0",
+        "a_part": "alu#8",
+        "b_part": "alu#8",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48430.0,
+          22580.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-30",
+        "b": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_guid": "c9a9070d-3d43-4d46-a6e9-4543cbd4ade7",
+        "b_guid": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_part": "alu#2",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48175.0,
+          0.0,
+          31810.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-RF-30",
+        "b": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_guid": "c9a9070d-3d43-4d46-a6e9-4543cbd4ade7",
+        "b_guid": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_part": "alu#8",
+        "b_part": "幕墙::转角立柱",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48180.0,
+          0.0,
+          32995.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-L1-30",
+        "b": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_guid": "315b761b-fba0-48ca-b7be-c1b9ff89c390",
+        "b_guid": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_part": "alu#2",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48175.0,
+          180.0,
+          10.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-L2-30",
+        "b": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_guid": "a1c737f9-2bcd-40f5-a414-131cf356684a",
+        "b_guid": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_part": "alu#2",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48175.0,
+          0.0,
+          8390.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-L3-30",
+        "b": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_guid": "c4c62986-12ff-493e-8c63-0c6ed7752fcc",
+        "b_guid": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_part": "alu#2",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48175.0,
+          0.0,
+          12290.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-L4-30",
+        "b": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_guid": "f2ddb6c0-408f-450d-93ae-cb8fdb0f357d",
+        "b_guid": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_part": "alu#2",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48175.0,
+          0.0,
+          12310.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-L5-30",
+        "b": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_guid": "9f6d1762-8a0b-49fc-90fc-0e393cce846d",
+        "b_guid": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_part": "alu#2",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48175.0,
+          0.0,
+          16210.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-L6-30",
+        "b": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_guid": "136a6494-3a4a-4b39-a7a2-7f2cb1bef1b0",
+        "b_guid": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_part": "alu#2",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48175.0,
+          0.0,
+          20110.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-L7-30",
+        "b": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_guid": "41b5dc69-3569-4146-a29d-e3ea5d676021",
+        "b_guid": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_part": "alu#2",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48175.0,
+          0.0,
+          24010.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "S-L8-30",
+        "b": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_guid": "7e622f1b-1a65-45c5-b867-8e1dc2f5176d",
+        "b_guid": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_part": "alu#2",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48175.0,
+          0.0,
+          27910.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-L1-01",
+        "b": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_guid": "a8f7f316-3ce4-4bef-8173-dc890c7a72c7",
+        "b_guid": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_part": "alu#1",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48201.563501,
+          185.0,
+          3953.308431
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-L2-01",
+        "b": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_guid": "a9c22dcd-6fb5-4b89-b050-0373116f1bf3",
+        "b_guid": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_part": "alu#1",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          185.0,
+          8390.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-L3-01",
+        "b": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_guid": "bdff20dd-5363-4406-8045-8ba6e1659d8e",
+        "b_guid": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_part": "alu#1",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          185.0,
+          12290.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-L4-01",
+        "b": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_guid": "589d1c2c-38b9-4634-b8fb-ca313309992f",
+        "b_guid": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_part": "alu#1",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          185.0,
+          16190.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-L5-01",
+        "b": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_guid": "dd1a5f3a-bc56-4d4e-8d63-9fa6c36bcbaf",
+        "b_guid": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_part": "alu#1",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          185.0,
+          20090.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-L6-01",
+        "b": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_guid": "14d58536-80e2-4ab2-9d5e-52353c437576",
+        "b_guid": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_part": "alu#1",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          185.0,
+          23990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-L7-01",
+        "b": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_guid": "95fc76f6-c895-44d8-a67b-205a064cdd9e",
+        "b_guid": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_part": "alu#1",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          185.0,
+          27890.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-L8-01",
+        "b": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_guid": "fe8220bb-879c-4bb8-a3b1-c10f28cfc273",
+        "b_guid": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_part": "alu#1",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          185.0,
+          31790.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-01",
+        "b": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_guid": "6772b3cf-da0d-44a1-abff-55bfe262d9dd",
+        "b_guid": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_part": "alu#1",
+        "b_part": "幕墙::转角立柱",
+        "kind": "below_clearance",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          185.0,
+          32990.0
+        ],
+        "witness_radius_mm": 5.0
+      },
+      {
+        "a": "E-RF-01",
+        "b": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_guid": "6772b3cf-da0d-44a1-abff-55bfe262d9dd",
+        "b_guid": "bb36e500-134f-4469-800a-6ac03c5b7f58",
+        "a_part": "alu#8",
+        "b_part": "幕墙::转角立柱",
+        "kind": "contact",
+        "required_clearance_mm": 10.0,
+        "point_mm": [
+          48360.0,
+          180.0,
+          32995.0
+        ],
+        "witness_radius_mm": 5.0
+      }
+    ],
+    "unresolved": [],
+    "clearance_mm": 10.0,
+    "boolean_tolerance_mm": 0.1,
+    "method": "closed Brep boolean volume; proved-box or certified polygonal-boundary fallback; mesh threshold clearance",
+    "scope": "between distinct units; internal designed connections within each unit are not checked",
+    "clearance_semantics": "contacts are reported separately; mesh witnesses do not claim exact minimum distance"
+  },
+  "timeline": {
+    "ok": true,
+    "real_eto_timer": true,
+    "date_events": 10,
+    "query_pid": "S-L1-01",
+    "reverse_seek": true,
+    "pause": true,
+    "invalid_input_preserves_date": true,
+    "latest_seek_wins": true,
+    "busy_save_guarded": true,
+    "export_reentry_guarded": true,
+    "end_stops_playback": true,
+    "close_stops_timer": true,
+    "document_lifecycle_guarded": true
+  },
+  "source_preserved": true,
+  "ok": true,
+  "seconds": 20.81
+}

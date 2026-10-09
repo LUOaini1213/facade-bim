@@ -18,6 +18,8 @@ RHINO = os.environ.get("RHINO_EXE", r"C:\Program Files\Rhino 8\System\Rhino.exe"
 
 
 def main():
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
     tmp = os.path.join(tempfile.gettempdir(), "facade_bim_run")
     os.makedirs(tmp, exist_ok=True)
     script = os.path.join(tmp, "build_model.py")
@@ -34,7 +36,12 @@ def main():
     # 按列表拼的话，内层引号会被转义成 \"，Rhino 收到畸形路径后会停在命令行等输入。
     cmdline = '"%s" /nosplash /notemplate /runscript="_-RunPythonScript %s _-Exit"' % (RHINO, script)
     t0 = time.time()
-    proc = subprocess.Popen(cmdline, env=env)
+    startup = None
+    if os.name == "nt":
+        startup = subprocess.STARTUPINFO()
+        startup.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+        startup.wShowWindow = subprocess.SW_HIDE
+    proc = subprocess.Popen(cmdline, env=env, startupinfo=startup)
     try:
         proc.wait(timeout=900)
     except subprocess.TimeoutExpired:

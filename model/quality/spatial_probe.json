@@ -1,0 +1,1044 @@
+{
+  "ok": true,
+  "rhino": "8.33.26188.13001",
+  "diagnostics": [
+    {
+      "a": "A",
+      "b": "overlap",
+      "clearance_mm": 5,
+      "bbox_gap_mm": 0.0,
+      "parts": [
+        {
+          "bbox_min_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "bbox_max_mm": [
+            10.0,
+            10.0,
+            10.0
+          ],
+          "volume_mm3": 1000.0,
+          "mesh_faces": 12,
+          "axis_box_proof": true,
+          "planar_mesh_proof": {
+            "ok": true,
+            "mesh_valid": true,
+            "mesh_solid": true,
+            "boundary_components": 1,
+            "brep_volume": 1000.0,
+            "mesh_volume": 1000.0,
+            "brep_area": 600.0,
+            "mesh_area": 600.0,
+            "max_boundary_error_mm": 5.17892563931115e-15
+          }
+        },
+        {
+          "bbox_min_mm": [
+            9.0,
+            0.0,
+            0.0
+          ],
+          "bbox_max_mm": [
+            19.0,
+            10.0,
+            10.0
+          ],
+          "volume_mm3": 1000.0000000000007,
+          "mesh_faces": 12,
+          "axis_box_proof": true,
+          "planar_mesh_proof": {
+            "ok": true,
+            "mesh_valid": true,
+            "mesh_solid": true,
+            "boundary_components": 1,
+            "brep_volume": 1000.0000000000007,
+            "mesh_volume": 1000.0,
+            "brep_area": 600.0,
+            "mesh_area": 600.0,
+            "max_boundary_error_mm": 7.350984424391015e-15
+          }
+        }
+      ],
+      "brep_boolean": {
+        "is_null": false,
+        "count": 1,
+        "volumes_mm3": [
+          100.00000000000011
+        ]
+      },
+      "brep_brep": {
+        "success": true,
+        "curves": 4,
+        "points": 0
+      },
+      "mesh_mesh": {
+        "success": true,
+        "intersections": 4,
+        "overlap_polylines": 3,
+        "log": "An intersection computed a wrong result. Hit is invalid.\n"
+      },
+      "point_containment": {
+        "a_sample_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "b_sample_mm": [
+          9.0,
+          0.0,
+          0.0
+        ],
+        "a_in_b": false,
+        "b_in_a": false,
+        "a_in_b_inclusive": false,
+        "b_in_a_inclusive": true,
+        "a_in_b_mesh": false,
+        "b_in_a_mesh": false
+      },
+      "clashes": [
+        {
+          "a": "A",
+          "b": "overlap",
+          "a_guid": "",
+          "b_guid": "",
+          "a_part": "solid",
+          "b_part": "solid",
+          "intersection_volume_mm3": 100.0,
+          "point_mm": [
+            9.5,
+            5.0,
+            5.0
+          ],
+          "evidence": {
+            "brep_boolean": {
+              "is_null": false,
+              "count": 1
+            },
+            "resolution": "closed Brep boolean intersection"
+          }
+        }
+      ],
+      "clearance_events": [],
+      "unresolved": [],
+      "fixture": "100 mm3 overlap"
+    },
+    {
+      "a": "A",
+      "b": "contained",
+      "clearance_mm": 1,
+      "bbox_gap_mm": 0.0,
+      "parts": [
+        {
+          "bbox_min_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "bbox_max_mm": [
+            10.0,
+            10.0,
+            10.0
+          ],
+          "volume_mm3": 1000.0,
+          "mesh_faces": 12,
+          "axis_box_proof": true,
+          "planar_mesh_proof": {
+            "ok": true,
+            "mesh_valid": true,
+            "mesh_solid": true,
+            "boundary_components": 1,
+            "brep_volume": 1000.0,
+            "mesh_volume": 1000.0,
+            "brep_area": 600.0,
+            "mesh_area": 600.0,
+            "max_boundary_error_mm": 5.17892563931115e-15
+          }
+        },
+        {
+          "bbox_min_mm": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "bbox_max_mm": [
+            3.0,
+            3.0,
+            3.0
+          ],
+          "volume_mm3": 1.0000000000000009,
+          "mesh_faces": 12,
+          "axis_box_proof": true,
+          "planar_mesh_proof": {
+            "ok": true,
+            "mesh_valid": true,
+            "mesh_solid": true,
+            "boundary_components": 1,
+            "brep_volume": 1.0000000000000009,
+            "mesh_volume": 1.0,
+            "brep_area": 6.0,
+            "mesh_area": 6.0,
+            "max_boundary_error_mm": 4.440892098500626e-16
+          }
+        }
+      ],
+      "brep_boolean": {
+        "is_null": false,
+        "count": 0,
+        "volumes_mm3": []
+      },
+      "brep_brep": {
+        "success": true,
+        "curves": 0,
+        "points": 0
+      },
+      "mesh_mesh": {
+        "success": true,
+        "intersections": 0,
+        "overlap_polylines": 0,
+        "log": ""
+      },
+      "point_containment": {
+        "a_sample_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "b_sample_mm": [
+          2.0,
+          2.0,
+          2.0
+        ],
+        "a_in_b": false,
+        "b_in_a": true,
+        "a_in_b_inclusive": false,
+        "b_in_a_inclusive": true,
+        "a_in_b_mesh": false,
+        "b_in_a_mesh": true
+      },
+      "clashes": [
+        {
+          "a": "A",
+          "b": "contained",
+          "a_guid": "",
+          "b_guid": "",
+          "a_part": "solid",
+          "b_part": "solid",
+          "intersection_volume_mm3": 1.0,
+          "point_mm": [
+            2.5,
+            2.5,
+            2.5
+          ],
+          "evidence": {
+            "brep_boolean": {
+              "is_null": false,
+              "count": 0
+            },
+            "brep_brep": {
+              "success": true,
+              "curves": 0,
+              "points": 0
+            },
+            "axis_box_proof": [
+              true,
+              true
+            ],
+            "resolution": "proved axis-aligned box intersection"
+          }
+        }
+      ],
+      "clearance_events": [],
+      "unresolved": [],
+      "fixture": "full containment",
+      "polygonal_containment_subcheck": {
+        "a": "cavity",
+        "b": "in-polygonal-material",
+        "clearance_mm": 1,
+        "bbox_gap_mm": 0.0,
+        "parts": [
+          {
+            "bbox_min_mm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bbox_max_mm": [
+              10.0,
+              10.0,
+              10.0
+            ],
+            "volume_mm3": 640.0,
+            "mesh_faces": 32,
+            "axis_box_proof": false,
+            "planar_mesh_proof": {
+              "ok": true,
+              "mesh_valid": true,
+              "mesh_solid": true,
+              "boundary_components": 1,
+              "brep_volume": 640.0,
+              "mesh_volume": 640.0,
+              "brep_area": 768.0000000000002,
+              "mesh_area": 768.0,
+              "max_boundary_error_mm": 5.17892563931115e-15
+            }
+          },
+          {
+            "bbox_min_mm": [
+              0.25,
+              0.25,
+              4.0
+            ],
+            "bbox_max_mm": [
+              1.25,
+              1.25,
+              6.0
+            ],
+            "volume_mm3": 2.0000000000000004,
+            "mesh_faces": 12,
+            "axis_box_proof": true,
+            "planar_mesh_proof": {
+              "ok": true,
+              "mesh_valid": true,
+              "mesh_solid": true,
+              "boundary_components": 1,
+              "brep_volume": 2.0000000000000004,
+              "mesh_volume": 2.0,
+              "brep_area": 10.0,
+              "mesh_area": 10.0,
+              "max_boundary_error_mm": 8.881784197001252e-16
+            }
+          }
+        ],
+        "brep_boolean": {
+          "is_null": false,
+          "count": 0,
+          "volumes_mm3": []
+        },
+        "brep_brep": {
+          "success": true,
+          "curves": 0,
+          "points": 0
+        },
+        "mesh_mesh": {
+          "success": true,
+          "intersections": 0,
+          "overlap_polylines": 0,
+          "log": ""
+        },
+        "point_containment": {
+          "a_sample_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "b_sample_mm": [
+            0.25,
+            0.25,
+            4.0
+          ],
+          "a_in_b": false,
+          "b_in_a": true,
+          "a_in_b_inclusive": false,
+          "b_in_a_inclusive": true,
+          "a_in_b_mesh": false,
+          "b_in_a_mesh": true
+        },
+        "clashes": [
+          {
+            "a": "cavity",
+            "b": "in-polygonal-material",
+            "a_guid": "",
+            "b_guid": "",
+            "a_part": "solid",
+            "b_part": "solid",
+            "intersection_volume_mm3": 2.0,
+            "point_mm": [
+              0.75,
+              0.75,
+              5.0
+            ],
+            "evidence": {
+              "brep_boolean": {
+                "is_null": false,
+                "count": 0
+              },
+              "brep_brep": {
+                "success": true,
+                "curves": 0,
+                "points": 0
+              },
+              "axis_box_proof": [
+                false,
+                true
+              ],
+              "planar_mesh_proof": [
+                {
+                  "ok": true,
+                  "mesh_valid": true,
+                  "mesh_solid": true,
+                  "boundary_components": 1,
+                  "brep_volume": 640.0,
+                  "mesh_volume": 640.0,
+                  "brep_area": 768.0000000000002,
+                  "mesh_area": 768.0,
+                  "max_boundary_error_mm": 5.17892563931115e-15
+                },
+                {
+                  "ok": true,
+                  "mesh_valid": true,
+                  "mesh_solid": true,
+                  "boundary_components": 1,
+                  "brep_volume": 2.0000000000000004,
+                  "mesh_volume": 2.0,
+                  "brep_area": 10.0,
+                  "mesh_area": 10.0,
+                  "max_boundary_error_mm": 8.881784197001252e-16
+                }
+              ],
+              "mesh_mesh": {
+                "success": true,
+                "intersections": 0,
+                "overlap_polylines": 0,
+                "log": ""
+              },
+              "point_containment": {
+                "a_sample_mm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "b_sample_mm": [
+                  0.25,
+                  0.25,
+                  4.0
+                ],
+                "a_in_b": false,
+                "b_in_a": true,
+                "a_in_b_inclusive": false,
+                "b_in_a_inclusive": true,
+                "a_in_b_mesh": false,
+                "b_in_a_mesh": true
+              },
+              "resolution": "certified disjoint polygonal boundaries and containment"
+            }
+          }
+        ],
+        "clearance_events": [],
+        "unresolved": [],
+        "forced_fallback": {
+          "volume_mm3": 2.0000000000000004,
+          "centroid_mm": [
+            0.75,
+            0.75,
+            5.0
+          ],
+          "evidence": {
+            "axis_box_proof": [
+              false,
+              true
+            ],
+            "planar_mesh_proof": [
+              {
+                "ok": true,
+                "mesh_valid": true,
+                "mesh_solid": true,
+                "boundary_components": 1,
+                "brep_volume": 640.0,
+                "mesh_volume": 640.0,
+                "brep_area": 768.0000000000002,
+                "mesh_area": 768.0,
+                "max_boundary_error_mm": 5.17892563931115e-15
+              },
+              {
+                "ok": true,
+                "mesh_valid": true,
+                "mesh_solid": true,
+                "boundary_components": 1,
+                "brep_volume": 2.0000000000000004,
+                "mesh_volume": 2.0,
+                "brep_area": 10.0,
+                "mesh_area": 10.0,
+                "max_boundary_error_mm": 8.881784197001252e-16
+              }
+            ],
+            "mesh_mesh": {
+              "success": true,
+              "intersections": 0,
+              "overlap_polylines": 0,
+              "log": ""
+            },
+            "point_containment": {
+              "a_sample_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "b_sample_mm": [
+                0.25,
+                0.25,
+                4.0
+              ],
+              "a_in_b": false,
+              "b_in_a": true,
+              "a_in_b_inclusive": false,
+              "b_in_a_inclusive": true,
+              "a_in_b_mesh": false,
+              "b_in_a_mesh": true
+            },
+            "resolution": "certified disjoint polygonal boundaries and containment"
+          }
+        }
+      }
+    },
+    {
+      "a": "A",
+      "b": "above",
+      "clearance_mm": 6,
+      "bbox_gap_mm": 5.0,
+      "parts": [
+        {
+          "bbox_min_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "bbox_max_mm": [
+            10.0,
+            10.0,
+            10.0
+          ],
+          "volume_mm3": 1000.0,
+          "mesh_faces": 12,
+          "axis_box_proof": true,
+          "planar_mesh_proof": {
+            "ok": true,
+            "mesh_valid": true,
+            "mesh_solid": true,
+            "boundary_components": 1,
+            "brep_volume": 1000.0,
+            "mesh_volume": 1000.0,
+            "brep_area": 600.0,
+            "mesh_area": 600.0,
+            "max_boundary_error_mm": 5.17892563931115e-15
+          }
+        },
+        {
+          "bbox_min_mm": [
+            0.0,
+            0.0,
+            15.0
+          ],
+          "bbox_max_mm": [
+            10.0,
+            10.0,
+            25.0
+          ],
+          "volume_mm3": 1000.0000000000005,
+          "mesh_faces": 12,
+          "axis_box_proof": true,
+          "planar_mesh_proof": {
+            "ok": true,
+            "mesh_valid": true,
+            "mesh_solid": true,
+            "boundary_components": 1,
+            "brep_volume": 1000.0000000000005,
+            "mesh_volume": 1000.0,
+            "brep_area": 600.0,
+            "mesh_area": 600.0,
+            "max_boundary_error_mm": 8.042797661766892e-15
+          }
+        }
+      ],
+      "brep_boolean": {
+        "is_null": false,
+        "count": 0,
+        "volumes_mm3": []
+      },
+      "brep_brep": {
+        "success": true,
+        "curves": 0,
+        "points": 0
+      },
+      "mesh_mesh": {
+        "success": true,
+        "intersections": 0,
+        "overlap_polylines": 0,
+        "log": ""
+      },
+      "point_containment": {
+        "a_sample_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "b_sample_mm": [
+          0.0,
+          0.0,
+          15.0
+        ],
+        "a_in_b": false,
+        "b_in_a": false,
+        "a_in_b_inclusive": false,
+        "b_in_a_inclusive": false,
+        "a_in_b_mesh": false,
+        "b_in_a_mesh": false
+      },
+      "clashes": [],
+      "clearance_events": [
+        {
+          "a": "A",
+          "b": "above",
+          "a_guid": "",
+          "b_guid": "",
+          "a_part": "solid",
+          "b_part": "solid",
+          "kind": "below_clearance",
+          "required_clearance_mm": 6,
+          "point_mm": [
+            0.0,
+            0.0,
+            12.5
+          ],
+          "witness_radius_mm": 3.0
+        }
+      ],
+      "unresolved": [],
+      "fixture": "3D separated projection"
+    },
+    {
+      "a": "A",
+      "b": "above",
+      "clearance_mm": 4,
+      "bbox_gap_mm": 5.0,
+      "parts": [
+        {
+          "bbox_min_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "bbox_max_mm": [
+            10.0,
+            10.0,
+            10.0
+          ],
+          "volume_mm3": 1000.0,
+          "mesh_faces": 12,
+          "axis_box_proof": true,
+          "planar_mesh_proof": {
+            "ok": true,
+            "mesh_valid": true,
+            "mesh_solid": true,
+            "boundary_components": 1,
+            "brep_volume": 1000.0,
+            "mesh_volume": 1000.0,
+            "brep_area": 600.0,
+            "mesh_area": 600.0,
+            "max_boundary_error_mm": 5.17892563931115e-15
+          }
+        },
+        {
+          "bbox_min_mm": [
+            0.0,
+            0.0,
+            15.0
+          ],
+          "bbox_max_mm": [
+            10.0,
+            10.0,
+            25.0
+          ],
+          "volume_mm3": 1000.0000000000005,
+          "mesh_faces": 12,
+          "axis_box_proof": true,
+          "planar_mesh_proof": {
+            "ok": true,
+            "mesh_valid": true,
+            "mesh_solid": true,
+            "boundary_components": 1,
+            "brep_volume": 1000.0000000000005,
+            "mesh_volume": 1000.0,
+            "brep_area": 600.0,
+            "mesh_area": 600.0,
+            "max_boundary_error_mm": 8.042797661766892e-15
+          }
+        }
+      ],
+      "brep_boolean": {
+        "is_null": false,
+        "count": 0,
+        "volumes_mm3": []
+      },
+      "brep_brep": {
+        "success": true,
+        "curves": 0,
+        "points": 0
+      },
+      "mesh_mesh": {
+        "success": true,
+        "intersections": 0,
+        "overlap_polylines": 0,
+        "log": ""
+      },
+      "point_containment": {
+        "a_sample_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "b_sample_mm": [
+          0.0,
+          0.0,
+          15.0
+        ],
+        "a_in_b": false,
+        "b_in_a": false,
+        "a_in_b_inclusive": false,
+        "b_in_a_inclusive": false,
+        "a_in_b_mesh": false,
+        "b_in_a_mesh": false
+      },
+      "clashes": [],
+      "clearance_events": [],
+      "unresolved": [],
+      "fixture": "clearance threshold"
+    },
+    {
+      "a": "A",
+      "b": "touching",
+      "clearance_mm": 2,
+      "bbox_gap_mm": 0.0,
+      "parts": [
+        {
+          "bbox_min_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "bbox_max_mm": [
+            10.0,
+            10.0,
+            10.0
+          ],
+          "volume_mm3": 1000.0,
+          "mesh_faces": 12,
+          "axis_box_proof": true,
+          "planar_mesh_proof": {
+            "ok": true,
+            "mesh_valid": true,
+            "mesh_solid": true,
+            "boundary_components": 1,
+            "brep_volume": 1000.0,
+            "mesh_volume": 1000.0,
+            "brep_area": 600.0,
+            "mesh_area": 600.0,
+            "max_boundary_error_mm": 5.17892563931115e-15
+          }
+        },
+        {
+          "bbox_min_mm": [
+            10.0,
+            0.0,
+            0.0
+          ],
+          "bbox_max_mm": [
+            20.0,
+            10.0,
+            10.0
+          ],
+          "volume_mm3": 1000.0000000000005,
+          "mesh_faces": 12,
+          "axis_box_proof": true,
+          "planar_mesh_proof": {
+            "ok": true,
+            "mesh_valid": true,
+            "mesh_solid": true,
+            "boundary_components": 1,
+            "brep_volume": 1000.0000000000005,
+            "mesh_volume": 1000.0,
+            "brep_area": 600.0,
+            "mesh_area": 600.0,
+            "max_boundary_error_mm": 8.042797661766892e-15
+          }
+        }
+      ],
+      "brep_boolean": {
+        "is_null": true,
+        "count": 0,
+        "volumes_mm3": []
+      },
+      "brep_brep": {
+        "success": true,
+        "curves": 2,
+        "points": 0
+      },
+      "mesh_mesh": {
+        "success": true,
+        "intersections": 0,
+        "overlap_polylines": 1,
+        "log": ""
+      },
+      "point_containment": {
+        "a_sample_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "b_sample_mm": [
+          10.0,
+          0.0,
+          0.0
+        ],
+        "a_in_b": false,
+        "b_in_a": false,
+        "a_in_b_inclusive": false,
+        "b_in_a_inclusive": true,
+        "a_in_b_mesh": false,
+        "b_in_a_mesh": false
+      },
+      "clashes": [],
+      "clearance_events": [
+        {
+          "a": "A",
+          "b": "touching",
+          "a_guid": "",
+          "b_guid": "",
+          "a_part": "solid",
+          "b_part": "solid",
+          "kind": "contact",
+          "required_clearance_mm": 2,
+          "point_mm": [
+            10.0,
+            0.0,
+            0.0
+          ],
+          "witness_radius_mm": 1.0
+        }
+      ],
+      "unresolved": [],
+      "fixture": "contact without overlap"
+    },
+    {
+      "a": "cavity",
+      "b": "in-void",
+      "clearance_mm": 1,
+      "bbox_gap_mm": 0.0,
+      "parts": [
+        {
+          "bbox_min_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "bbox_max_mm": [
+            10.0,
+            10.0,
+            10.0
+          ],
+          "volume_mm3": 640.0,
+          "mesh_faces": 32,
+          "axis_box_proof": false,
+          "planar_mesh_proof": {
+            "ok": true,
+            "mesh_valid": true,
+            "mesh_solid": true,
+            "boundary_components": 1,
+            "brep_volume": 640.0,
+            "mesh_volume": 640.0,
+            "brep_area": 768.0000000000002,
+            "mesh_area": 768.0,
+            "max_boundary_error_mm": 5.17892563931115e-15
+          }
+        },
+        {
+          "bbox_min_mm": [
+            4.0,
+            4.0,
+            4.0
+          ],
+          "bbox_max_mm": [
+            6.0,
+            6.0,
+            6.0
+          ],
+          "volume_mm3": 8.000000000000007,
+          "mesh_faces": 12,
+          "axis_box_proof": true,
+          "planar_mesh_proof": {
+            "ok": true,
+            "mesh_valid": true,
+            "mesh_solid": true,
+            "boundary_components": 1,
+            "brep_volume": 8.000000000000007,
+            "mesh_volume": 8.0,
+            "brep_area": 24.0,
+            "mesh_area": 24.0,
+            "max_boundary_error_mm": 8.881784197001252e-16
+          }
+        }
+      ],
+      "brep_boolean": {
+        "is_null": false,
+        "count": 0,
+        "volumes_mm3": []
+      },
+      "brep_brep": {
+        "success": true,
+        "curves": 0,
+        "points": 0
+      },
+      "mesh_mesh": {
+        "success": true,
+        "intersections": 0,
+        "overlap_polylines": 0,
+        "log": ""
+      },
+      "point_containment": {
+        "a_sample_mm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "b_sample_mm": [
+          4.0,
+          4.0,
+          4.0
+        ],
+        "a_in_b": false,
+        "b_in_a": false,
+        "a_in_b_inclusive": false,
+        "b_in_a_inclusive": false,
+        "a_in_b_mesh": false,
+        "b_in_a_mesh": false
+      },
+      "clashes": [],
+      "clearance_events": [],
+      "unresolved": [],
+      "fixture": "void inside overlapping bounding boxes"
+    }
+  ],
+  "checks": [
+    "100 mm3 overlap",
+    "full containment",
+    "3D separated projection",
+    "clearance threshold",
+    "contact without overlap",
+    "void inside overlapping bounding boxes"
+  ],
+  "failure_counterexample": {
+    "ok": true,
+    "unresolved": [
+      {
+        "a": "cavity",
+        "b": "in-void",
+        "a_guid": "",
+        "b_guid": "",
+        "a_part": "solid",
+        "b_part": "solid",
+        "reason": "MeshMesh returned False (operation failed): native API",
+        "evidence": {
+          "brep_boolean": {
+            "is_null": false,
+            "count": 0
+          },
+          "brep_brep": {
+            "success": true,
+            "curves": 0,
+            "points": 0
+          },
+          "axis_box_proof": [
+            false,
+            true
+          ],
+          "planar_mesh_proof": [
+            {
+              "ok": true,
+              "mesh_valid": true,
+              "mesh_solid": true,
+              "boundary_components": 1,
+              "brep_volume": 640.0,
+              "mesh_volume": 640.0,
+              "brep_area": 768.0000000000002,
+              "mesh_area": 768.0,
+              "max_boundary_error_mm": 5.17892563931115e-15
+            },
+            {
+              "ok": true,
+              "mesh_valid": true,
+              "mesh_solid": true,
+              "boundary_components": 1,
+              "brep_volume": 8.000000000000007,
+              "mesh_volume": 8.0,
+              "brep_area": 24.0,
+              "mesh_area": 24.0,
+              "max_boundary_error_mm": 8.881784197001252e-16
+            }
+          ],
+          "mesh_mesh": {
+            "success": false,
+            "intersections": 0,
+            "overlap_polylines": 0
+          }
+        }
+      }
+    ],
+    "invalid_hit_diagnostic_unresolved": [
+      {
+        "a": "cavity",
+        "b": "in-void",
+        "a_guid": "",
+        "b_guid": "",
+        "a_part": "solid",
+        "b_part": "solid",
+        "reason": "MeshMesh diagnostic prevents a conclusive empty-boundary proof",
+        "evidence": {
+          "brep_boolean": {
+            "is_null": false,
+            "count": 0
+          },
+          "brep_brep": {
+            "success": true,
+            "curves": 0,
+            "points": 0
+          },
+          "axis_box_proof": [
+            false,
+            true
+          ],
+          "planar_mesh_proof": [
+            {
+              "ok": true,
+              "mesh_valid": true,
+              "mesh_solid": true,
+              "boundary_components": 1,
+              "brep_volume": 640.0,
+              "mesh_volume": 640.0,
+              "brep_area": 768.0000000000002,
+              "mesh_area": 768.0,
+              "max_boundary_error_mm": 5.17892563931115e-15
+            },
+            {
+              "ok": true,
+              "mesh_valid": true,
+              "mesh_solid": true,
+              "boundary_components": 1,
+              "brep_volume": 8.000000000000007,
+              "mesh_volume": 8.0,
+              "brep_area": 24.0,
+              "mesh_area": 24.0,
+              "max_boundary_error_mm": 8.881784197001252e-16
+            }
+          ],
+          "mesh_mesh": {
+            "success": true,
+            "intersections": 0,
+            "overlap_polylines": 0,
+            "log": "An intersection computed a wrong result. Hit is invalid."
+          }
+        }
+      }
+    ]
+  }
+}

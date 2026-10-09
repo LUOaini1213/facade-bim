@@ -55,6 +55,8 @@ def outputs():
 
 
 def main():
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
     files = outputs()
     if "--check" in sys.argv:
         bad = []

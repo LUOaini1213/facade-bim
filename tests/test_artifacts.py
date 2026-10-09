@@ -16,13 +16,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
 import ifcopenshell                    # noqa: E402
-import ifcopenshell.geom               # noqa: E402
 import ifcopenshell.util.element as UE  # noqa: E402
-import ifcopenshell.util.unit as UU    # noqa: E402
 import ifcopenshell.validate           # noqa: E402
 import rhino3dm                        # noqa: E402
 
-from facade.model import build_panels, footprint  # noqa: E402
+from scripts.check_ifc import verify  # noqa: E402
 
 DATA = os.path.join(ROOT, "data")
 M3DM = os.path.join(ROOT, "model", "facade_bim.3dm")
@@ -150,23 +148,13 @@ class IfcMatchesRhinoModel(unittest.TestCase):
         w = sum(UE.get_pset(p, "Qto_PlateBaseQuantities")["GrossWeight"] for p in self.f.by_type("IfcPlate"))
         self.assertAlmostEqual(w / 1000.0, float(total["weight_t"]), places=2)
 
-    def test_geometry_engine_places_every_plate_on_the_model_envelope(self):
-        """把 IFC 交给 ifcopenshell 的几何引擎算出实体，逐块比对世界坐标包络。"""
-        st = ifcopenshell.geom.settings()
-        st.set("use-world-coords", True)
-        scale = 1.0 / UU.calculate_unit_scale(self.f)       # 引擎输出米，换回毫米
-        exp = {p.pid: p for p in build_panels()}
-        worst = 0.0
-        for plate in self.f.by_type("IfcPlate"):
-            sh = ifcopenshell.geom.create_shape(st, plate)   # 留住 sh：链式取 verts 会读到已释放的内存
-            v = list(sh.geometry.verts)
-            got = [c * scale for c in (min(v[0::3]), min(v[1::3]), min(v[2::3]),
-                                       max(v[0::3]), max(v[1::3]), max(v[2::3]))]
-            p = exp[plate.Name]
-            x0, y0, x1, y1 = footprint(p)
-            want = (x0, y0, p.origin[2], x1, y1, p.origin[2] + p.h)
-            worst = max(worst, max(abs(a - b) for a, b in zip(got, want)))
-        self.assertLess(worst, 0.01)
+    def test_geometry_engine_matches_actual_rhino_parts_and_instance_placements(self):
+        """读实际 Rhino 块 Brep，核对零件顶点/实体体积及全部实例刚体定位。"""
+        result = verify(self.f, rhino3dm.File3dm.Read(M3DM))
+        self.assertEqual(result["panels"], 810)
+        self.assertEqual(result["parts"], 7464)
+        self.assertEqual(result["shared_part_geometries"], 72)
+        self.assertEqual(result["tasks"], 950)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,214 @@
+{
+  "status": true,
+  "total_specifications": 4,
+  "total_specifications_pass": 4,
+  "total_specifications_fail": 0,
+  "total_checks": 55205,
+  "total_checks_pass": 55205,
+  "total_checks_fail": 0,
+  "title": "Facade BIM IFC delivery requirements",
+  "model": "model/facade_bim.ifc",
+  "schema": "IFC4",
+  "ids": "quality/delivery.ids",
+  "ids_sha256": "e326de4347f9814f5f3488dff1703750cd654eb9cade43a7a8f894ba4e6ad732",
+  "ifctester_version": "0.8.5",
+  "specifications": [
+    {
+      "name": "Panel identity and schedule fields",
+      "status": true,
+      "is_ifc_version": true,
+      "total_applicable": 810,
+      "total_applicable_fail": 0,
+      "total_checks": 5670,
+      "total_checks_fail": 0,
+      "requirements": [
+        {
+          "label": "Name",
+          "description": "The Name shall be {'pattern': '[SENW]-(L[1-8]|RF)-[0-9]{2}'}",
+          "status": true,
+          "total_applicable": 810,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Panel.PanelID",
+          "description": "PanelID data shall be {'pattern': '[SENW]-(L[1-8]|RF)-[0-9]{2}'} and in the dataset FacadeBIM_Panel",
+          "status": true,
+          "total_applicable": 810,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Panel.PanelType",
+          "description": "PanelType data shall be {'enumeration': ['U1', 'U2', 'U3', 'U4', 'U5']} and in the dataset FacadeBIM_Panel",
+          "status": true,
+          "total_applicable": 810,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Panel.InstallDate",
+          "description": "InstallDate data shall be {'pattern': '[0-9]{4}-[0-9]{2}-[0-9]{2}'} and in the dataset FacadeBIM_Panel",
+          "status": true,
+          "total_applicable": 810,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Panel.DeliveryDate",
+          "description": "DeliveryDate data shall be {'pattern': '[0-9]{4}-[0-9]{2}-[0-9]{2}'} and in the dataset FacadeBIM_Panel",
+          "status": true,
+          "total_applicable": 810,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Panel.Stillage",
+          "description": "Stillage data shall be {'pattern': 'ST-[0-9]{3}'} and in the dataset FacadeBIM_Panel",
+          "status": true,
+          "total_applicable": 810,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_RhinoUserText.pid",
+          "description": "pid data shall be {'pattern': '[SENW]-(L[1-8]|RF)-[0-9]{2}'} and in the dataset FacadeBIM_RhinoUserText",
+          "status": true,
+          "total_applicable": 810,
+          "total_fail": 0,
+          "failed_entities": []
+        }
+      ]
+    },
+    {
+      "name": "Actual Rhino part identity and material",
+      "status": true,
+      "is_ifc_version": true,
+      "total_applicable": 7464,
+      "total_applicable_fail": 0,
+      "total_checks": 44784,
+      "total_checks_fail": 0,
+      "requirements": [
+        {
+          "label": "Name",
+          "description": "The Name shall be {'pattern': '.+'}",
+          "status": true,
+          "total_applicable": 7464,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Part.PanelID",
+          "description": "PanelID data shall be {'pattern': '[SENW]-(L[1-8]|RF)-[0-9]{2}'} and in the dataset FacadeBIM_Part",
+          "status": true,
+          "total_applicable": 7464,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Part.PartKind",
+          "description": "PartKind data shall be {'enumeration': ['alu', 'glass', 'spandrel', 'insulation', 'louver', 'door']} and in the dataset FacadeBIM_Part",
+          "status": true,
+          "total_applicable": 7464,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Part.RhinoObjectID",
+          "description": "RhinoObjectID data shall be {'pattern': '.+'} and in the dataset FacadeBIM_Part",
+          "status": true,
+          "total_applicable": 7464,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Part.MaterialName",
+          "description": "MaterialName data shall be {'pattern': '.+'} and in the dataset FacadeBIM_Part",
+          "status": true,
+          "total_applicable": 7464,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "Name / Category",
+          "description": "Shall have a material",
+          "status": true,
+          "total_applicable": 7464,
+          "total_fail": 0,
+          "failed_entities": []
+        }
+      ]
+    },
+    {
+      "name": "Formal construction and delivery task metadata",
+      "status": true,
+      "is_ifc_version": true,
+      "total_applicable": 950,
+      "total_applicable_fail": 0,
+      "total_checks": 4750,
+      "total_checks_fail": 0,
+      "requirements": [
+        {
+          "label": "Name",
+          "description": "The Name shall be {'pattern': '.+'}",
+          "status": true,
+          "total_applicable": 950,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "Identification",
+          "description": "The Identification shall be {'pattern': '(INSTALL:[SENW]-(L[1-8]|RF)-[0-9]{2}|DELIVERY:ST-[0-9]{3})'}",
+          "status": true,
+          "total_applicable": 950,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Task.TimeGranularity",
+          "description": "TimeGranularity data shall be DAY and in the dataset FacadeBIM_Task",
+          "status": true,
+          "total_applicable": 950,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Task.EventDate",
+          "description": "EventDate data shall be {'pattern': '[0-9]{4}-[0-9]{2}-[0-9]{2}'} and in the dataset FacadeBIM_Task",
+          "status": true,
+          "total_applicable": 950,
+          "total_fail": 0,
+          "failed_entities": []
+        },
+        {
+          "label": "FacadeBIM_Task.Source",
+          "description": "Source data shall be Rhino UserText and in the dataset FacadeBIM_Task",
+          "status": true,
+          "total_applicable": 950,
+          "total_fail": 0,
+          "failed_entities": []
+        }
+      ]
+    },
+    {
+      "name": "Named formal work schedule",
+      "status": true,
+      "is_ifc_version": true,
+      "total_applicable": 1,
+      "total_applicable_fail": 0,
+      "total_checks": 1,
+      "total_checks_fail": 0,
+      "requirements": [
+        {
+          "label": "Name",
+          "description": "The Name shall be {'pattern': '.+'}",
+          "status": true,
+          "total_applicable": 1,
+          "total_fail": 0,
+          "failed_entities": []
+        }
+      ]
+    }
+  ],
+  "model_sha256": "efb0067fee8bba5cd3c912f9ed3be80c61fcf3da9846e722db7624ec3fbe7a68"
+}
