@@ -10,6 +10,8 @@
 """
 from collections import OrderedDict, defaultdict
 from datetime import timedelta
+import math
+from numbers import Integral, Real
 
 from . import config as C
 
@@ -27,15 +29,40 @@ def add_workdays(d, n):
     return d
 
 
+def _positive_hours(value, label):
+    if isinstance(value, bool) or not isinstance(value, Real):
+        raise ValueError(label + " must be a finite positive number of hours")
+    try:
+        hours = float(value)
+    except (OverflowError, ValueError):
+        raise ValueError(label + " must be a finite positive number of hours") from None
+    if not math.isfinite(hours) or hours <= 0:
+        raise ValueError(label + " must be a finite positive number of hours")
+    return hours
+
+
 def install_plan(panels, crews=None, crew_hours=None):
-    """返回 {pid: (序号, 安装日)}。"""
-    cap = (crews or C.CREWS) * (crew_hours or C.CREW_HOURS)
+    """返回 {pid: (序号, 安装日)}；每块板必须能在一天的合计班组工时内完成。"""
+    crews = C.CREWS if crews is None else crews
+    crew_hours = C.CREW_HOURS if crew_hours is None else crew_hours
+    if isinstance(crews, bool) or not isinstance(crews, Integral) or crews <= 0:
+        raise ValueError("crews must be a positive integer")
+    hours = _positive_hours(crew_hours, "crew_hours")
+    try:
+        cap = crews * hours
+    except OverflowError:
+        raise ValueError("daily crew capacity must be finite") from None
+    if not math.isfinite(cap):
+        raise ValueError("daily crew capacity must be finite")
     day = C.INSTALL_START
     while not is_workday(day):
         day += timedelta(days=1)
     used, out = 0.0, OrderedDict()
     for seq, p in enumerate(panels, 1):
-        t = C.INSTALL_HOURS[p.ptype]
+        t = _positive_hours(C.INSTALL_HOURS[p.ptype], "install hours for " + p.ptype)
+        if t > cap + 1e-9:
+            raise ValueError("panel " + p.pid + " needs " + str(t) +
+                             " hours, exceeding non-preemptive daily capacity " + str(cap))
         if used + t > cap + 1e-9:
             day, used = add_workdays(day, 1), 0.0
         out[p.pid] = (seq, day)
