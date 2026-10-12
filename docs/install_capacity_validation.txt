@@ -1,0 +1,29 @@
+RUN scripts/build_data.py --check
+PASS data/ 的 9 个文件与重算结果逐字节一致
+RUN scripts/export_ifc.py --check
+PASS 由 .3dm 重导的 IFC 与已提交文件逐字节一致（14347665 字节）
+RUN -m pytest tests -q
+........................................................................................................................................ [ 91%]
+............                                         [100%]
+148 passed, 100 subtests passed in 362.35s (0:06:02)
+RUN scripts/check_ids.py --no-write-reports
+PASS IDS: 5 specifications, 71123 checks, 0 failures
+  PASS Panel identity and schedule fields (810 applicable)
+  PASS Actual Rhino part identity and material (7464 applicable)
+  PASS Formal construction and delivery task metadata (950 applicable)
+  PASS Named formal work schedule (1 applicable)
+  PASS Roof coping fabrication and construction envelope semantics (90 applicable)
+RUN scripts/check_ifc.py
+PASS IFC ↔ Rhino: panels=810, parts=7464, shared_part_geometries=72, materials=7, tasks=950, coping_fabrication_parts=90
+RUN scripts/check_quality.py model/quality/native_all.json --no-write-reports
+PASS model\quality\native_all.json
+RUN scripts/check_replay.py
+PASS facade_2026-10-30.3dm: 0 panels visible, 0 racks; source BIM identities/attributes/transforms preserved
+PASS facade_2026-11-02.3dm: 13 panels visible, 9 racks; source BIM identities/attributes/transforms preserved
+PASS facade_2026-11-23.3dm: 327 panels visible, 9 racks; source BIM identities/attributes/transforms preserved
+PASS facade_2026-12-20.3dm: 810 panels visible, 0 racks; source BIM identities/attributes/transforms preserved
+RUN scripts/check_profile.py --check
+PASS active profile 24mm; default_24mm; model/profile_summary.json
+RUN scripts/check_readme.py
+PASS README 的 75 处数字全部与产物一致
+PASS complete facade delivery; model/delivery_index.json

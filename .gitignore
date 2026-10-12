@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.delivery_index.lock
 # Rhino 打开 .3dm 时生成的锁文件与自动备份
 *.3dmbak
 *.rhl
