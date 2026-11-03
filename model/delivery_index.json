@@ -110,10 +110,10 @@
     "mode": "read_only_revalidation",
     "native_execution": false,
     "scope": "existing artifacts read back with current sources; no native rebuild/render",
-    "source_base_commit": "cfb269554d29647b2b132bb0eef187711cd88648",
+    "source_base_commit": "dad792c33e2122ddac0ab7e46e5d3dccaf74587d",
     "baseline_commit": "cfb269554d29647b2b132bb0eef187711cd88648",
     "baseline_record_sha256": "7346f8db392227b5ec37cd660b9909f7de49074cee435629a0fdf11c32aa5f02",
-    "verified_at": "2026-10-12T05:28:01.694224+00:00",
+    "verified_at": "2026-11-03T13:07:05.018627+00:00",
     "checks": [
       [
         "scripts/build_data.py",
@@ -166,7 +166,7 @@
       "facade/site.py": "59c47f69643f4e88bef3387c7afa5cea4bb8b1d3be33e223d28decb1b04c2ea3",
       "facade/source_integrity.py": "75f59c8abcf990131d077fcea905f791953a774abe78a78138552b73a84471e5",
       "quality/profile.json": "b9e363a9a5bac7cdf089727fabe63bdc23c3043905db352291e6c4a4b787f6b6",
-      "README.md": "5f45360d36a26218ee4a648a8bcca8ebb3a316dcc6468ceae0d6945dd4208f63",
+      "README.md": "66dcd9950af9ac8ad0bc27380ae0a81ec1dd3f88c12bf96888e98efef8fd1ac0",
       "requirements.txt": "010e7369251ce589adb86e07ddfcf62af95c00226232d29b6df4d40e72ab5ba3",
       "rhino/build_model.py": "62bab3fc2bd52e2da9cfdd12627a82dd427aaa6ddfa9105bc01a356d235e6073",
       "rhino/probe_spatial.py": "9477a1a7586475ba33d81f1bdd6523d0cc50af5be6f501f3812bd8259fdea5fa",
@@ -181,7 +181,7 @@
       "scripts/check_ifc.py": "2b34b2c0cf735ddb9e34e0088cebc046ac834863ccde3a11169fd1196735a2f7",
       "scripts/check_profile.py": "c0c961518376526c82b5ad25df2a3267f02e034b2093badca815af0bcfd82063",
       "scripts/check_quality.py": "87b1084a022edcf66ce90c912cc351b8c99d6fdaf6003fc04de412e23b15d58d",
-      "scripts/check_readme.py": "fea7fee1ab3359f77a096ff1677abf75bf2d22a7098ce13c12d7efa975110196",
+      "scripts/check_readme.py": "4e128bbb0a8d5bac6d48c6f70f0b989ad27c831ed15853f3ae776ea0ef2e860f",
       "scripts/check_replay.py": "45c3c7438a5c8c0b56c7e2b9056cb9636889918321b2d5c2c32df006905b6534",
       "scripts/delivery.py": "4c7bddd773449cf899815f7bcd3a67665ea559a017642e20b57535a954564487",
       "scripts/export_ifc.py": "4093dc9401b27696da54ad9eb58e7d96c41e73192910d9d76698f74f9f33128c",
@@ -194,10 +194,10 @@
       "tests/test_delivery_index.py": "a71cb4ecd1d776211cd7e66f54f01e872b8f50abfd479b1977d2b5e198a7f41e",
       "tests/test_ids.py": "9d51c0b365e0bcf618292bf0031ce51722458bf4253a463cb05def233b744f04",
       "tests/test_ifc_detail.py": "a7df5adff798b04cfd7b76724033203abfd6a9776746f013f7e3d4e6fa723b95",
-      "tests/test_model.py": "0ff8e476b88f73e3f5d6716e610861999b5e360a83b1facfa1aac729d02a394e",
+      "tests/test_model.py": "6ca043de5da2d9a8bde7903355c6f17971250b3d0d53874fccbe163fddafe359",
       "tests/test_profile_summary.py": "abfd0db35397ac47679e080d6ecd2eac2402871a74a30241d6d79a296e4445c1",
       "tests/test_quality_report.py": "887e01b38a5c197f8bfd2a99dac61f04cc0133a6e9e29cc946731af9d874c989",
-      "tests/test_readme.py": "9769fbbae7396f20ef45c84b6458ec0565f4b42a43bd629987e7c04f90ccc5a2",
+      "tests/test_readme.py": "6de6659a9b864437a4684a97f7e68e3f8bfdde04d44c371bb76af58188141669",
       "tests/test_replay.py": "c7629bb5bc4ba13507c1bf08760e2f6a51239e7dacf114eeaf16638ffda8a2ee",
       "tests/test_replay_artifacts.py": "d622f578726cbb1e705b9b88ca1e8e278b9539ef8a34299f5024f5a01fd06181",
       "tests/test_roof_coping.py": "c7c21c8c576fbe356ef5a4ce4309e390ef84d3d08b3e44759a5f347952ef1318",
@@ -240,7 +240,7 @@
       "quality/delivery.ids": "3f728be2b4d44e29bd6a2f6dba2e889dedc486542ffb281a075498a703ef961e"
     },
     "environment": {
-      "python": "3.11.17",
+      "python": "3.11.5",
       "platform": "Windows-10-10.0.26200-SP0",
       "packages": {
         "rhino3dm": "8.32.0",
