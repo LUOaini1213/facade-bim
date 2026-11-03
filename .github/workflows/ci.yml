@@ -12,7 +12,8 @@ jobs:
   core-py39:
     # facade/ 只用标准库，并且必须兼容 Python 3.9——Rhino 8 内置的 CPython 就是 3.9，
     # Rhino 里的建模脚本 import 的是同一份代码。这一步不装任何依赖，保证核心不偷偷依赖第三方库。
-    runs-on: ubuntu-latest
+    # ubuntu-latest 已是 26.04，setup-python 没有 3.9 的构建；3.9 只发到 22.04 / 24.04，所以钉 24.04。
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
