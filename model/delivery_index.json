@@ -110,10 +110,10 @@
     "mode": "read_only_revalidation",
     "native_execution": false,
     "scope": "existing artifacts read back with current sources; no native rebuild/render",
-    "source_base_commit": "dad792c33e2122ddac0ab7e46e5d3dccaf74587d",
+    "source_base_commit": "079384373cfc1cd88049b88bb4a34eabca0116cf",
     "baseline_commit": "cfb269554d29647b2b132bb0eef187711cd88648",
     "baseline_record_sha256": "7346f8db392227b5ec37cd660b9909f7de49074cee435629a0fdf11c32aa5f02",
-    "verified_at": "2026-11-03T13:07:05.018627+00:00",
+    "verified_at": "2026-11-03T13:28:46.767682+00:00",
     "checks": [
       [
         "scripts/build_data.py",
@@ -154,7 +154,7 @@
     ],
     "inputs": {
       ".gitattributes": "5b9001467b2ee23b5ce32e2bfe65ce69d2028baad531a96545ee67a9ff7ba1b3",
-      ".github/workflows/ci.yml": "dea210cd872e1eb0efee7047c91804ca4dd378a6db0d7b9c16d690d8d7899a7c",
+      ".github/workflows/ci.yml": "9805c392d9fe59ef1b6fc4b46c5f384d38f4d79e320436aafd44ff11965c3af4",
       "docs/INSTALL_CAPACITY_REVIEW.md": "03a2a46fbd514ff1ce275b6cfe21349f5ae0c90fa0b82d1a5e80d348e46ce8b1",
       "facade/__init__.py": "613d0e367c176a5f68cb276103ba2ddb31b71f8504d1ac4943c2ae9bc22907ff",
       "facade/checks.py": "79841b312bdcc7ba5a1010c1cffd1c0f77c483bb97af61ba0608e3042d580e76",
