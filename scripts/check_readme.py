@@ -62,17 +62,25 @@ def claim(label, pattern, expected):
         failures.append("%s：README 写 %s，产物算出 %s" % (label, got, want))
 
 
-def validate_issues():
-    issues = []
+_VALIDATE = []
 
-    class H(logging.Handler):
-        def emit(self, rec):
-            issues.append(rec)
-    lg = logging.getLogger("readme-ifc-validate")
-    lg.addHandler(H())
-    lg.setLevel(logging.DEBUG)
-    ifcopenshell.validate.validate(IFC, lg, express_rules=False)
-    return len(issues)
+
+def validate_issues():
+    """ifcopenshell schema 校验的问题数，含 EXPRESS WHERE 规则（express_rules=True）。
+
+    README 两处引用同一个数，只算一次（整份 IFC 约 50 秒）。"""
+    if not _VALIDATE:
+        issues = []
+
+        class H(logging.Handler):
+            def emit(self, rec):
+                issues.append(rec)
+        lg = logging.getLogger("readme-ifc-validate")
+        lg.addHandler(H())
+        lg.setLevel(logging.DEBUG)
+        ifcopenshell.validate.validate(IFC, lg, express_rules=True)
+        _VALIDATE.append(len(issues))
+    return _VALIDATE[0]
 
 
 def main():
@@ -116,7 +124,7 @@ def main():
           [groups["模型"], groups["工地布置"], passed, len(CHECKS)])
     claim("总览：4D 与物流", r"\*\*([\d-]+)\*\* 开装，\*\*(\d+)\*\* 个工作日装完；\*\*(\d+)\*\* 个运输架、\*\*(\d+)\*\* 车；堆场峰值 \*\*(\d+)\*\* 架",
           [SUMMARY["install_first"], SUMMARY["install_workdays"], SUMMARY["stillages"], SUMMARY["trucks"], SUMMARY["peak_stock"]])
-    claim("总览：IFC", r"IFC4：\*\*(\d+)\*\* 个 IfcPlate，schema 校验 \*\*(\d+)\*\* 问题", [ifc_count("IfcPlate"), validate_issues()])
+    claim("总览：IFC", r"IFC4：\*\*(\d+)\*\* 个 IfcPlate，schema 校验（含 EXPRESS WHERE 规则）\*\*(\d+)\*\* 问题", [ifc_count("IfcPlate"), validate_issues()])
     # ---- 模型
     for t in sorted(by_type):
         ps = by_type[t]
@@ -235,7 +243,7 @@ def main():
            sum(task.PredefinedType == "USERDEFINED" and task.ObjectType == "DELIVERY" for task in tasks)])
     if len(IFC.by_type("IfcTaskTime")) != len(tasks) or any(task.TaskTime is None for task in tasks):
         failures.append("正式 IFC 任务必须逐个有 IfcTaskTime")
-    claim("IFC 实体数与校验", r"文件共 \*\*([\d,]+)\*\* 个实体，ifcopenshell 的 schema 校验 \*\*(\d+)\*\* 个问题",
+    claim("IFC 实体数与校验", r"文件共 \*\*([\d,]+)\*\* 个实体，ifcopenshell 的 schema 校验（含 EXPRESS WHERE 规则）\*\*(\d+)\*\* 个问题",
           [len(list(IFC)), validate_issues()])
     claim("仓库结构：检查条数", r"\| (\d+) 条模型检查 \|", [groups["模型"]])
     claim("仓库结构：布置检查条数", r"施工总平面几何与 (\d+) 条布置检查", [groups["工地布置"]])
